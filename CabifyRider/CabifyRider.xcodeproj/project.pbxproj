@@ -7,116 +7,116 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D90897C72A6D3F2300C40BD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90897C62A6D3F2300C40BD7 /* AppDelegate.swift */; };
-		D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90897C82A6D3F2300C40BD7 /* SceneDelegate.swift */; };
-		D90897CB2A6D3F2300C40BD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90897CA2A6D3F2300C40BD7 /* ViewController.swift */; };
-		D90897CE2A6D3F2300C40BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897CC2A6D3F2300C40BD7 /* Main.storyboard */; };
-		D90897D02A6D3F2400C40BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */; };
-		D90897D32A6D3F2400C40BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */; };
-		D9D6F1E62A6D4C5100E50957 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1E52A6D4C5000E50957 /* GoogleService-Info.plist */; };
-		D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */; };
-		D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */; };
-		D9D6F1ED2A6D4D2D00E50957 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */; };
+		D9D6F1C92A6D419D00E50957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1C82A6D419D00E50957 /* AppDelegate.swift */; };
+		D9D6F1CB2A6D419D00E50957 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1CA2A6D419D00E50957 /* SceneDelegate.swift */; };
+		D9D6F1CD2A6D419D00E50957 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1CC2A6D419D00E50957 /* ViewController.swift */; };
+		D9D6F1D02A6D419D00E50957 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1CE2A6D419D00E50957 /* Main.storyboard */; };
+		D9D6F1D22A6D419E00E50957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1D12A6D419E00E50957 /* Assets.xcassets */; };
+		D9D6F1D52A6D419E00E50957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1D32A6D419E00E50957 /* LaunchScreen.storyboard */; };
+		D9D6F1DE2A6D4B4300E50957 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1DD2A6D4B4300E50957 /* FirebaseAuth */; };
+		D9D6F1E02A6D4B4300E50957 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1DF2A6D4B4300E50957 /* FirebaseFirestore */; };
+		D9D6F1E22A6D4B4300E50957 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1E12A6D4B4300E50957 /* FirebaseFirestoreSwift */; };
+		D9D6F1E42A6D4BDE00E50957 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D90897C62A6D3F2300C40BD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D90897C82A6D3F2300C40BD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D90897CA2A6D3F2300C40BD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D90897CD2A6D3F2300C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D90897D22A6D3F2400C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D90897D42A6D3F2400C40BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9D6F1E52A6D4C5000E50957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D9D6F1C52A6D419D00E50957 /* CabifyRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyRider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D6F1C82A6D419D00E50957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D9D6F1CA2A6D419D00E50957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D9D6F1CC2A6D419D00E50957 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D9D6F1CF2A6D419D00E50957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D9D6F1D12A6D419E00E50957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9D6F1D42A6D419E00E50957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D9D6F1D62A6D419E00E50957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D90897C02A6D3F2300C40BD7 /* Frameworks */ = {
+		D9D6F1C22A6D419D00E50957 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */,
-				D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */,
-				D9D6F1ED2A6D4D2D00E50957 /* FirebaseFirestoreSwift in Frameworks */,
+				D9D6F1DE2A6D4B4300E50957 /* FirebaseAuth in Frameworks */,
+				D9D6F1E02A6D4B4300E50957 /* FirebaseFirestore in Frameworks */,
+				D9D6F1E22A6D4B4300E50957 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D90897BA2A6D3F2300C40BD7 = {
+		D9D6F1BC2A6D419D00E50957 = {
 			isa = PBXGroup;
 			children = (
-				D90897C52A6D3F2300C40BD7 /* CabifyDriver */,
-				D90897C42A6D3F2300C40BD7 /* Products */,
+				D9D6F1C72A6D419D00E50957 /* CabifyRider */,
+				D9D6F1C62A6D419D00E50957 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D90897C42A6D3F2300C40BD7 /* Products */ = {
+		D9D6F1C62A6D419D00E50957 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */,
+				D9D6F1C52A6D419D00E50957 /* CabifyRider.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D90897C52A6D3F2300C40BD7 /* CabifyDriver */ = {
+		D9D6F1C72A6D419D00E50957 /* CabifyRider */ = {
 			isa = PBXGroup;
 			children = (
-				D90897C62A6D3F2300C40BD7 /* AppDelegate.swift */,
-				D90897C82A6D3F2300C40BD7 /* SceneDelegate.swift */,
-				D90897CA2A6D3F2300C40BD7 /* ViewController.swift */,
-				D90897CC2A6D3F2300C40BD7 /* Main.storyboard */,
-				D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */,
-				D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */,
-				D9D6F1E52A6D4C5000E50957 /* GoogleService-Info.plist */,
-				D90897D42A6D3F2400C40BD7 /* Info.plist */,
+				D9D6F1C82A6D419D00E50957 /* AppDelegate.swift */,
+				D9D6F1CA2A6D419D00E50957 /* SceneDelegate.swift */,
+				D9D6F1CC2A6D419D00E50957 /* ViewController.swift */,
+				D9D6F1CE2A6D419D00E50957 /* Main.storyboard */,
+				D9D6F1D12A6D419E00E50957 /* Assets.xcassets */,
+				D9D6F1D32A6D419E00E50957 /* LaunchScreen.storyboard */,
+				D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */,
+				D9D6F1D62A6D419E00E50957 /* Info.plist */,
 			);
-			path = CabifyDriver;
+			path = CabifyRider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D90897C22A6D3F2300C40BD7 /* CabifyDriver */ = {
+		D9D6F1C42A6D419D00E50957 /* CabifyRider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D90897D72A6D3F2400C40BD7 /* Build configuration list for PBXNativeTarget "CabifyDriver" */;
+			buildConfigurationList = D9D6F1D92A6D419E00E50957 /* Build configuration list for PBXNativeTarget "CabifyRider" */;
 			buildPhases = (
-				D90897BF2A6D3F2300C40BD7 /* Sources */,
-				D90897C02A6D3F2300C40BD7 /* Frameworks */,
-				D90897C12A6D3F2300C40BD7 /* Resources */,
+				D9D6F1C12A6D419D00E50957 /* Sources */,
+				D9D6F1C22A6D419D00E50957 /* Frameworks */,
+				D9D6F1C32A6D419D00E50957 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CabifyDriver;
+			name = CabifyRider;
 			packageProductDependencies = (
-				D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */,
-				D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */,
-				D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */,
+				D9D6F1DD2A6D4B4300E50957 /* FirebaseAuth */,
+				D9D6F1DF2A6D4B4300E50957 /* FirebaseFirestore */,
+				D9D6F1E12A6D4B4300E50957 /* FirebaseFirestoreSwift */,
 			);
-			productName = CabifyDriver;
-			productReference = D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */;
+			productName = CabifyRider;
+			productReference = D9D6F1C52A6D419D00E50957 /* CabifyRider.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D90897BB2A6D3F2300C40BD7 /* Project object */ = {
+		D9D6F1BD2A6D419D00E50957 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					D90897C22A6D3F2300C40BD7 = {
+					D9D6F1C42A6D419D00E50957 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
-			buildConfigurationList = D90897BE2A6D3F2300C40BD7 /* Build configuration list for PBXProject "CabifyDriver" */;
+			buildConfigurationList = D9D6F1C02A6D419D00E50957 /* Build configuration list for PBXProject "CabifyRider" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,59 +124,59 @@
 				en,
 				Base,
 			);
-			mainGroup = D90897BA2A6D3F2300C40BD7;
+			mainGroup = D9D6F1BC2A6D419D00E50957;
 			packageReferences = (
-				D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D9D6F1DC2A6D4B4300E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
-			productRefGroup = D90897C42A6D3F2300C40BD7 /* Products */;
+			productRefGroup = D9D6F1C62A6D419D00E50957 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D90897C22A6D3F2300C40BD7 /* CabifyDriver */,
+				D9D6F1C42A6D419D00E50957 /* CabifyRider */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D90897C12A6D3F2300C40BD7 /* Resources */ = {
+		D9D6F1C32A6D419D00E50957 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D90897D32A6D3F2400C40BD7 /* LaunchScreen.storyboard in Resources */,
-				D9D6F1E62A6D4C5100E50957 /* GoogleService-Info.plist in Resources */,
-				D90897D02A6D3F2400C40BD7 /* Assets.xcassets in Resources */,
-				D90897CE2A6D3F2300C40BD7 /* Main.storyboard in Resources */,
+				D9D6F1D52A6D419E00E50957 /* LaunchScreen.storyboard in Resources */,
+				D9D6F1E42A6D4BDE00E50957 /* GoogleService-Info.plist in Resources */,
+				D9D6F1D22A6D419E00E50957 /* Assets.xcassets in Resources */,
+				D9D6F1D02A6D419D00E50957 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D90897BF2A6D3F2300C40BD7 /* Sources */ = {
+		D9D6F1C12A6D419D00E50957 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D90897CB2A6D3F2300C40BD7 /* ViewController.swift in Sources */,
-				D90897C72A6D3F2300C40BD7 /* AppDelegate.swift in Sources */,
-				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
+				D9D6F1CD2A6D419D00E50957 /* ViewController.swift in Sources */,
+				D9D6F1C92A6D419D00E50957 /* AppDelegate.swift in Sources */,
+				D9D6F1CB2A6D419D00E50957 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D90897CC2A6D3F2300C40BD7 /* Main.storyboard */ = {
+		D9D6F1CE2A6D419D00E50957 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D90897CD2A6D3F2300C40BD7 /* Base */,
+				D9D6F1CF2A6D419D00E50957 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */ = {
+		D9D6F1D32A6D419E00E50957 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D90897D22A6D3F2400C40BD7 /* Base */,
+				D9D6F1D42A6D419E00E50957 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D90897D52A6D3F2400C40BD7 /* Debug */ = {
+		D9D6F1D72A6D419E00E50957 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,7 +244,7 @@
 			};
 			name = Debug;
 		};
-		D90897D62A6D3F2400C40BD7 /* Release */ = {
+		D9D6F1D82A6D419E00E50957 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -298,7 +298,7 @@
 			};
 			name = Release;
 		};
-		D90897D82A6D3F2400C40BD7 /* Debug */ = {
+		D9D6F1DA2A6D419E00E50957 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -307,7 +307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WVYS68J2L5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CabifyDriver/Info.plist;
+				INFOPLIST_FILE = CabifyRider/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -318,7 +318,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FMEnterprises.CabifyDriver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FMEnterprises.CabifyRider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -326,7 +326,7 @@
 			};
 			name = Debug;
 		};
-		D90897D92A6D3F2400C40BD7 /* Release */ = {
+		D9D6F1DB2A6D419E00E50957 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -335,7 +335,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WVYS68J2L5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CabifyDriver/Info.plist;
+				INFOPLIST_FILE = CabifyRider/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -346,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FMEnterprises.CabifyDriver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FMEnterprises.CabifyRider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,20 +357,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D90897BE2A6D3F2300C40BD7 /* Build configuration list for PBXProject "CabifyDriver" */ = {
+		D9D6F1C02A6D419D00E50957 /* Build configuration list for PBXProject "CabifyRider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D90897D52A6D3F2400C40BD7 /* Debug */,
-				D90897D62A6D3F2400C40BD7 /* Release */,
+				D9D6F1D72A6D419E00E50957 /* Debug */,
+				D9D6F1D82A6D419E00E50957 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D90897D72A6D3F2400C40BD7 /* Build configuration list for PBXNativeTarget "CabifyDriver" */ = {
+		D9D6F1D92A6D419E00E50957 /* Build configuration list for PBXNativeTarget "CabifyRider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D90897D82A6D3F2400C40BD7 /* Debug */,
-				D90897D92A6D3F2400C40BD7 /* Release */,
+				D9D6F1DA2A6D419E00E50957 /* Debug */,
+				D9D6F1DB2A6D419E00E50957 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -378,7 +378,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		D9D6F1DC2A6D4B4300E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -389,22 +389,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */ = {
+		D9D6F1DD2A6D4B4300E50957 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D9D6F1DC2A6D4B4300E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */ = {
+		D9D6F1DF2A6D4B4300E50957 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D9D6F1DC2A6D4B4300E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */ = {
+		D9D6F1E12A6D4B4300E50957 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D9D6F1DC2A6D4B4300E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = D90897BB2A6D3F2300C40BD7 /* Project object */;
+	rootObject = D9D6F1BD2A6D419D00E50957 /* Project object */;
 }

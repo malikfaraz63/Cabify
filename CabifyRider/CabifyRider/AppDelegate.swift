@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CabifyDriver
+//  CabifyRider
 //
 //  Created by Faraz Malik on 23/07/2023.
 //
@@ -10,8 +10,7 @@ import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
