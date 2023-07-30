@@ -1,0 +1,131 @@
+//
+//  MapViewManager.swift
+//  CabifyDriver
+//
+//  Created by Faraz Malik on 24/07/2023.
+//
+
+import Foundation
+import UIKit
+import MapKit
+import CoreLocation
+
+class MapViewManager: NSObject, MKMapViewDelegate {
+    private weak var mapView: MKMapView?
+    private var currentLocationAnnotation: LocationAnnotation?
+    
+    init(mapView: MKMapView) {
+        self.mapView = mapView
+        super.init()
+        mapView.delegate = self
+    }
+    
+    func drawCoordinates(_ coordinates: [CLLocationCoordinate2D], animated: Bool) {
+        if coordinates.count < 2 { return }
+        
+        guard let mapView = mapView else { return }
+        mapView.removeOverlays(mapView.overlays)
+        
+        if !animated {
+            mapView.addOverlay(MKPolyline(coordinates: coordinates, count: coordinates.count))
+            return
+        }
+        
+        let animationDuration = 0.5
+        var totalDistance: Double = 0
+        var distances: [Double] = []
+        let totalSteps = coordinates.count - 1
+
+        for i in 0..<totalSteps {
+            distances.append( MapUtility.getDistanceBetweenCoordinates(coordinates[i], coordinates[i + 1]))
+            totalDistance += distances[i]
+        }
+        
+        let stepTimeIntervals = distances
+            .map { distance in
+            return animationDuration * distance / totalDistance
+        }
+        
+        var counter = 0
+        var currentTime: Double = 0
+        var nextTime: Double = stepTimeIntervals[counter]
+        let timeInterval = 0.005
+        
+        Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: counter < totalSteps) { timer in
+            if counter == totalSteps {
+                timer.invalidate()
+            } else {
+                if (currentTime >= nextTime) {
+                    let subCoordinates = [coordinates[counter], coordinates[counter + 1]]
+                    mapView.addOverlay(MKPolyline(coordinates: subCoordinates, count: 2))
+                    counter += 1
+                    if counter < totalSteps {
+                        nextTime += stepTimeIntervals[counter]
+                    }
+                }
+                currentTime += timeInterval
+            }
+        }
+    }
+    
+    func clearMapView() {
+        guard let mapView = mapView else { return }
+        mapView.removeOverlays(mapView.overlays)
+        removeCheckpointAnnotations()
+    }
+    
+    func removeCheckpointAnnotations() {
+        guard let mapView = mapView else { return }
+        mapView.removeAnnotations(mapView.annotations.filter { $0 is CheckpointAnnotation })
+    }
+    
+    func showCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CheckpointAnnotation.Kind) {
+        guard let mapView = mapView else { return }
+        mapView.addAnnotation(CheckpointAnnotation(coordinate: coordinate, kind: kind))
+    }
+    
+    func updateCurrentLocation(_ newLocation: CLLocationCoordinate2D) {
+        guard let mapView = mapView else { return }
+        
+        if let previousLocation = currentLocationAnnotation {
+            mapView.removeAnnotation(previousLocation)
+        }
+        
+        currentLocationAnnotation = LocationAnnotation(coordinate: newLocation)
+        mapView.addAnnotation(currentLocationAnnotation!)
+    }
+    
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 150, animated: Bool = true) {
+        guard let mapView = mapView else { return }
+        
+        let coordinateRegion = MKCoordinateRegion(
+          center: location.coordinate,
+          latitudinalMeters: regionRadius,
+          longitudinalMeters: regionRadius
+        )
+        
+        mapView.setRegion(coordinateRegion, animated: animated)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is LocationAnnotation {
+            guard let locationAnnotation = annotation as? LocationAnnotation else { fatalError() }
+            
+            return locationAnnotation.getView()
+        } else if annotation is CheckpointAnnotation {
+            guard let checkpointAnnotation = annotation as? CheckpointAnnotation else { fatalError() }
+            
+            return checkpointAnnotation.getView()
+        }
+        
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor(red: 66/255.0, green: 133/255.0, blue: 244/255.0, alpha: 1)
+        renderer.lineWidth = 10.0
+        
+        return renderer
+    }
+}
