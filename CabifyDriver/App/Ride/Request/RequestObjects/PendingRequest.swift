@@ -15,6 +15,7 @@ struct PendingRequest: Codable {
     let destination: GeoPoint
     let timeCreated: Date
     let cost: Double
+    let driverViews: Int
     let riderId: String
     let riderRating: Double
     let status: RequestStatus

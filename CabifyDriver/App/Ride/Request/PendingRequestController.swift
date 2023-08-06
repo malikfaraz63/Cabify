@@ -23,20 +23,52 @@ class PendingRequestController: UIViewController {
     var delegate: PendingRequestDelegate?
     
     var triedToAccept: Bool = false
+    var wasCalled: Bool = false
     var request: PendingRequest?
-    var countdownAnimation: UIViewPropertyAnimator?
+    var countdownAnimator: UIViewPropertyAnimator?
     
     override func viewDidLoad() {
+        countdownProgressView.progress = 1.0
+        self.view.layoutIfNeeded()
         super.viewDidLoad()
+    }
+    
+    private func printState(_ state: UIViewAnimatingState) {
+        switch state {
+        case .active:
+            print("active")
+        case .inactive:
+            print("inactive")
+        case .stopped:
+            print("stopped")
+        default:
+            print("unknown")
+        }
+    }
+    
+    private func printPosition(_ position: UIViewAnimatingPosition) {
+        switch position {
+        case .current:
+            print("current")
+        case .start:
+            print("start")
+        case .end:
+            print("end")
+        default:
+            print("unknown")
+        }
+    }
+    
+    func resetAnimations() {
+        countdownAnimator = UIViewPropertyAnimator(duration: 4.0, curve: .linear) {
+            self.countdownProgressView.setProgress(0.0, animated: true)
+        }
+        countdownAnimator!.addCompletion(requestTimedOutCompletion)
 
-        countdownProgressView.setProgress(1.0, animated: false)
-        // Do any additional setup after loading the view.
     }
     
     func showRequest(fromCurrentLocation currentLocation: GeoPoint, request: PendingRequest) {
-        countdownProgressView.setProgress(1.0, animated: false)
-        triedToAccept = false
-        
+        print("Showing request")
         self.request = request
         
         rideCostLabel.text = String(format: "£%.2f", request.cost)
@@ -51,15 +83,19 @@ class PendingRequestController: UIViewController {
             self.dropoffSummaryLabel.text = "\(summary.duration.text) (\(summary.distance.text)) trip"
         }
         
-        countdownAnimation = UIViewPropertyAnimator(duration: 10.0, curve: .linear) {
-            self.countdownProgressView.setProgress(0.0, animated: true)
+        resetAnimations()
+        self.countdownAnimator!.startAnimation()
+    }
+    
+    func requestTimedOutCompletion(_ position: UIViewAnimatingPosition) {
+        
+        print("\n-----\nTriggered completion")
+        printState(countdownAnimator!.state)
+        
+        countdownAnimator = nil
+        if let request = self.request {
+            self.delegate?.requestTimedOut(request, completion: clearView)
         }
-        countdownAnimation!.addCompletion { _ in
-            if let request = self.request {
-                self.delegate?.requestTimedOut(request)
-            }
-        }
-        countdownAnimation!.startAnimation(afterDelay: 2.0)
     }
     
     func clearView() {
@@ -69,16 +105,18 @@ class PendingRequestController: UIViewController {
         dropoffLocationLabel.text = "Dropoff"
         pickupSummaryLabel.text = "-- mins (-- mi) away"
         dropoffSummaryLabel.text = "-- mins (-- mi) trip"
+        self.countdownProgressView.progress = 1.0
+        self.view.layoutIfNeeded()
     }
     
     @IBAction func acceptRequest() {
         if triedToAccept { return }
         triedToAccept = true
-        if let countdownAnimation = countdownAnimation {
-            countdownAnimation.pauseAnimation()
+        if let countdownAnimator = countdownAnimator {
+            countdownAnimator.pauseAnimation()
         }
         
         guard let request = request else { return }
-        delegate?.didTryToAcceptRequest(request)
+        delegate?.didTryToAcceptRequest(request, completion: clearView)
     }
 }

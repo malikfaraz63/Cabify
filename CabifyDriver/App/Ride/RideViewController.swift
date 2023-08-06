@@ -13,18 +13,44 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDelegate, PendingRequestDelegate {
-    
     @IBOutlet weak var goOnlineConstraint: NSLayoutConstraint!
+    @IBOutlet weak var launchNavigationConstraint: NSLayoutConstraint!
+    @IBOutlet weak var followLocationConstraint: NSLayoutConstraint!
+    @IBOutlet weak var journeyViewConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var requestMessagesBadge: UILabel!
+    @IBOutlet weak var showRequestMessagesButton: UIButton!
+    @IBOutlet weak var callRiderButton: UIButton!
     @IBOutlet weak var goOnlineButton: UIButton!
+    @IBOutlet weak var followLocationButton: UIButton!
+    @IBOutlet weak var launchNavigationButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var statusView: UIView!
+    
+    @IBOutlet weak var journeyView: UIView!
+    
+    @IBOutlet weak var journeyPreviewView: UIView!
+    @IBOutlet weak var journeyPreviewSummaryLabel: UILabel!
+    @IBOutlet weak var journeyPreviewTimeLabel: UILabel!
+    @IBOutlet weak var journeyPreviewDistanceLabel: UILabel!
+    
+    @IBOutlet weak var journeyOngoingView: UIView!
+    @IBOutlet weak var journeyStepSummaryLabel: UILabel!
+    @IBOutlet weak var journeyStepDistanceLabel: UILabel!
+    @IBOutlet weak var journeyStepNoticeStack: UIStackView!
+    @IBOutlet weak var journeyStepNoticeLabel: UILabel!
+    
+    @IBOutlet weak var riderCountdownView: UIView!
+    
+    @IBOutlet weak var statusStackView: UIStackView!
+    @IBOutlet weak var rideStatusView: UIView!
+    @IBOutlet weak var rideStatusButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     
     @IBOutlet weak var pendingRequestContainer: UIView!
     @IBOutlet weak var pendingRequestConstraint: NSLayoutConstraint!
-    @IBOutlet weak var followLocationConstraint: NSLayoutConstraint!
     
     let db = Firestore.firestore()
     let requestClient = RequestClient()
@@ -36,7 +62,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     
     var previousUserId: String?
     
-    var rideViewStatus = RideViewStatus.offline
+    var driverStatus = DriverStatus.offline
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +74,19 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         journeyManager?.delegate = self
         checkLocationAuthorizationStatus()
         locationManager.delegate = self
-                
-        goOnlineButton.clipsToBounds = true
-        goOnlineButton.layer.cornerRadius = goOnlineButton.layer.frame.width / 2
         
         pendingRequestContainer.isHidden = true
-        pendingRequestContainer.clipsToBounds = true
         pendingRequestContainer.layer.cornerRadius = 10
+        pendingRequestContainer.clipsToBounds = true
+        
+        requestMessagesBadge.layer.cornerRadius = requestMessagesBadge.frame.height / 2
+        requestMessagesBadge.clipsToBounds = true
+        requestMessagesBadge.isHidden = true
+        
+        showRequestMessagesButton.isHidden = true
+        journeyView.layer.cornerRadius = 20
+        journeyView.clipsToBounds = true
+        
         
         let blurEffect: UIBlurEffect
         if traitCollection.userInterfaceStyle == .light {
@@ -64,13 +96,12 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         }
         
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = statusView.bounds
+        blurEffectView.frame = statusStackView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        statusView.addSubview(blurEffectView)
-        statusView.sendSubviewToBack(blurEffectView)
+        statusStackView.addSubview(blurEffectView)
+        statusStackView.sendSubviewToBack(blurEffectView)
         
-        print("Hash: \(MapUtility.generateHashForCoordinate(GeoPoint(latitude: 51.5686, longitude: 0.08484)))")
-
+        hideDefaultNavigateButton()
         viewDidAppear(true)
     }
     
@@ -147,32 +178,69 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         }
     }
     
-    func hideRequestContainer() {
-        pendingRequestConstraint.constant = -400
+    // MARK: View Maintenance
+    
+    func showDefaultNavigateButton() {
+        launchNavigationButton.isEnabled = true
+        launchNavigationConstraint.constant = 30
+        followLocationConstraint.constant = 90
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hideDefaultNavigateButton() {
+        launchNavigationConstraint.constant = -250
         followLocationConstraint.constant = 30
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
     }
     
-    func showRequestContainer(_ pendingRequest: PendingRequest) {
-        pendingRequestContainer.isHidden = false
-        pendingRequestConstraint.constant = 30
-        followLocationConstraint.constant = pendingRequestConstraint.constant + 16 + pendingRequestContainer.frame.height
-        UIView.animate(withDuration: 0.5) {
+    func hideRequestContainer(_ completion: (() -> Void)? = nil) {
+        pendingRequestConstraint.constant = -400
+        followLocationConstraint.constant = 30
+        UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
+        }) { isComplete in
+            if isComplete {
+                completion?()
+            }
         }
+    }
+    
+    func showRequestContainer(withRequest request: PendingRequest, completion: (() -> Void)? = nil) {
+        pendingRequestContainer.isHidden = false
+        
+        pendingRequestConstraint.constant = 30
+        followLocationConstraint.constant = 30 + 16 + self.pendingRequestContainer.frame.height
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
         
         guard let location = locationManager.location?.coordinate else { return }
         let geoPoint = GeoPoint(latitude: location.latitude, longitude: location.longitude)
         
         guard let pendingRequestController = pendingRequestController else { return }
-        pendingRequestController.showRequest(fromCurrentLocation: geoPoint, request: pendingRequest)
+        pendingRequestController.showRequest(fromCurrentLocation: geoPoint, request: request)
+    }
+    
+    func hideRideStatusButton() {
+        rideStatusView.isHidden = true
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func showRideStatusButton() {
+        rideStatusView.isHidden = false
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func hideGoOnlineButton() {
-        goOnlineButton.isEnabled = false
-        goOnlineConstraint.constant = -250
+        goOnlineConstraint.constant = -300
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -186,15 +254,125 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         }
     }
     
+    func hideJourneyView() {
+        journeyViewConstraint.constant = -300
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func showJourneyView() {
+        journeyViewConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func showJourneyPreview() {
+        if driverStatus != .previewingPickup(request: nil) && driverStatus != .previewingDropoff { return }
+        
+        guard let journeyManager = journeyManager else { return }
+        guard let currentRoute = journeyManager.currentRoute else { return }
+        RouteSummaryClient.getRouteSummary(fromOrigin: journeyManager.origin!, destination: journeyManager.destination!, units: .imperial) { summary in
+            let string = String(summary.destinationAddress.split(separator: ",").first!)
+            if self.driverStatus == .previewingPickup(request: nil) {
+                self.journeyPreviewSummaryLabel.text = "Pickup: " + string
+            } else {
+                self.journeyPreviewSummaryLabel.text = "Dropoff: " + string
+            }
+        }
+        var travelTime = Int(currentRoute.expectedTravelTime)
+        var travelString = ""
+        if (travelTime / 3600) > 0 {
+            travelString += "\(travelTime / 3600) h "
+            travelTime = travelTime % 3600
+        }
+        travelString += "\(travelTime / 60) min"
+        journeyPreviewTimeLabel.text = travelString
+        
+        
+        if currentRoute.distance < 300 {
+            journeyPreviewDistanceLabel.text = "\(currentRoute.distance) m"
+        } else {
+            journeyPreviewDistanceLabel.text = String(format: "%.1f mi", Double(currentRoute.distance) / 1600)
+        }
+        
+        journeyPreviewView.isHidden = false
+        journeyOngoingView.isHidden = true
+    }
+    
+    func showJourneyOngoing() {
+        journeyOngoingView.isHidden = false
+        journeyPreviewView.isHidden = true
+    }
+    
+    // MARK: Driver Status
+    
+    func updateViewForDriverStatusChange() {
+        switch driverStatus {
+        case .offline:
+            showRequestMessagesButton.isHidden = true
+            callRiderButton.isHidden = true
+            riderCountdownView.isHidden = true
+            hideJourneyView()
+            statusLabel.isHidden = false
+            statusLabel.text = "You're offline"
+            showGoOnlineButton()
+        case .ready:
+            showRequestMessagesButton.isHidden = true
+            callRiderButton.isHidden = true
+            riderCountdownView.isHidden = true
+            hideJourneyView()
+            statusLabel.text = "Ready"
+            hideGoOnlineButton()
+        case .viewingPendingRequest(_):
+            requestClient.removePendingRequestsListener()
+            riderCountdownView.isHidden = true
+            showRequestMessagesButton.isHidden = true
+            callRiderButton.isHidden = true
+            hideJourneyView()
+            statusLabel.text = "Ride detected"
+        case .previewingPickup(_):
+            showRequestMessagesButton.isHidden = false
+            callRiderButton.isHidden = false
+            showJourneyPreview()
+            showJourneyView()
+            showDefaultNavigateButton()
+            statusLabel.text = "Ride accepted"
+        case .travellingToPickup(_):
+            statusLabel.text = "Travelling to pickup"
+            showJourneyOngoing()
+        case .waitingAtPickup:
+            riderCountdownView.isHidden = false
+            statusLabel.isHidden = true
+            hideJourneyView()
+            hideDefaultNavigateButton()
+            showRideStatusButton()
+        case .previewingDropoff:
+            showRequestMessagesButton.isHidden = true
+            callRiderButton.isHidden = true
+            riderCountdownView.isHidden = true
+            statusLabel.isHidden = false
+            statusLabel.text = "Previewing dropoff"
+            showJourneyPreview()
+            showJourneyView()
+            hideRideStatusButton()
+            break
+        case .travellingToDropoff:
+            statusLabel.text = "Travelling to dropoff"
+            showJourneyOngoing()
+            break
+        }
+    }
+    
     func driverDidGoOnline() {
-        rideViewStatus = .online
-        statusLabel.text = "You're online"
-        hideGoOnlineButton()
+        driverStatus = .ready
+        updateViewForDriverStatusChange()
     }
     
     @IBAction func goOnline() {
         guard let uid = DriverSettingsManager.getUserID() else { return }
-        goOnlineButton.isEnabled = false
+        //goOnlineButton.isEnabled = false
 
         let data: [String: Any] = ["isOnline": true]
         
@@ -210,31 +388,90 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             }
     }
     
+    @IBAction func launchNavigation() {
+        let kind: CheckpointAnnotation.Kind
+        switch driverStatus {
+        case .previewingPickup(_):
+            kind = .pickup
+        case .travellingToPickup(_):
+            kind = .pickup
+        case .previewingDropoff:
+            kind = .dropoff
+        case .travellingToDropoff:
+            kind = .dropoff
+        default:
+            return
+        }
+        
+        guard let journeyManager = journeyManager else { return }
+        journeyManager.launchAppleMapsWithCurrentRoute(kind: kind)
+    }
+    
+    @IBAction func beginNavigation() {
+        switch driverStatus {
+        case .previewingPickup(let request):
+            driverStatus = .travellingToPickup(request: request)
+        case .previewingDropoff:
+            driverStatus = .travellingToDropoff
+        default:
+            return
+        }
+        updateViewForDriverStatusChange()
+        
+        guard let journeyManager = journeyManager else { return }
+        journeyManager.beginNavigation()
+    }
+    
     // MARK: Journey Delegate
     
-    func journeyDidCompleteAtDestination(_ destination: CLLocationCoordinate2D) {
+    func journeyDidBeginStep(_ step: MKRoute.Step) {
+        print("--journeyDidCompleteStep--")
+        print("  " + step.instructions)
+        if let notice = step.notice {
+            journeyStepNoticeStack.isHidden = false
+            journeyStepNoticeLabel.text = notice
+        } else {
+            journeyStepNoticeStack.isHidden = true
+        }
         
+        journeyStepSummaryLabel.text = step.instructions
+        
+        if step.distance < 300 {
+            journeyStepDistanceLabel.text = "\(Int(step.distance)) m"
+        } else {
+            journeyStepDistanceLabel.text = String(format: "%.1f mi", Double(step.distance) / 1600)
+        }
+    }
+    
+    func journeyDidCompleteAtDestination(_ destination: CLLocationCoordinate2D) {
+        if driverStatus != .travellingToDropoff && driverStatus != .travellingToPickup(request: nil) {
+            return
+        }
+        
+        showDefaultNavigateButton()
+        
+        if driverStatus == .travellingToPickup(request: nil) {
+            driverStatus = .waitingAtPickup
+            updateViewForDriverStatusChange()
+        }
     }
     
     // MARK: Location Delegate
     
+    
     func handlePendingRequests(_ pendingRequests: [PendingRequest]) {
-        print("ok... at handlePendingRequests")
-        if rideViewStatus == .viewingPendingRequest { return }
-        print("status was online")
+        if driverStatus != .ready { return }
         if pendingRequests.isEmpty { return }
-        print("pending requests weren't empty")
         guard let journeyManager = journeyManager else { return }
-        print("made pase null checks")
         
         let request = pendingRequests.first!
         
-        
-        rideViewStatus = .viewingPendingRequest
+        driverStatus = .viewingPendingRequest(request: request)
+        updateViewForDriverStatusChange()
         
         journeyManager.setRoute(origin: CLLocationCoordinate2D(from: request.origin.coordinate), destination: CLLocationCoordinate2D(from: request.destination)) {
-            journeyManager.showRoutePreview()
-            self.showRequestContainer(request)
+            journeyManager.showRoutePreview(ofType: .requestPreview)
+            self.showRequestContainer(withRequest: request)
         }
     }
     
@@ -248,13 +485,14 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         guard let journeyManager = journeyManager else { return }
         journeyManager.locationManager(manager, didUpdateLocations: locations)
         
-        if rideViewStatus == .offline { return }
+        if driverStatus == .offline { return }
         
         guard let uid = DriverSettingsManager.getUserID() else { return }
         guard locations.count > 0 else { return }
         let newLocation = locations.last!
+        let geoPoint = GeoPoint(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude)
         
-        let hash = MapUtility.generateHashForCoordinate(GeoPoint(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude))
+        let hash = MapUtility.generateHashForCoordinate(geoPoint)
         
         let data: [String: Any] = [
             "location.coordinate": GeoPoint(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude),
@@ -270,7 +508,18 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
                 }
             }
         
-        requestClient.setRequestListener(atLocation: newLocation.coordinate, radius: 2500, whenTriggered: handlePendingRequests)
+        switch driverStatus {
+        case .ready:
+            requestClient.setPendingRequestsListener(atLocation: newLocation.coordinate, triggerCompletion: handlePendingRequests)
+        case .previewingPickup(let request):
+            guard let requestId = request?.documentID else { return }
+            requestClient.updateRequestDriverLocation(withLocation: geoPoint, requestId: requestId)
+        case .travellingToPickup(let request):
+            guard let requestId = request?.documentID else { return }
+            requestClient.updateRequestDriverLocation(withLocation: geoPoint, requestId: requestId)
+        default:
+            break
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -284,38 +533,116 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         }
     }
     
-    // MARK: Request Delegate
+    // MARK: Pending Requests
     
-    func didTryToAcceptRequest(_ request: PendingRequest) {
-        print("\n-------\ntried to accept")
-    }
     
-    func requestTimedOut(_ request: PendingRequest) {
-        rideViewStatus = .online
-        guard let pendingRequestController = pendingRequestController else { return }
-        pendingRequestController.clearView()
-        hideRequestContainer()
+    func clearViewAfterRequest(_ completion: @escaping () -> Void) {
+        hideRequestContainer(completion)
         
         guard let mapViewManager = mapViewManager else { return }
         mapViewManager.clearMapView()
     }
     
-    // MARK: Navigation
+    func didTryToAcceptRequest(_ request: PendingRequest, completion: @escaping () -> Void) {
+        guard let driverId = previousUserId else { return }
+        guard let requestId = request.documentID else { return }
+        
+        requestClient.didViewRequest(requestId)
+        requestClient.incrementDriverViewsForRequestId(requestId)
+        
+        clearViewAfterRequest(completion)
+        
+        guard let currentLocation = locationManager.location?.coordinate else { return }
+        let location = GeoPoint(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        
+        requestClient.tryAcceptRequest(withRequestId: requestId, driverId: driverId) { [unowned self] requestWasAccepted in
+            if requestWasAccepted {
+                print("  documentID: \(request.documentID ?? "N.A.")")
+                //let otherRequest = ActiveRequest()
+                self.driverStatus = .previewingPickup(request: nil)
+                self.requestClient.setActiveRequestListener(withRequestId: requestId, location: location, completion: self.activeRequestChanged)
+                
+                guard let journeyManager = self.journeyManager else { return }
+                journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: request.origin.coordinate)) {
+                    journeyManager.showRoutePreview(ofType: .travelPreview)
+                    self.updateViewForDriverStatusChange()
+                }
+            } else {
+                driverStatus = .ready
+                self.updateViewForDriverStatusChange()
+            }
+        }
+    }
+    
+    func requestTimedOut(_ request: PendingRequest, completion: @escaping () -> Void) {
+        if driverStatus != .viewingPendingRequest(request: request) {
+            return
+        }
+        
+        driverStatus = .ready
+        updateViewForDriverStatusChange()
+        
+        guard let requestId = request.documentID else { return }
+        
+        requestClient.didViewRequest(requestId)
+        requestClient.incrementDriverViewsForRequestId(requestId)
+        
+        clearViewAfterRequest(completion)
+    }
+    
+    // MARK: Active Requests
+    
+    
+    func activeRequestChanged(_ request: ActiveRequest) {
+        if driverStatus == .previewingPickup(request: nil) {
+            driverStatus = .previewingPickup(request: request)
+        } else if driverStatus == .travellingToPickup(request: nil) {
+            driverStatus = .travellingToPickup(request: request)
+        }
+        updateViewForDriverStatusChange()
+        
+        if request.riderUnread > 0 {
+            requestMessagesBadge.text = "\(request.riderUnread)"
+            requestMessagesBadge.isHidden = false
+        } else {
+            requestMessagesBadge.isHidden = true
+        }
+    }
+    
+    // MARK: Segue Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("--prepare--")
         if segue.identifier == SegueTag.embedPendingRequest.rawValue {
             guard let pendingRequestController = segue.destination as? PendingRequestController else { return }
             pendingRequestController.delegate = self
             self.pendingRequestController = pendingRequestController
+        } else if segue.identifier == SegueTag.showRequestMessages.rawValue {
+            print("  showRequestMessages")
+            guard let requestMessagesController = segue.destination as? RequestMessagesController else { return }
+            requestMessagesController.requestClient = requestClient
+            print("  setClient")
+            switch driverStatus {
+            case .previewingPickup(let request):
+                guard let requestId = request?.documentID else { return }
+                print("  requestId: \(requestId)")
+                requestMessagesController.requestId = requestId
+            case .travellingToPickup(let request):
+                guard let requestId = request?.documentID else { return }
+                print("  requestId: \(requestId)")
+                requestMessagesController.requestId = requestId
+            default:
+                break
+            }
+            requestMessagesController.riderName = "Placeholder name"
         }
     }
-}
-
-enum RideViewStatus {
-    case offline
-    case online
-    case viewingPendingRequest
-    case travellingToPickup
-    case waitingAtPickup
-    case travellingToDropoff
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == SegueTag.showRequestMessages.rawValue {
+            return driverStatus == .previewingPickup(request: nil) || driverStatus == .waitingAtPickup || driverStatus == .travellingToPickup(request: nil)
+        }
+        
+        return true
+    }
 }

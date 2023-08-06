@@ -16,7 +16,11 @@ class CheckpointAnnotation: NSObject, MKAnnotation {
     
     init(coordinate: CLLocationCoordinate2D, kind: Kind) {
         self.coordinate = coordinate
-        self.title = kind.rawValue
+        if kind != .destination {
+            self.title = kind.rawValue
+        } else {
+            self.title = nil
+        }
         self.kind = kind
     }
     
@@ -25,12 +29,15 @@ class CheckpointAnnotation: NSObject, MKAnnotation {
         annotationView.animatesWhenAdded = true
         if kind == .pickup {
             annotationView.glyphImage = UIImage(systemName: "arrow.up")
-        } else {
+        } else if kind == .dropoff {
             annotationView.glyphImage = UIImage(systemName: "arrow.down")
+        } else {
+            annotationView.glyphImage = UIImage(systemName: "flag.checkered.2.crossed")
         }
         annotationView.markerTintColor = .darkGray
         annotationView.glyphTintColor = .white
         
+        print("--DID GET CHECKPOINT VIEW--")
         
         return annotationView
     }
@@ -38,5 +45,6 @@ class CheckpointAnnotation: NSObject, MKAnnotation {
     enum Kind: String {
         case pickup
         case dropoff
+        case destination
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 enum SegueTag: String {
     case showLogin
     case embedPendingRequest
+    case showRequestMessages
 }

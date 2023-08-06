@@ -89,8 +89,7 @@ func getHash(coordinate: Coordinate, topLeft: Coordinate, bottomRight: Coordinat
     )
 }
 
-let targetHash = generateHashForCoordinate(Coordinate(latitude: 51.56886, longitude: 0.08484))
-let centreHash = generateHashForCoordinate(Coordinate(latitude: 51.57929063864402, longitude: 0.07257342922878836))
+let hash = generateHashForCoordinate(Coordinate(latitude: 51.57719, longitude: 0.07564)) // start
+let destinatino = generateHashForCoordinate(Coordinate(latitude: 51.56194, longitude: 0.07036)) // end
 
-let hashes = getNeighbouringHashes(centreHash)
-hashes.contains(targetHash)
+

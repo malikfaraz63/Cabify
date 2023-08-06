@@ -8,6 +8,8 @@
 import Foundation
 
 protocol PendingRequestDelegate {
-    func didTryToAcceptRequest(_ request: PendingRequest)
-    func requestTimedOut(_ request: PendingRequest)
+    typealias PendingRequestHiddenCompletion = () -> Void
+
+    func didTryToAcceptRequest(_ request: PendingRequest, completion: @escaping PendingRequestHiddenCompletion)
+    func requestTimedOut(_ request: PendingRequest, completion: @escaping PendingRequestHiddenCompletion)
 }

@@ -12,9 +12,18 @@
 		D90897CE2A6D3F2300C40BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897CC2A6D3F2300C40BD7 /* Main.storyboard */; };
 		D90897D02A6D3F2400C40BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */; };
 		D90897D32A6D3F2400C40BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */; };
+		D92B79EB2A7F8F720084CE7B /* TGFlingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */; };
+		D92B79EF2A7FBF0B0084CE7B /* UIRoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92B79EE2A7FBF0B0084CE7B /* UIRoundedLabel.swift */; };
+		D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */; };
+		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
+		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
+		D93EFE642A7D5CD20052C00B /* UIRoundedStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE632A7D5CD20052C00B /* UIRoundedStackView.swift */; };
 		D99068EA2A76942E003A0134 /* RouteSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99068E92A76942E003A0134 /* RouteSummary.swift */; };
 		D99068ED2A769739003A0134 /* RouteSummaryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99068EC2A769739003A0134 /* RouteSummaryClient.swift */; };
+		D9A6AFB22A7CFC0F00316CE4 /* UIRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A6AFB12A7CFC0F00316CE4 /* UIRoundedButton.swift */; };
 		D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD919A2A76672100F720AA /* RequestClient.swift */; };
+		D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */; };
+		D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367E22A7947E800C99D28 /* RequestMessage.swift */; };
 		D9CC154D2A757016008A8DFA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC154C2A757016008A8DFA /* Location.swift */; };
 		D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */; };
 		D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */; };
@@ -44,6 +53,8 @@
 		D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */; };
 		D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22C2A72B61800E50957 /* UIImageView.swift */; };
 		D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */; };
+		D9F1A7082A7A749A00A9AE67 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9F1A7072A7A749A00A9AE67 /* MessageKit */; };
+		D9F1A70B2A7C253D00A9AE67 /* DriverStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F1A70A2A7C253D00A9AE67 /* DriverStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,9 +65,18 @@
 		D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D90897D22A6D3F2400C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D90897D42A6D3F2400C40BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGFlingActionButton.swift; sourceTree = "<group>"; };
+		D92B79EE2A7FBF0B0084CE7B /* UIRoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoundedLabel.swift; sourceTree = "<group>"; };
+		D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
+		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		D93EFE632A7D5CD20052C00B /* UIRoundedStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoundedStackView.swift; sourceTree = "<group>"; };
 		D99068E92A76942E003A0134 /* RouteSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSummary.swift; sourceTree = "<group>"; };
 		D99068EC2A769739003A0134 /* RouteSummaryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSummaryClient.swift; sourceTree = "<group>"; };
+		D9A6AFB12A7CFC0F00316CE4 /* UIRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoundedButton.swift; sourceTree = "<group>"; };
 		D9BD919A2A76672100F720AA /* RequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClient.swift; sourceTree = "<group>"; };
+		D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRequest.swift; sourceTree = "<group>"; };
+		D9C367E22A7947E800C99D28 /* RequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
 		D9CC154C2A757016008A8DFA /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D9D6F1EF2A6E7C1E00E50957 /* CountdownProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownProgressView.swift; sourceTree = "<group>"; };
 		D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +101,7 @@
 		D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverSettingsManager.swift; sourceTree = "<group>"; };
 		D9D6F22C2A72B61800E50957 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTag.swift; sourceTree = "<group>"; };
+		D9F1A70A2A7C253D00A9AE67 /* DriverStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +112,7 @@
 				D9D6F1F72A6EAAB700E50957 /* GoogleSignInSwift in Frameworks */,
 				D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */,
 				D9D6F1F52A6EAAB700E50957 /* GoogleSignIn in Frameworks */,
+				D9F1A7082A7A749A00A9AE67 /* MessageKit in Frameworks */,
 				D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */,
 				D9D6F1ED2A6D4D2D00E50957 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -129,6 +151,16 @@
 			path = CabifyDriver;
 			sourceTree = "<group>";
 		};
+		D93EFE582A7D3F020052C00B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */,
+				D93EFE5D2A7D40690052C00B /* Sender.swift */,
+				D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		D99068EB2A769725003A0134 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +170,17 @@
 				D99068EC2A769739003A0134 /* RouteSummaryClient.swift */,
 			);
 			path = Journey;
+			sourceTree = "<group>";
+		};
+		D9C367E12A79471B00C99D28 /* RequestObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6F2162A71B8A600E50957 /* PendingRequest.swift */,
+				D9D6F2282A72A49200E50957 /* RequestStatus.swift */,
+				D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */,
+				D9C367E22A7947E800C99D28 /* RequestMessage.swift */,
+			);
+			path = RequestObjects;
 			sourceTree = "<group>";
 		};
 		D9CC154A2A756FE3008A8DFA /* MapUtils */ = {
@@ -156,6 +199,10 @@
 				D9D6F2262A72901700E50957 /* SegueTag.swift */,
 				D9D6F22C2A72B61800E50957 /* UIImageView.swift */,
 				D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */,
+				D9A6AFB12A7CFC0F00316CE4 /* UIRoundedButton.swift */,
+				D93EFE632A7D5CD20052C00B /* UIRoundedStackView.swift */,
+				D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */,
+				D92B79EE2A7FBF0B0084CE7B /* UIRoundedLabel.swift */,
 			);
 			path = GeneralUtils;
 			sourceTree = "<group>";
@@ -172,6 +219,7 @@
 		D9D6F1FC2A6EB3DB00E50957 /* Ride */ = {
 			isa = PBXGroup;
 			children = (
+				D93EFE582A7D3F020052C00B /* Chat */,
 				D99068EB2A769725003A0134 /* Journey */,
 				D9D6F2112A71966800E50957 /* Request */,
 				D9D6F20E2A7054D600E50957 /* Annotations */,
@@ -203,10 +251,10 @@
 		D9D6F20B2A703B0900E50957 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D9F1A7092A7C253100A9AE67 /* Driver */,
 				D9D6F2192A728A3500E50957 /* Setup */,
 				D9D6F2182A728A2F00E50957 /* Login */,
 				D9D6F1FA2A6EADC200E50957 /* ProfileViewController.swift */,
-				D9D6F2242A728C9900E50957 /* Driver.swift */,
 				D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */,
 			);
 			path = Profile;
@@ -224,10 +272,9 @@
 		D9D6F2112A71966800E50957 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				D9C367E12A79471B00C99D28 /* RequestObjects */,
 				D9D6F2122A71968800E50957 /* PendingRequestController.swift */,
 				D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */,
-				D9D6F2162A71B8A600E50957 /* PendingRequest.swift */,
-				D9D6F2282A72A49200E50957 /* RequestStatus.swift */,
 				D9BD919A2A76672100F720AA /* RequestClient.swift */,
 			);
 			path = Request;
@@ -249,6 +296,15 @@
 				D9D6F2222A728C0600E50957 /* SetupViewController.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		D9F1A7092A7C253100A9AE67 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6F2242A728C9900E50957 /* Driver.swift */,
+				D9F1A70A2A7C253D00A9AE67 /* DriverStatus.swift */,
+			);
+			path = Driver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +329,7 @@
 				D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */,
 				D9D6F1F42A6EAAB700E50957 /* GoogleSignIn */,
 				D9D6F1F62A6EAAB700E50957 /* GoogleSignInSwift */,
+				D9F1A7072A7A749A00A9AE67 /* MessageKit */,
 			);
 			productName = CabifyDriver;
 			productReference = D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */;
@@ -305,6 +362,7 @@
 			packageReferences = (
 				D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D9D6F1F32A6EAAB700E50957 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = D90897C42A6D3F2300C40BD7 /* Products */;
 			projectDirPath = "";
@@ -335,6 +393,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9D6F2042A6FBCE200E50957 /* JourneyManager.swift in Sources */,
+				D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */,
+				D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */,
+				D93EFE642A7D5CD20052C00B /* UIRoundedStackView.swift in Sources */,
 				D9D6F21D2A728B9700E50957 /* LoginViewDelegate.swift in Sources */,
 				D90897C72A6D3F2300C40BD7 /* AppDelegate.swift in Sources */,
 				D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */,
@@ -348,17 +409,24 @@
 				D99068ED2A769739003A0134 /* RouteSummaryClient.swift in Sources */,
 				D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */,
 				D9D6F2082A6FFDB200E50957 /* LocationAnnotation.swift in Sources */,
+				D92B79EB2A7F8F720084CE7B /* TGFlingActionButton.swift in Sources */,
 				D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */,
 				D9D6F2272A72901700E50957 /* SegueTag.swift in Sources */,
+				D92B79EF2A7FBF0B0084CE7B /* UIRoundedLabel.swift in Sources */,
+				D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */,
 				D9D6F20D2A70508200E50957 /* CheckpointAnnotation.swift in Sources */,
 				D9D6F2212A728BEE00E50957 /* SetupViewDelegate.swift in Sources */,
 				D9D6F2062A6FD46000E50957 /* MapUtility.swift in Sources */,
 				D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */,
+				D9F1A70B2A7C253D00A9AE67 /* DriverStatus.swift in Sources */,
+				D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */,
 				D9D6F1F02A6E7C1E00E50957 /* CountdownProgressView.swift in Sources */,
 				D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */,
 				D9D6F2292A72A49200E50957 /* RequestStatus.swift in Sources */,
 				D9D6F1FE2A6EB3F200E50957 /* MapViewManager.swift in Sources */,
+				D9A6AFB22A7CFC0F00316CE4 /* UIRoundedButton.swift in Sources */,
 				D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */,
+				D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */,
 				D9D6F2132A71968800E50957 /* PendingRequestController.swift in Sources */,
 				D9D6F2232A728C0600E50957 /* SetupViewController.swift in Sources */,
 				D9D6F2172A71B8A600E50957 /* PendingRequest.swift in Sources */,
@@ -605,6 +673,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -632,6 +708,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1F32A6EAAB700E50957 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		D9F1A7072A7A749A00A9AE67 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

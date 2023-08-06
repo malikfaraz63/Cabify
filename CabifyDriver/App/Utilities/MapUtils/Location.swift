@@ -23,7 +23,7 @@ extension GeoPoint: Coordinate {}
 extension CLLocationCoordinate2D: Coordinate {}
 
 extension CLLocationCoordinate2D {
-    init(from location: GeoPoint) {
+    init(from location: Coordinate) {
         self.init()
         self.latitude = location.latitude
         self.longitude = location.longitude

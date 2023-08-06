@@ -79,7 +79,7 @@ class MapViewManager: NSObject, MKMapViewDelegate {
         mapView.removeAnnotations(mapView.annotations.filter { $0 is CheckpointAnnotation })
     }
     
-    func showCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CheckpointAnnotation.Kind) {
+    func addCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CheckpointAnnotation.Kind) {
         guard let mapView = mapView else { return }
         mapView.addAnnotation(CheckpointAnnotation(coordinate: coordinate, kind: kind))
     }
@@ -95,13 +95,25 @@ class MapViewManager: NSObject, MKMapViewDelegate {
         mapView.addAnnotation(currentLocationAnnotation!)
     }
     
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 150, animated: Bool = true) {
+    func centerToLocation(_ location: CLLocation, regionRadius: Double, animated: Bool = true) {
         guard let mapView = mapView else { return }
         
         let coordinateRegion = MKCoordinateRegion(
           center: location.coordinate,
           latitudinalMeters: regionRadius,
           longitudinalMeters: regionRadius
+        )
+        
+        mapView.setRegion(coordinateRegion, animated: animated)
+    }
+    
+    func centerToLocation(_ location: CLLocation, animated: Bool = true) {
+        guard let mapView = mapView else { return }
+        
+        let coordinateRegion = MKCoordinateRegion(
+          center: location.coordinate,
+          latitudinalMeters: 400,
+          longitudinalMeters: 400
         )
         
         mapView.setRegion(coordinateRegion, animated: animated)

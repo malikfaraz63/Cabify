@@ -14,7 +14,7 @@ class RouteSummaryClient {
     
     typealias RouteSummaryCompletion = (RouteSummary) -> Void
     
-    public static func getRouteSummary(fromOrigin origin: GeoPoint, destination: GeoPoint, units: DistanceUnit, completion: @escaping RouteSummaryCompletion) {
+    public static func getRouteSummary(fromOrigin origin: Coordinate, destination: Coordinate, units: DistanceUnit, completion: @escaping RouteSummaryCompletion) {
         let parameters = "origins=\(origin.latitude)%2C\(origin.longitude)&destinations=\(destination.latitude)%2C\(destination.longitude)&units=\(units.rawValue)&key=\(apiKey)"
         
         let urlString = baseUrl + parameters
