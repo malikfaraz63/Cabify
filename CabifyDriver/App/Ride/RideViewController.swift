@@ -12,7 +12,8 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDelegate, PendingRequestDelegate {
+class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDelegate, PendingRequestDelegate, JourneyPreviewDelegate, UIViewControllerTransitioningDelegate {
+    
     @IBOutlet weak var goOnlineConstraint: NSLayoutConstraint!
     @IBOutlet weak var launchNavigationConstraint: NSLayoutConstraint!
     @IBOutlet weak var followLocationConstraint: NSLayoutConstraint!
@@ -43,6 +44,8 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     @IBOutlet weak var journeyStepNoticeLabel: UILabel!
     
     @IBOutlet weak var riderCountdownView: UIView!
+    @IBOutlet weak var riderCountdownTimerLabel: UILabel!
+    @IBOutlet weak var riderCountdownUpdateLabel: UILabel!
     
     @IBOutlet weak var statusStackView: UIStackView!
     @IBOutlet weak var rideStatusView: UIView!
@@ -54,6 +57,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     
     let db = Firestore.firestore()
     let requestClient = RequestClient()
+    let rideClient = RideClient()
     var locationManager = CLLocationManager()
 
     var journeyManager: JourneyManager?
@@ -198,7 +202,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     }
     
     func hideRequestContainer(_ completion: (() -> Void)? = nil) {
-        pendingRequestConstraint.constant = -400
+        pendingRequestConstraint.constant = -500
         followLocationConstraint.constant = 30
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
@@ -269,7 +273,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     }
     
     func showJourneyPreview() {
-        if driverStatus != .previewingPickup(request: nil) && driverStatus != .previewingDropoff { return }
+        if driverStatus != .previewingPickup(request: nil) && driverStatus != .previewingDropoff(ride: nil) { return }
         
         guard let journeyManager = journeyManager else { return }
         guard let currentRoute = journeyManager.currentRoute else { return }
@@ -325,6 +329,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             hideJourneyView()
             statusLabel.text = "Ready"
             hideGoOnlineButton()
+            hideDefaultNavigateButton()
         case .viewingPendingRequest(_):
             requestClient.removePendingRequestsListener()
             riderCountdownView.isHidden = true
@@ -355,6 +360,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             statusLabel.isHidden = false
             statusLabel.text = "Previewing dropoff"
             showJourneyPreview()
+            showDefaultNavigateButton()
             showJourneyView()
             hideRideStatusButton()
             break
@@ -411,8 +417,8 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         switch driverStatus {
         case .previewingPickup(let request):
             driverStatus = .travellingToPickup(request: request)
-        case .previewingDropoff:
-            driverStatus = .travellingToDropoff
+        case .previewingDropoff(let ride):
+            driverStatus = .travellingToDropoff(ride: ride)
         default:
             return
         }
@@ -444,22 +450,56 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     }
     
     func journeyDidCompleteAtDestination(_ destination: CLLocationCoordinate2D) {
-        if driverStatus != .travellingToDropoff && driverStatus != .travellingToPickup(request: nil) {
+        if driverStatus != .travellingToPickup(request: nil) && driverStatus != .travellingToDropoff(ride: nil) {
             return
         }
         
         showDefaultNavigateButton()
         
-        if driverStatus == .travellingToPickup(request: nil) {
-            driverStatus = .waitingAtPickup
-            updateViewForDriverStatusChange()
+        switch driverStatus {
+        case .travellingToPickup(let request):
+            guard let request = request, let requestId = request.documentID else { return }
+            requestClient.updateRequestAsCompleted(withRequestId: requestId) { [unowned self] requestWasUpdated in
+                if requestWasUpdated {
+                    rideClient.createRide(fromRequest: request) { ride in
+                        self.driverStatus = .waitingAtPickup(ride: ride)
+                        self.beginWaitingCountdown()
+                        self.updateViewForDriverStatusChange()
+                    }
+                }
+            }
+        case .travellingToDropoff(let ride):
+            guard let rideId = ride?.rideId else { return }
+            rideClient.updateRideAsCompleted(withRideId: rideId) { updateWasSuccessful in
+                if updateWasSuccessful {
+                    self.rideClient.transferMoney(forCompletedRideId: rideId)
+                    self.driverStatus = .ready
+                    self.updateViewForDriverStatusChange()
+                }
+            }
+        default: break
         }
+    }
+    
+    // MARK: Journey Preview Delegate
+    
+    
+    func journeyPreviewDidSelectStep(_ step: MKRoute.Step) {
+        guard let journeyManager = journeyManager else { return }
+        journeyManager.showPreview(ofType: .stepPreview(step: step))
+    }
+    
+    func journeyPreviewDidDismiss() {
+        showJourneyView()
+        guard let journeyManager = journeyManager else { return }
+        journeyManager.showPreview(ofType: .travelPreview)
     }
     
     // MARK: Location Delegate
     
     
     func handlePendingRequests(_ pendingRequests: [PendingRequest]) {
+        print("--handlePendingRequests--")
         if driverStatus != .ready { return }
         if pendingRequests.isEmpty { return }
         guard let journeyManager = journeyManager else { return }
@@ -470,7 +510,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         updateViewForDriverStatusChange()
         
         journeyManager.setRoute(origin: CLLocationCoordinate2D(from: request.origin.coordinate), destination: CLLocationCoordinate2D(from: request.destination)) {
-            journeyManager.showRoutePreview(ofType: .requestPreview)
+            journeyManager.showPreview(ofType: .requestPreview)
             self.showRequestContainer(withRequest: request)
         }
     }
@@ -517,6 +557,15 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         case .travellingToPickup(let request):
             guard let requestId = request?.documentID else { return }
             requestClient.updateRequestDriverLocation(withLocation: geoPoint, requestId: requestId)
+        case .waitingAtPickup(let ride):
+            guard let rideId = ride?.rideId else { return }
+            rideClient.updateRideDriverLocation(withLocation: geoPoint, rideId: rideId)
+        case .previewingDropoff(let ride):
+            guard let rideId = ride?.rideId else { return }
+            rideClient.updateRideDriverLocation(withLocation: geoPoint, rideId: rideId)
+        case .travellingToDropoff(let ride):
+            guard let rideId = ride?.rideId else { return }
+            rideClient.updateRideDriverLocation(withLocation: geoPoint, rideId: rideId)
         default:
             break
         }
@@ -557,19 +606,17 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         
         requestClient.tryAcceptRequest(withRequestId: requestId, driverId: driverId) { [unowned self] requestWasAccepted in
             if requestWasAccepted {
-                print("  documentID: \(request.documentID ?? "N.A.")")
-                //let otherRequest = ActiveRequest()
-                self.driverStatus = .previewingPickup(request: nil)
-                self.requestClient.setActiveRequestListener(withRequestId: requestId, location: location, completion: self.activeRequestChanged)
+                driverStatus = .previewingPickup(request: nil)
+                requestClient.setActiveRequestListener(withRequestId: requestId, location: location, completion: self.activeRequestChanged)
                 
-                guard let journeyManager = self.journeyManager else { return }
+                guard let journeyManager = journeyManager else { return }
                 journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: request.origin.coordinate)) {
-                    journeyManager.showRoutePreview(ofType: .travelPreview)
+                    journeyManager.showPreview(ofType: .travelPreview)
                     self.updateViewForDriverStatusChange()
                 }
             } else {
                 driverStatus = .ready
-                self.updateViewForDriverStatusChange()
+                updateViewForDriverStatusChange()
             }
         }
     }
@@ -609,38 +656,107 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         }
     }
     
+    @IBAction func beginRide() {
+        print("--beginRide--")
+        if driverStatus != .waitingAtPickup(ride: nil) {
+            return
+        }
+        
+        switch driverStatus {
+        case .waitingAtPickup(let ride):
+            guard let ride = ride else { return }
+            rideClient.updateRideAsActive(withRideId: ride.rideId) { [unowned self] requestWasUpdated in
+                if requestWasUpdated {
+                    self.driverStatus = .previewingDropoff(ride: ride)
+                    guard let journeyManager = journeyManager else { return }
+                    guard let currentLocation = locationManager.location?.coordinate else { return }
+                    journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: ride.destination)) {
+                        journeyManager.showPreview(ofType: .travelPreview)
+                        self.updateViewForDriverStatusChange()
+                    }
+                }
+            }
+        default: break
+        }
+    }
+    
+    // MARK: Waiting Requests
+    
+    
+    func getTextForTimeInterval(_ timeInterval: TimeInterval) -> String {
+        let countdownInt = Int(timeInterval.magnitude)
+        return String(format: "%d:%02d", (countdownInt / 60), (countdownInt % 60))
+    }
+
+    
+    func beginWaitingCountdown() {
+        riderCountdownTimerLabel.text = "2:00"
+        riderCountdownTimerLabel.textColor = .label
+        var countdown: TimeInterval = 120.0
+        riderCountdownTimerLabel.text = getTextForTimeInterval(countdown)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: driverStatus == .waitingAtPickup(ride: nil)) { [unowned self] timer in
+            if driverStatus == .waitingAtPickup(ride: nil) {
+                countdown -= 1.0
+                let countdownInt = Int(countdown.magnitude)
+                if countdown == 0 {
+                    riderCountdownTimerLabel.textColor = .systemGreen
+                    riderCountdownUpdateLabel.text = "Rider charged"
+                } else if countdown > 0 {
+                    if countdownInt % 5 == 0 {
+                        let text = riderCountdownUpdateLabel.text ?? "Rider notified"
+                        if text == "Rider notified" {
+                            riderCountdownUpdateLabel.text = "Counting down"
+                        } else {
+                            riderCountdownUpdateLabel.text = "Rider notified"
+                        }
+                    }
+                }
+                riderCountdownTimerLabel.text = getTextForTimeInterval(countdown)
+            }
+        }
+    }
+    
+    
     // MARK: Segue Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("--prepare--")
         if segue.identifier == SegueTag.embedPendingRequest.rawValue {
             guard let pendingRequestController = segue.destination as? PendingRequestController else { return }
             pendingRequestController.delegate = self
             self.pendingRequestController = pendingRequestController
         } else if segue.identifier == SegueTag.showRequestMessages.rawValue {
-            print("  showRequestMessages")
             guard let requestMessagesController = segue.destination as? RequestMessagesController else { return }
             requestMessagesController.requestClient = requestClient
-            print("  setClient")
             switch driverStatus {
             case .previewingPickup(let request):
                 guard let requestId = request?.documentID else { return }
-                print("  requestId: \(requestId)")
                 requestMessagesController.requestId = requestId
             case .travellingToPickup(let request):
                 guard let requestId = request?.documentID else { return }
-                print("  requestId: \(requestId)")
+                requestMessagesController.requestId = requestId
+            case .waitingAtPickup(let ride):
+                guard let requestId = ride?.rideId else { return }
                 requestMessagesController.requestId = requestId
             default:
                 break
             }
             requestMessagesController.riderName = "Placeholder name"
+        } else if segue.identifier == SegueTag.showJourneyPreview.rawValue {
+            guard let journeyManager = journeyManager, let currentRoute = journeyManager.currentRoute else { return }
+            guard let journeyPreviewController = segue.destination as? JourneyPreviewController else { return }
+            journeyPreviewController.previewSteps = Array(currentRoute.steps[1...])
+            
+            journeyPreviewController.delegate = self
+            journeyPreviewController.transitioningDelegate = self
+            hideJourneyView()
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == SegueTag.showRequestMessages.rawValue {
-            return driverStatus == .previewingPickup(request: nil) || driverStatus == .waitingAtPickup || driverStatus == .travellingToPickup(request: nil)
+            return driverStatus == .previewingPickup(request: nil) || driverStatus == .travellingToPickup(request: nil) || driverStatus == .waitingAtPickup(ride: nil)
+        } else if identifier == SegueTag.showJourneyPreview.rawValue {
+            return driverStatus == .previewingPickup(request: nil) || driverStatus == .previewingDropoff(ride: nil)
         }
         
         return true

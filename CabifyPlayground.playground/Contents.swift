@@ -89,7 +89,7 @@ func getHash(coordinate: Coordinate, topLeft: Coordinate, bottomRight: Coordinat
     )
 }
 
-let hash = generateHashForCoordinate(Coordinate(latitude: 51.57719, longitude: 0.07564)) // start
+let hash = generateHashForCoordinate(Coordinate(latitude: 51.57828, longitude: 0.06423)) // start
 let destinatino = generateHashForCoordinate(Coordinate(latitude: 51.56194, longitude: 0.07036)) // end
 
 

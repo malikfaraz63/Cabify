@@ -17,12 +17,13 @@ enum RequestStatus: String, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let status = try? container.decode(String.self)
+        print(status)
         switch status {
-              case "PENDING": self = .pending
-              case "ACTIVE": self = .active
-              case "CANCELLED": self = .cancelled
-              case "COMPLETED": self = .completed
-              default: self = .unknown
-          }
-      }
+        case RequestStatus.pending.rawValue: self = .pending
+            case RequestStatus.active.rawValue: self = .active
+            case RequestStatus.cancelled.rawValue: self = .cancelled
+            case RequestStatus.completed.rawValue: self = .completed
+            default: self = .unknown
+        }
+    }
 }

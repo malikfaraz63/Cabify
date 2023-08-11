@@ -19,7 +19,7 @@ class MapViewManager: NSObject, MKMapViewDelegate {
         super.init()
         mapView.delegate = self
     }
-    
+        
     func drawCoordinates(_ coordinates: [CLLocationCoordinate2D], animated: Bool) {
         if coordinates.count < 2 { return }
         
@@ -66,6 +66,11 @@ class MapViewManager: NSObject, MKMapViewDelegate {
                 currentTime += timeInterval
             }
         }
+    }
+    
+    func drawPolyline(_ polyline: MKPolyline) {
+        guard let mapView = mapView else { return }
+        mapView.addOverlay(polyline)
     }
     
     func clearMapView() {

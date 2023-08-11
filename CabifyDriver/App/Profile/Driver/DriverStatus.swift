@@ -13,9 +13,9 @@ enum DriverStatus: Equatable {
     case viewingPendingRequest(request: PendingRequest?)
     case previewingPickup(request: ActiveRequest?)
     case travellingToPickup(request: ActiveRequest?)
-    case waitingAtPickup
-    case previewingDropoff
-    case travellingToDropoff
+    case waitingAtPickup(ride: Ride?)
+    case previewingDropoff(ride: Ride?)
+    case travellingToDropoff(ride: Ride?)
     
     func getRawValue() -> Int {
         switch self {
@@ -23,11 +23,11 @@ enum DriverStatus: Equatable {
             return 0
         case .ready:
             return 1
-        case .viewingPendingRequest(_):
+        case .viewingPendingRequest:
             return 2
-        case .previewingPickup(_):
+        case .previewingPickup:
             return 3
-        case .travellingToPickup(_):
+        case .travellingToPickup:
             return 4
         case .waitingAtPickup:
             return 5

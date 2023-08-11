@@ -29,7 +29,7 @@ class SetupViewController: UIViewController {
         
         
         
-        delegate?.driverDidSetup(withDriver: Driver(name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, averageRating: 0, tripsCount: 0))
+        delegate?.driverDidSetup(withDriver: Driver(name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, averageRating: 0, ridesCount: 0))
         
         dismiss(animated: true)
     }

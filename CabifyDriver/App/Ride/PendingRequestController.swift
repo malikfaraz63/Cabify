@@ -60,7 +60,12 @@ class PendingRequestController: UIViewController {
     }
     
     func resetAnimations() {
-        countdownAnimator = UIViewPropertyAnimator(duration: 4.0, curve: .linear) {
+        if let countdownAnimator = countdownAnimator {
+            countdownAnimator.stopAnimation(true)
+            countdownAnimator.finishAnimation(at: .start)
+        }
+        
+        countdownAnimator = UIViewPropertyAnimator(duration: 8.0, curve: .linear) {
             self.countdownProgressView.setProgress(0.0, animated: true)
         }
         countdownAnimator!.addCompletion(requestTimedOutCompletion)
@@ -70,6 +75,8 @@ class PendingRequestController: UIViewController {
     func showRequest(fromCurrentLocation currentLocation: GeoPoint, request: PendingRequest) {
         print("Showing request")
         self.request = request
+        
+        triedToAccept = false
         
         rideCostLabel.text = String(format: "£%.2f", request.cost)
         riderRatingLabel.text = String(format: "%.1f", request.riderRating)
@@ -88,8 +95,7 @@ class PendingRequestController: UIViewController {
     }
     
     func requestTimedOutCompletion(_ position: UIViewAnimatingPosition) {
-        
-        print("\n-----\nTriggered completion")
+        print("Timed out")
         printState(countdownAnimator!.state)
         
         countdownAnimator = nil
@@ -110,6 +116,7 @@ class PendingRequestController: UIViewController {
     }
     
     @IBAction func acceptRequest() {
+        print("Accepted request")
         if triedToAccept { return }
         triedToAccept = true
         if let countdownAnimator = countdownAnimator {

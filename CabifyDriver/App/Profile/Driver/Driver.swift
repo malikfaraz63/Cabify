@@ -17,5 +17,5 @@ struct Driver: Codable {
     let accountCreated: Date
     let earnings: Double
     let averageRating: Double
-    let tripsCount: Int
+    let ridesCount: Int
 }

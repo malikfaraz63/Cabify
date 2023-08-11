@@ -11,4 +11,5 @@ enum SegueTag: String {
     case showLogin
     case embedPendingRequest
     case showRequestMessages
+    case showJourneyPreview
 }

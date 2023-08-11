@@ -56,14 +56,27 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
     
-    enum PreviewType {
+    enum PreviewType: Equatable {
         case requestPreview
         case travelPreview
+        case stepPreview(step: MKRoute.Step?)
+        
+        private func rawValue() -> Int {
+            switch self {
+            case .requestPreview: return 0
+            case .travelPreview: return 1
+            case .stepPreview: return 2
+            }
+        }
+        
+        static func ==(lhs: PreviewType, rhs: PreviewType) -> Bool {
+            return lhs.rawValue() == rhs.rawValue()
+        }
     }
     
-    func showRoutePreview(ofType previewType: PreviewType) {
+    func showPreview(ofType previewType: PreviewType) {
         isFollowingCurrentLocation = false
-        guard let origin = origin, let destination = destination else { return }
+        guard var origin = origin, var destination = destination else { return }
         
         guard let routeCoordinates = routeCoordinates else { return }
         mapViewManager.removeCheckpointAnnotations()
@@ -71,14 +84,24 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         if previewType == .requestPreview {
             mapViewManager.addCheckpointAnnotation(origin, kind: .pickup)
             mapViewManager.addCheckpointAnnotation(destination, kind: .dropoff)
-        } else {
+        } else if previewType == .travelPreview {
             mapViewManager.addCheckpointAnnotation(destination, kind: .destination)
         }
         
-        mapViewManager.drawCoordinates(routeCoordinates, animated: true)
+        switch previewType {
+        case .stepPreview(let step):
+            guard let step = step else { return }
+            mapViewManager.drawCoordinates(step.polyline.coordinates, animated: false)
+
+            guard step.polyline.coordinates.count >= 2 else { return }
+            origin = step.polyline.coordinates.first!
+            destination = step.polyline.coordinates.last!
+        default:
+            mapViewManager.drawCoordinates(routeCoordinates, animated: true)
+        }
         
         var latitude = (origin.latitude + destination.latitude) / 2
-        if previewType == .requestPreview {
+        if previewType == .requestPreview || previewType == .stepPreview(step: nil) {
             latitude -= MapUtility.getDegreesBetweenCoordinates(origin, destination) / 2
         }
         let longitude = (origin.longitude + destination.longitude) / 2
@@ -180,10 +203,13 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         self.lastLocation = currentLocation.coordinate
         
         if isNavigating {
-            print("---navigation step---")
+            print("\n---navigation step---")
             print("  completedSteps: \(completedCoordinates)")
             guard let routeCoordinates = routeCoordinates else { return }
             if routeCoordinates.count < 2 { return }
+            print("  routeCoordinatesCount: \(routeCoordinates.count)")
+            print("  stepsIndex: \(stepsIndex)")
+            print("  stepsIndexCount: \(stepsIndex.count)")
             
             func redrawFromCurrentStep() {
                 var newArray = Array(routeCoordinates[completedCoordinates..<routeCoordinates.count])
@@ -206,7 +232,8 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
                     return
                 }
                 
-                if completedCoordinates >= stepsIndex[currentStep] {
+                if completedCoordinates > stepsIndex[currentStep] {
+                    print("  increment journey step")
                     currentStep += 1
                     if let step = currentRoute?.steps[currentStep] {
                         delegate?.journeyDidBeginStep(step)

@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 import CoreLocation
 
 class RequestClient {
-    private var declinedCurrentRequest: Bool
+    private var didViewRequest: Bool
     private var declinedRequestIds: Set<String>
 
     private var requestListener: ListenerRegistration?
@@ -32,7 +32,7 @@ class RequestClient {
     typealias MessagesLoadCompletion = ([RequestMessage]) -> Void
     
     init() {
-        self.declinedCurrentRequest = false
+        self.didViewRequest = false
         self.lastLocationHash = ""
         self.declinedRequestIds = []
         self.locationHashFilters = []
@@ -43,7 +43,7 @@ class RequestClient {
         print("--didViewRequest--")
         print("  requestId: \(requestId)")
         declinedRequestIds.insert(requestId)
-        declinedCurrentRequest = true
+        didViewRequest = true
     }
     
     // MARK: Pending Requests
@@ -57,41 +57,49 @@ class RequestClient {
     }
     
     public func setPendingRequestsListener(atLocation location: Coordinate, triggerCompletion: @escaping PendingRequestsLoadCompletion) {
-        print("--setPendingRequestsListener")
+        print("--requestClient: setPendingRequestsListener--")
         let newLocationHash = MapUtility.generateHashForCoordinate(location)
         
         if newLocationHash != lastLocationHash {
             lastLocationHash = newLocationHash
             reloadHashFilters()
-        } else if !declinedCurrentRequest {
+        } else if !didViewRequest {
             return
         }
 
-        declinedCurrentRequest = false
+        didViewRequest = false
         
         if let requestListener = requestListener {
             requestListener.remove()
         }
         
-        print("  setting listener")
+        print("  setting listener...")
+        db
+            .collection("requests")
+            .document("jNFgEAiMZVuCbOldyyfk")
+            .getDocument(as: PendingRequest.self) { result in
+                switch result {
+                case .success(let success):
+                    print("  printing status")
+                    print("  - " + success.status.rawValue)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
         
         requestListener = db
             .collection("requests")
             .whereField("status", isEqualTo: RequestStatus.pending.rawValue)
-            .whereField("timeCreated", isGreaterThanOrEqualTo: Date(timeIntervalSinceNow: -3600))
             .whereFilter(Filter.orFilter(locationHashFilters))
-            .order(by: "timeCreated", descending: true)
-            .order(by: "driverViews")
+            .whereField("timeCreated", isGreaterThanOrEqualTo: Date(timeIntervalSinceNow: -3600))
             .limit(to: 5)
             .addSnapshotListener { querySnapshot, error in
                 if let snapshot = querySnapshot {
-                    print("  listener called with \(snapshot.documents.count) documents")
                     var pendingRequests: [PendingRequest] = []
                     do {
                         try pendingRequests.append(contentsOf: snapshot.documents.map { document in
                             var request = try document.data(as: PendingRequest.self)
                             request.documentID = document.documentID
-                            
                             return request
                         })
                     } catch let error {
@@ -101,9 +109,9 @@ class RequestClient {
                     let sortedRequests = pendingRequests
                         .filter { !self.declinedRequestIds.contains($0.documentID!) }
                         .sorted { $0.driverViews < $1.driverViews }
+                    
                     triggerCompletion(sortedRequests)
                 } else if let error = error {
-                    print("somehow")
                     print(error)
                 }
             }
@@ -132,37 +140,6 @@ class RequestClient {
                 return [:]
             }
         }, completion: completion)
-        
-        let requestRef = db
-            .collection("requests")
-            .document(requestId)
-        
-        requestRef
-            .getDocument(as: PendingRequest.self) { result in
-                switch result {
-                case .success(let request):
-                    if request.status == .pending {
-                        requestRef
-                            .updateData([
-                                "status": RequestStatus.active.rawValue,
-                                "driverId": driverId,
-                                "driverUnread": 0,
-                                "riderUnread": 0
-                            ]) { error in
-                                if let error = error {
-                                    completion(false)
-                                } else {
-                                    completion(true)
-                                }
-                            }
-                    } else {
-                        completion(false)
-                    }
-                case .failure(let error):
-                    print(error)
-                    completion(false)
-                }
-            }
     }
     
     public func setActiveRequestListener(withRequestId requestId: String, location: GeoPoint, completion: @escaping ActiveRequestChangedCompletion) {
@@ -196,6 +173,17 @@ class RequestClient {
             .collection("requests")
             .document(requestId)
             .updateData(driverLocationData)
+    }
+    
+    // MARK: Waiting Requests
+    
+    public func updateRequestAsCompleted(withRequestId requestId: String, completion: @escaping UpdateCompletion) {
+        updateRequest(withRequestId: requestId, updateHandler: { (request: ActiveRequest) in
+            return [
+                "status": RequestStatus.completed.rawValue,
+                "timeCompleted": Date()
+            ]
+        }, completion: completion)
     }
     
     // MARK: Messages
@@ -272,7 +260,7 @@ class RequestClient {
         for messageId in unreadRiderMessageIds {
             requestRiderMessagesRef
                 .document(messageId)
-                .setData(["read": true])
+                .updateData(["read": true])
         }
         
         unreadRiderMessageIds.removeAll()
@@ -297,13 +285,13 @@ class RequestClient {
                 }
             case .failure(let error):
                 print(error)
+                completion?(false)
             }
         }
     }
     
     private func reloadHashFilters() {
         let hashes = MapUtility.getNeighbouringHashes(lastLocationHash)
-        
         locationHashFilters.removeAll()
         
         for hash in hashes {

@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
             "accountCreated": driver.accountCreated,
             "earnings": driver.earnings,
             "averageRating": driver.averageRating,
-            "tripsCount": driver.tripsCount
+            "ridesCount": driver.ridesCount
         ]
         
         if let photoURL = driver.photoURL {
@@ -133,13 +133,13 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         }
         nameLabel.text = driver.name
         emailLabel.text = driver.email
-        if driver.tripsCount > 0 {
+        if driver.ridesCount > 0 {
             ratingLabel.text = String(format: "%.2f", driver.averageRating)
         } else {
             ratingLabel.text = "N.A."
         }
         
-        tripsCountLabel.text = "\(driver.tripsCount) trip" + (driver.tripsCount != 1 ? "s" : "")
+        tripsCountLabel.text = "\(driver.ridesCount) trip" + (driver.ridesCount != 1 ? "s" : "")
         let years = Int( Date().timeIntervalSince(driver.accountCreated)) / (86400 * 365)
         yearsLabel.text = "\(years) year" + (years != 1 ? "s" : "")
     }
