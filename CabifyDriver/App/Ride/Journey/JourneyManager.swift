@@ -102,13 +102,13 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         
         var latitude = (origin.latitude + destination.latitude) / 2
         if previewType == .requestPreview || previewType == .stepPreview(step: nil) {
-            latitude -= MapUtility.getDegreesBetweenCoordinates(origin, destination) / 2
+            latitude -= CKMapUtility.getDegreesBetweenCoordinates(origin, destination) / 2
         }
         let longitude = (origin.longitude + destination.longitude) / 2
         
         let location = CLLocation(latitude: latitude, longitude: longitude)
         
-        mapViewManager.centerToLocation(location, regionRadius: MapUtility.getDistanceBetweenCoordinates(origin, destination))
+        mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(origin, destination))
     }
     
     private func updateRoute(isCurrentLocationOrigin: Bool, completion: UpdateRouteCompletion?) {
@@ -189,7 +189,7 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("--locationManager: didUpdateLocations--")
         guard let currentLocation = locations.last else { return }
-        mapViewManager.updateCurrentLocation(currentLocation.coordinate)
+//        mapViewManager.updateCurrentLocation(currentLocation.coordinate)
         
         if isFollowingCurrentLocation {
             mapViewManager.centerToLocation(currentLocation)
@@ -220,7 +220,7 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
             let stepOrigin = routeCoordinates[completedCoordinates - 1]
             let stepDestination = routeCoordinates[completedCoordinates]
             
-            if MapUtility.getDistanceBetweenCoordinates(stepDestination, currentLocation.coordinate) < 25 {
+            if CKMapUtility.getDistanceBetweenCoordinates(stepDestination, currentLocation.coordinate) < 25 {
                 print("  arrived at next checkpoint")
                 completedCoordinates += 1
                 
@@ -244,10 +244,10 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
                 return
             }
             
-            let stepOriginDelta = MapUtility.getDistanceBetweenCoordinates(currentLocation.coordinate, stepOrigin)
-                - MapUtility.getDistanceBetweenCoordinates(previousLocation, stepOrigin)
-            let stepDestinationDelta = MapUtility.getDistanceBetweenCoordinates(currentLocation.coordinate, stepDestination)
-                - MapUtility.getDistanceBetweenCoordinates(previousLocation, stepDestination)
+            let stepOriginDelta = CKMapUtility.getDistanceBetweenCoordinates(currentLocation.coordinate, stepOrigin)
+                - CKMapUtility.getDistanceBetweenCoordinates(previousLocation, stepOrigin)
+            let stepDestinationDelta = CKMapUtility.getDistanceBetweenCoordinates(currentLocation.coordinate, stepDestination)
+                - CKMapUtility.getDistanceBetweenCoordinates(previousLocation, stepDestination)
             print("  Δ origin: \(stepOriginDelta)")
             print("  Δ destin: \(stepDestinationDelta)")
             

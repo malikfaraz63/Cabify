@@ -7,24 +7,23 @@
 
 import Foundation
 import CoreLocation
-import FirebaseFirestore
 
-class MapUtility {
-    static let topLeftBound = GeoPoint(latitude: 51.7, longitude: -0.6)
-    static let bottomRightBound = GeoPoint(latitude: 51.3, longitude: 0.30)
+public class CKMapUtility {
+    static let topLeftBound = CLLocationCoordinate2D(latitude: 51.7, longitude: -0.6)
+    static let bottomRightBound = CLLocationCoordinate2D(latitude: 51.3, longitude: 0.30)
     
-    static func getDistanceBetweenCoordinates(_ a: Coordinate, _ b: Coordinate) -> CLLocationDistance {
+    static func getDistanceBetweenCoordinates(_ a: CKCoordinate, _ b: CKCoordinate) -> CLLocationDistance {
         return getDegreesBetweenCoordinates(a, b) * 111195
     }
     
-    static func getDegreesBetweenCoordinates(_ a: Coordinate, _ b: Coordinate) -> CLLocationDegrees {
+    static func getDegreesBetweenCoordinates(_ a: CKCoordinate, _ b: CKCoordinate) -> CLLocationDegrees {
         let dLat = a.latitude - b.latitude
         let dLong = a.longitude - b.longitude
         
         return sqrt(dLat * dLat + dLong * dLong)
     }
     
-    static func generateHashForCoordinate(_ coordinate: Coordinate) -> String {
+    static func generateHashForCoordinate(_ coordinate: CKCoordinate) -> String {
         return getHash(coordinate: coordinate, topLeft: self.topLeftBound, bottomRight: self.bottomRightBound)
     }
     
@@ -70,7 +69,7 @@ class MapUtility {
         return nestedGetHash(hash: hash)
     }
     
-    private static func getHash(coordinate: Coordinate, topLeft: Coordinate, bottomRight: Coordinate, depth: Int = 6) -> String {
+    private static func getHash(coordinate: CKCoordinate, topLeft: CKCoordinate, bottomRight: CKCoordinate, depth: Int = 6) -> String {
         if depth == 0 {
             return ""
         }
@@ -100,8 +99,8 @@ class MapUtility {
         
         return String(index) + getHash(
             coordinate: coordinate,
-            topLeft: GeoPoint(latitude: topLeftLat, longitude: topLeftLong),
-            bottomRight: GeoPoint(latitude: bottomRightLat, longitude: bottomRightLong),
+            topLeft: CLLocationCoordinate2D(latitude: topLeftLat, longitude: topLeftLong),
+            bottomRight: CLLocationCoordinate2D(latitude: bottomRightLat, longitude: bottomRightLong),
             depth: depth - 1
         )
     }

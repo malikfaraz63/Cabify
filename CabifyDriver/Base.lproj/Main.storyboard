@@ -272,7 +272,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gv9-b3-LzC">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gv9-b3-LzC">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
@@ -906,7 +906,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="myn-2Y-YfL">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mappin.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="T83-O3-tyb">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.up.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="T83-O3-tyb">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="20" height="28.666666666666664"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
@@ -940,7 +940,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="lYK-MX-o7q">
                                         <rect key="frame" x="0.0" y="49" width="260" height="30"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="square.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-k2-Qm6">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.down.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-k2-Qm6">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="20" height="28.666666666666664"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
@@ -1025,7 +1025,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down.circle.fill" catalog="system" width="128" height="123"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <image name="background" width="2342" height="1561"/>
         <image name="car" catalog="system" width="128" height="95"/>
         <image name="car.fill" catalog="system" width="128" height="95"/>
@@ -1034,13 +1036,11 @@
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="location.north.fill" catalog="system" width="110" height="128"/>
-        <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.questionmark" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
-        <image name="square.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

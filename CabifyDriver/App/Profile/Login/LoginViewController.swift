@@ -27,6 +27,10 @@ class LoginViewController: UIViewController {
     
     func signIn(with credential: AuthCredential) {
         Auth.auth().signIn(with: credential) { authResult, error in
+            if let error = error {
+                print("ERROR")
+                print(error)
+            }
             guard error == nil else { return }
             guard let authResult = authResult else { return }
             

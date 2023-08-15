@@ -12,7 +12,6 @@ import CoreLocation
 
 class MapViewManager: NSObject, MKMapViewDelegate {
     private weak var mapView: MKMapView?
-    private var currentLocationAnnotation: LocationAnnotation?
     
     init(mapView: MKMapView) {
         self.mapView = mapView
@@ -37,7 +36,7 @@ class MapViewManager: NSObject, MKMapViewDelegate {
         let totalSteps = coordinates.count - 1
 
         for i in 0..<totalSteps {
-            distances.append( MapUtility.getDistanceBetweenCoordinates(coordinates[i], coordinates[i + 1]))
+            distances.append(CKMapUtility.getDistanceBetweenCoordinates(coordinates[i], coordinates[i + 1]))
             totalDistance += distances[i]
         }
         
@@ -88,37 +87,14 @@ class MapViewManager: NSObject, MKMapViewDelegate {
         guard let mapView = mapView else { return }
         mapView.addAnnotation(CheckpointAnnotation(coordinate: coordinate, kind: kind))
     }
-    
-    func updateCurrentLocation(_ newLocation: CLLocationCoordinate2D) {
-        guard let mapView = mapView else { return }
-        
-        if let previousLocation = currentLocationAnnotation {
-            mapView.removeAnnotation(previousLocation)
-        }
-        
-        currentLocationAnnotation = LocationAnnotation(coordinate: newLocation)
-        mapView.addAnnotation(currentLocationAnnotation!)
-    }
-    
-    func centerToLocation(_ location: CLLocation, regionRadius: Double, animated: Bool = true) {
+
+    func centerToLocation(_ location: CLLocation, regionRadius: Double = 400, animated: Bool = true) {
         guard let mapView = mapView else { return }
         
         let coordinateRegion = MKCoordinateRegion(
           center: location.coordinate,
           latitudinalMeters: regionRadius,
           longitudinalMeters: regionRadius
-        )
-        
-        mapView.setRegion(coordinateRegion, animated: animated)
-    }
-    
-    func centerToLocation(_ location: CLLocation, animated: Bool = true) {
-        guard let mapView = mapView else { return }
-        
-        let coordinateRegion = MKCoordinateRegion(
-          center: location.coordinate,
-          latitudinalMeters: 400,
-          longitudinalMeters: 400
         )
         
         mapView.setRegion(coordinateRegion, animated: animated)
@@ -140,7 +116,7 @@ class MapViewManager: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor(red: 66/255.0, green: 133/255.0, blue: 244/255.0, alpha: 1)
+        renderer.strokeColor = UIColor(red: 142/255.0, green: 126/255.0, blue: 255/255.0, alpha: 1)
         renderer.lineWidth = 10.0
         
         return renderer

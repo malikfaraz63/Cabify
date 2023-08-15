@@ -56,9 +56,9 @@ class RequestClient {
         requestListener = nil
     }
     
-    public func setPendingRequestsListener(atLocation location: Coordinate, triggerCompletion: @escaping PendingRequestsLoadCompletion) {
+    public func setPendingRequestsListener(atLocation location: CKCoordinate, triggerCompletion: @escaping PendingRequestsLoadCompletion) {
         print("--requestClient: setPendingRequestsListener--")
-        let newLocationHash = MapUtility.generateHashForCoordinate(location)
+        let newLocationHash = CKMapUtility.generateHashForCoordinate(location)
         
         if newLocationHash != lastLocationHash {
             lastLocationHash = newLocationHash
@@ -291,7 +291,7 @@ class RequestClient {
     }
     
     private func reloadHashFilters() {
-        let hashes = MapUtility.getNeighbouringHashes(lastLocationHash)
+        let hashes = CKMapUtility.getNeighbouringHashes(lastLocationHash)
         locationHashFilters.removeAll()
         
         for hash in hashes {

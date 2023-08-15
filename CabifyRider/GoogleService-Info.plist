@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>381285609955-61gq5bin88e2t3nm59q8lkm97rj1497r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.381285609955-61gq5bin88e2t3nm59q8lkm97rj1497r</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCzirLfaVSznz7N8b0R8na2cJCx8LwIkeI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>381285609955</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.FMEnterprises.CabifyRider</string>
+	<key>PROJECT_ID</key>
+	<string>cabify-393709</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cabify-393709.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:381285609955:ios:1268dcef47277285e130d6</string>
+</dict>
+</plist>

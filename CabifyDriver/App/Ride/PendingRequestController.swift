@@ -81,11 +81,11 @@ class PendingRequestController: UIViewController {
         rideCostLabel.text = String(format: "£%.2f", request.cost)
         riderRatingLabel.text = String(format: "%.1f", request.riderRating)
         
-        RouteSummaryClient.getRouteSummary(fromOrigin: currentLocation, destination: request.origin.coordinate, units: .imperial) { summary in
+        CKRouteSummaryClient.getRouteSummary(fromOrigin: currentLocation, destination: request.origin.coordinate, units: .imperial) { summary in
             self.pickupLocationLabel.text = String(summary.destinationAddress.split(separator: ",").first!)
             self.pickupSummaryLabel.text = "\(summary.duration.text) (\(summary.distance.text)) away"
         }
-        RouteSummaryClient.getRouteSummary(fromOrigin: request.origin.coordinate, destination: request.destination, units: .imperial) { summary in
+        CKRouteSummaryClient.getRouteSummary(fromOrigin: request.origin.coordinate, destination: request.destination, units: .imperial) { summary in
             self.dropoffLocationLabel.text = String(summary.destinationAddress.split(separator: ",").first!)
             self.dropoffSummaryLabel.text = "\(summary.duration.text) (\(summary.distance.text)) trip"
         }

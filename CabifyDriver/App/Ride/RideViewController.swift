@@ -112,6 +112,9 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     @IBAction func startFollowingCurrentLocation() {
         guard let journeyManager = journeyManager else { return }
         journeyManager.startFollowingCurrentLocation()
+        UIView.animate(withDuration: 0.5) {
+            self.followLocationButton.alpha = 0.0
+        }
     }
     
     func showSettingsAlert() {
@@ -277,7 +280,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         
         guard let journeyManager = journeyManager else { return }
         guard let currentRoute = journeyManager.currentRoute else { return }
-        RouteSummaryClient.getRouteSummary(fromOrigin: journeyManager.origin!, destination: journeyManager.destination!, units: .imperial) { summary in
+        CKRouteSummaryClient.getRouteSummary(fromOrigin: journeyManager.origin!, destination: journeyManager.destination!, units: .imperial) { summary in
             let string = String(summary.destinationAddress.split(separator: ",").first!)
             if self.driverStatus == .previewingPickup(request: nil) {
                 self.journeyPreviewSummaryLabel.text = "Pickup: " + string
@@ -518,6 +521,9 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let journeyManager = journeyManager else { return }
+        UIView.animate(withDuration: 0.5) {
+            self.followLocationButton.alpha = 1.0
+        }
         journeyManager.stopFollowingCurrentLocation()
     }
     
@@ -532,7 +538,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         let newLocation = locations.last!
         let geoPoint = GeoPoint(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude)
         
-        let hash = MapUtility.generateHashForCoordinate(geoPoint)
+        let hash = CKMapUtility.generateHashForCoordinate(geoPoint)
         
         let data: [String: Any] = [
             "location.coordinate": GeoPoint(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude),

@@ -17,7 +17,7 @@ enum RequestStatus: String, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let status = try? container.decode(String.self)
-        print(status)
+
         switch status {
         case RequestStatus.pending.rawValue: self = .pending
             case RequestStatus.active.rawValue: self = .active
