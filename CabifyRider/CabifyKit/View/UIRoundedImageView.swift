@@ -1,19 +1,19 @@
 //
-//  UIRoundedView.swift
+//  UIRoundedImageView.swift
 //  CabifyRider
 //
-//  Created by Faraz Malik on 13/08/2023.
+//  Created by Faraz Malik on 18/08/2023.
 //
 
 import UIKit
 
-class UIRoundedView: UIStackView {
+class UIRoundedImageView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         didLoad()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
       didLoad()
     }
@@ -23,7 +23,7 @@ class UIRoundedView: UIStackView {
     }
     
     func didLoad() {
-        layer.cornerRadius = 20
+        layer.cornerRadius = frame.height / 2
         clipsToBounds = true
     }
 }

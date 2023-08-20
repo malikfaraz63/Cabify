@@ -12,7 +12,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDelegate, PendingRequestDelegate, JourneyPreviewDelegate, UIViewControllerTransitioningDelegate {
+class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourneyDelegate, PendingRequestDelegate, JourneyPreviewDelegate, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var goOnlineConstraint: NSLayoutConstraint!
     @IBOutlet weak var launchNavigationConstraint: NSLayoutConstraint!
@@ -22,13 +22,11 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     
     @IBOutlet weak var requestMessagesBadge: UILabel!
     @IBOutlet weak var showRequestMessagesButton: UIButton!
-    @IBOutlet weak var callRiderButton: UIButton!
     @IBOutlet weak var goOnlineButton: UIButton!
     @IBOutlet weak var followLocationButton: UIButton!
     @IBOutlet weak var launchNavigationButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
-    
     
     @IBOutlet weak var journeyView: UIView!
     
@@ -58,10 +56,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     let db = Firestore.firestore()
     let requestClient = RequestClient()
     let rideClient = RideClient()
-    var locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
 
-    var journeyManager: JourneyManager?
-    var mapViewManager: MapViewManager?
+    var journeyManager: CKJourneyManager?
+    var mapViewManager: CKMapViewManager?
     var pendingRequestController: PendingRequestController?
     
     var previousUserId: String?
@@ -72,9 +70,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         super.viewDidLoad()
         goOnlineButton.isEnabled = false
         
-        mapViewManager = MapViewManager(mapView: mapView)
-        mapViewManager!.centerToLocation(CLLocation(latitude: 51.5154, longitude: -0.1411), animated: false)
-        journeyManager = JourneyManager(mapViewManager: mapViewManager!, locationManager: locationManager)
+        mapViewManager = CKMapViewManager(mapView: mapView)
+        mapViewManager!.centerToLocation(CLLocation(latitude: 51.517651, longitude: -0.102968), regionRadius: 3000, animated: false)
+        journeyManager = CKJourneyManager(mapViewManager: mapViewManager!, locationManager: locationManager)
+        mapView.delegate = mapViewManager
         journeyManager?.delegate = self
         checkLocationAuthorizationStatus()
         locationManager.delegate = self
@@ -319,7 +318,6 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
         switch driverStatus {
         case .offline:
             showRequestMessagesButton.isHidden = true
-            callRiderButton.isHidden = true
             riderCountdownView.isHidden = true
             hideJourneyView()
             statusLabel.isHidden = false
@@ -327,7 +325,6 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             showGoOnlineButton()
         case .ready:
             showRequestMessagesButton.isHidden = true
-            callRiderButton.isHidden = true
             riderCountdownView.isHidden = true
             hideJourneyView()
             statusLabel.text = "Ready"
@@ -337,12 +334,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             requestClient.removePendingRequestsListener()
             riderCountdownView.isHidden = true
             showRequestMessagesButton.isHidden = true
-            callRiderButton.isHidden = true
             hideJourneyView()
             statusLabel.text = "Ride detected"
         case .previewingPickup(_):
             showRequestMessagesButton.isHidden = false
-            callRiderButton.isHidden = false
             showJourneyPreview()
             showJourneyView()
             showDefaultNavigateButton()
@@ -358,7 +353,6 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
             showRideStatusButton()
         case .previewingDropoff:
             showRequestMessagesButton.isHidden = true
-            callRiderButton.isHidden = true
             riderCountdownView.isHidden = true
             statusLabel.isHidden = false
             statusLabel.text = "Previewing dropoff"
@@ -381,7 +375,6 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     
     @IBAction func goOnline() {
         guard let uid = DriverSettingsManager.getUserID() else { return }
-        //goOnlineButton.isEnabled = false
 
         let data: [String: Any] = ["isOnline": true]
         
@@ -398,7 +391,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, JourneyDe
     }
     
     @IBAction func launchNavigation() {
-        let kind: CheckpointAnnotation.Kind
+        let kind: CKCheckpointAnnotation.Kind
         switch driverStatus {
         case .previewingPickup(_):
             kind = .pickup

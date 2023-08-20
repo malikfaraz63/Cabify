@@ -79,6 +79,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         guard let uid = DriverSettingsManager.getUserID() else { return }
         
         var data: [String: Any] = [
+            "driverId": driver.driverId,
             "name": driver.name,
             "email": driver.email,
             "phone": driver.phone,

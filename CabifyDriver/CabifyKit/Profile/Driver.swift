@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 struct Driver: Codable {
+    let driverId: String
     let name: String
     let email: String
     let isOnline: Bool

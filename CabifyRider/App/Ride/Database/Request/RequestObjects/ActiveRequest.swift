@@ -1,15 +1,15 @@
 //
 //  ActiveRequest.swift
-//  CabifyDriver
+//  CabifyRider
 //
-//  Created by Faraz Malik on 01/08/2023.
+//  Created by Faraz Malik on 19/08/2023.
 //
 
 import Foundation
 import FirebaseFirestore
 
 struct ActiveRequest: Codable {
-    var documentID: String?
+    let requestId: String
     let origin: Location
     let destination: GeoPoint
     let timeCreated: Date

@@ -10,13 +10,12 @@ import CoreLocation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-
 public protocol CKCoordinate {
     var latitude: Double { get }
     var longitude: Double { get }
 }
 
-struct Location: Codable { 
+struct Location: Codable {
     let coordinate: GeoPoint
     let hash: String
 }

@@ -9,7 +9,6 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-import CoreLocation
 
 class RequestClient {
     private var didViewRequest: Bool
@@ -73,23 +72,9 @@ class RequestClient {
             requestListener.remove()
         }
         
-        print("  setting listener...")
-        db
-            .collection("requests")
-            .document("jNFgEAiMZVuCbOldyyfk")
-            .getDocument(as: PendingRequest.self) { result in
-                switch result {
-                case .success(let success):
-                    print("  printing status")
-                    print("  - " + success.status.rawValue)
-                case .failure(let failure):
-                    print(failure)
-                }
-            }
-        
         requestListener = db
             .collection("requests")
-            .whereField("status", isEqualTo: RequestStatus.pending.rawValue)
+            .whereField("status", isEqualTo: CKRequestStatus.pending.rawValue)
             .whereFilter(Filter.orFilter(locationHashFilters))
             .whereField("timeCreated", isGreaterThanOrEqualTo: Date(timeIntervalSinceNow: -3600))
             .limit(to: 5)
@@ -130,7 +115,7 @@ class RequestClient {
         self.updateRequest(withRequestId: requestId, updateHandler: { (request: PendingRequest) in
             if request.status == .pending {
                 return [
-                    "status": RequestStatus.active.rawValue,
+                    "status": CKRequestStatus.active.rawValue,
                     "driverId": driverId,
                     "driverUnread": 0,
                     "riderUnread": 0
@@ -180,7 +165,7 @@ class RequestClient {
     public func updateRequestAsCompleted(withRequestId requestId: String, completion: @escaping UpdateCompletion) {
         updateRequest(withRequestId: requestId, updateHandler: { (request: ActiveRequest) in
             return [
-                "status": RequestStatus.completed.rawValue,
+                "status": CKRequestStatus.completed.rawValue,
                 "timeCompleted": Date()
             ]
         }, completion: completion)

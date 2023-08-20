@@ -1,5 +1,5 @@
 //
-//  LocationAnnotation.swift
+//  CKLocationAnnotation.swift
 //  CabifyDriver
 //
 //  Created by Faraz Malik on 25/07/2023.
@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationAnnotation: NSObject, MKAnnotation {
+class CKLocationAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     
     init(coordinate: CLLocationCoordinate2D) {

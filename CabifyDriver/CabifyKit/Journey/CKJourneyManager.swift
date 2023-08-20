@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 import CoreLocation
 
-class JourneyManager: NSObject, CLLocationManagerDelegate {
+class CKJourneyManager: NSObject, CLLocationManagerDelegate {
     private(set) var currentRoute: MKRoute?
     private var routeCoordinates: [CLLocationCoordinate2D]?
     
@@ -18,11 +18,12 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
     private var stepsIndex: [Int]
     private var isNavigating: Bool
     private var isFollowingCurrentLocation: Bool
-    var delegate: JourneyDelegate?
+    private let navigateWithOverview: Bool
+    var delegate: CKJourneyDelegate?
 
     let locationManager: CLLocationManager
     
-    private final let mapViewManager: MapViewManager
+    private final let mapViewManager: CKMapViewManager
     
     private(set) var origin: CLLocationCoordinate2D?
     private(set) var destination: CLLocationCoordinate2D?
@@ -31,7 +32,7 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
     typealias SetRouteCompletion = () -> Void
     typealias UpdateRouteCompletion = () -> Void
     
-    init(mapViewManager: MapViewManager, locationManager: CLLocationManager) {
+    init(mapViewManager: CKMapViewManager, locationManager: CLLocationManager, navigateWithOverview: Bool = false) {
         self.mapViewManager = mapViewManager
         self.completedCoordinates = 0
         self.currentStep = 0
@@ -39,6 +40,7 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         self.isNavigating = false
         self.isFollowingCurrentLocation = true
         self.locationManager = locationManager
+        self.navigateWithOverview = navigateWithOverview
     }
     
     func setRoute(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, completion: SetRouteCompletion?) {
@@ -49,7 +51,7 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
         updateRoute(isCurrentLocationOrigin: false, completion: completion)
     }
     
-    func launchAppleMapsWithCurrentRoute(kind: CheckpointAnnotation.Kind) {
+    func launchAppleMapsWithCurrentRoute(kind: CKCheckpointAnnotation.Kind) {
         guard let destination = destination else { return }
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
         mapItem.name = "Approx. \(kind.rawValue.capitalized) Location"
@@ -189,7 +191,6 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("--locationManager: didUpdateLocations--")
         guard let currentLocation = locations.last else { return }
-//        mapViewManager.updateCurrentLocation(currentLocation.coordinate)
         
         if isFollowingCurrentLocation {
             mapViewManager.centerToLocation(currentLocation)
@@ -258,6 +259,18 @@ class JourneyManager: NSObject, CLLocationManagerDelegate {
             } else if stepDestinationDelta > 0 || stepOriginDelta < 0 {
                 print("  headed in the wrong direction")
                 beginNavigation(shouldFollowCurrentLocation: false)
+            }
+            
+            if navigateWithOverview {
+                let origin = currentLocation.coordinate
+                guard let destination = destination else { return }
+                
+                let latitude = (origin.latitude + destination.latitude) / 2
+                let longitude = (origin.longitude + destination.longitude) / 2
+                
+                let location = CLLocation(latitude: latitude, longitude: longitude)
+                
+                mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(origin, destination))
             }
         }
     }

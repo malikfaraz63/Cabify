@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class CheckpointAnnotation: NSObject, MKAnnotation {
+class CKCheckpointAnnotation: NSObject, MKAnnotation {
     static let identifier = "CheckpointAnnotation"
     let coordinate: CLLocationCoordinate2D
     let title: String?
@@ -25,7 +25,7 @@ class CheckpointAnnotation: NSObject, MKAnnotation {
     }
     
     func getView() -> MKMarkerAnnotationView {
-        let annotationView = MKMarkerAnnotationView(annotation: self, reuseIdentifier: CheckpointAnnotation.identifier)
+        let annotationView = MKMarkerAnnotationView(annotation: self, reuseIdentifier: CKCheckpointAnnotation.identifier)
         annotationView.animatesWhenAdded = true
         if kind == .pickup {
             annotationView.glyphImage = UIImage(systemName: "arrow.up")

@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-protocol JourneyDelegate {
+protocol CKJourneyDelegate {
     func journeyDidCompleteAtDestination(_ destination: CLLocationCoordinate2D)
     func journeyDidBeginStep(_ step: MKRoute.Step)
 }

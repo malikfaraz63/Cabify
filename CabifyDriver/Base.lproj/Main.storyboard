@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Gz-7E-LhV">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -199,7 +199,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OC0-sr-UYc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335.1145038167939" y="817.6056338028169"/>
+            <point key="canvasLocation" x="-845" y="820"/>
+        </scene>
+        <!--Journeys-->
+        <scene sceneID="xe4-3u-EmL">
+            <objects>
+                <viewController id="VIc-c4-Pna" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BNl-TJ-mP5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jLh-Lv-cR7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Journeys" image="list.star" catalog="system" id="v1h-na-WbC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NF3-Xd-fua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-120" y="820"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2jN-pU-dz9">
@@ -341,16 +357,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQf-SN-BxI" customClass="UIRoundedButton" customModule="CabifyDriver" customModuleProvider="target">
-                                                <rect key="frame" x="337" y="10" width="40" height="40"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="wQf-5B-DaQ"/>
-                                                    <constraint firstAttribute="height" constant="40" id="z9i-yH-fNy"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="phone.fill" catalog="system"/>
-                                            </button>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-GX-rIS">
                                                 <rect key="frame" x="96.666666666666686" y="5" width="200" height="50"/>
                                                 <subviews>
@@ -383,7 +389,6 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="TQf-SN-BxI" firstAttribute="centerY" secondItem="4ak-0V-b3s" secondAttribute="centerY" id="1Ty-FR-Iux"/>
                                             <constraint firstItem="phG-19-aW3" firstAttribute="centerY" secondItem="4ak-0V-b3s" secondAttribute="centerY" id="5vV-ij-sRG"/>
                                             <constraint firstAttribute="height" constant="60" id="8Vl-fa-Mdp"/>
                                             <constraint firstItem="X4X-Tu-jDx" firstAttribute="centerY" secondItem="4ak-0V-b3s" secondAttribute="centerY" id="9QB-2S-Qji"/>
@@ -392,7 +397,6 @@
                                             <constraint firstItem="8CL-NG-TTr" firstAttribute="trailing" secondItem="X4X-Tu-jDx" secondAttribute="trailing" id="N5h-JC-oj6"/>
                                             <constraint firstItem="8CL-NG-TTr" firstAttribute="top" secondItem="X4X-Tu-jDx" secondAttribute="top" id="Wh5-a7-FHk"/>
                                             <constraint firstItem="g1e-GX-rIS" firstAttribute="centerX" secondItem="4ak-0V-b3s" secondAttribute="centerX" id="cwJ-cM-q2y"/>
-                                            <constraint firstAttribute="trailing" secondItem="TQf-SN-BxI" secondAttribute="trailing" constant="16" id="qUP-iI-6n4"/>
                                             <constraint firstItem="g1e-GX-rIS" firstAttribute="centerY" secondItem="4ak-0V-b3s" secondAttribute="centerY" id="wQ1-0N-yCP"/>
                                         </constraints>
                                     </view>
@@ -646,7 +650,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Ride" image="car" catalog="system" selectedImage="car.fill" id="Bbx-NA-AoY"/>
                     <connections>
-                        <outlet property="callRiderButton" destination="TQf-SN-BxI" id="jie-6h-etL"/>
                         <outlet property="followLocationButton" destination="dAT-MV-FZH" id="6Ym-6i-i8y"/>
                         <outlet property="followLocationConstraint" destination="Bz7-SK-mpQ" id="YON-jZ-tSl"/>
                         <outlet property="goOnlineButton" destination="DVJ-40-7CN" id="Mlu-YP-lEN"/>
@@ -781,7 +784,8 @@
                     <connections>
                         <segue destination="Saw-oy-omj" kind="relationship" relationship="viewControllers" id="D0g-ie-k4N"/>
                         <segue destination="nsc-E7-DdK" kind="relationship" relationship="viewControllers" id="bL4-eU-ifK"/>
-                        <segue destination="EDd-sv-IuN" kind="relationship" relationship="viewControllers" id="7P2-hX-SO3"/>
+                        <segue destination="VIc-c4-Pna" kind="relationship" relationship="viewControllers" id="zan-Kt-I1E"/>
+                        <segue destination="EDd-sv-IuN" kind="relationship" relationship="viewControllers" id="aob-wG-oFz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF0-vw-ZA0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1034,13 +1038,13 @@
         <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="list.star" catalog="system" width="128" height="95"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="location.north.fill" catalog="system" width="110" height="128"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.questionmark" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

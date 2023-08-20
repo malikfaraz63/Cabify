@@ -26,10 +26,10 @@ class SetupViewController: UIViewController {
         guard let name = user.displayName else { return }
         guard let email = user.email else { return }
         guard let url = user.photoURL?.absoluteString else { return }
+        let uid = user.uid
         
         
-        
-        delegate?.driverDidSetup(withDriver: Driver(name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, averageRating: 0, ridesCount: 0))
+        delegate?.driverDidSetup(withDriver: Driver(driverId: uid, name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, averageRating: 0, ridesCount: 0))
         
         dismiss(animated: true)
     }

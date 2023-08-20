@@ -9,4 +9,5 @@ import Foundation
 
 enum SegueTag: String {
     case embedRouteSelection
+    case showRequestMessages
 }

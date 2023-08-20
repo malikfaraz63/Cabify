@@ -8,7 +8,6 @@
 import UIKit
 
 class UIRoundedButton: UIButton {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         didLoad()

@@ -1,6 +1,6 @@
 //
 //  UIRoundedLabel.swift
-//  CabifyDriver
+//  CabifyRider
 //
 //  Created by Faraz Malik on 06/08/2023.
 //

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestStatus: String, Codable {
+enum CKRequestStatus: String, Codable {
     case pending = "PENDING"
     case active = "ACTIVE"
     case cancelled = "CANCELLED"
@@ -19,10 +19,10 @@ enum RequestStatus: String, Codable {
         let status = try? container.decode(String.self)
 
         switch status {
-        case RequestStatus.pending.rawValue: self = .pending
-            case RequestStatus.active.rawValue: self = .active
-            case RequestStatus.cancelled.rawValue: self = .cancelled
-            case RequestStatus.completed.rawValue: self = .completed
+        case CKRequestStatus.pending.rawValue: self = .pending
+            case CKRequestStatus.active.rawValue: self = .active
+            case CKRequestStatus.cancelled.rawValue: self = .cancelled
+            case CKRequestStatus.completed.rawValue: self = .completed
             default: self = .unknown
         }
     }

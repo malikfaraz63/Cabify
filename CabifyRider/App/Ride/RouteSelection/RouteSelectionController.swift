@@ -103,7 +103,7 @@ class RouteSelectionController: UIViewController, UITableViewDelegate, UITableVi
                 let _ = textFieldShouldReturn(pickupTextField)
             } else if lastSelectedTextField == dropoffTextField {
                 selectionType = .dropoff
-                let _ = textFieldShouldReturn(pickupTextField)
+                let _ = textFieldShouldReturn(dropoffTextField)
             } else {
                 return
             }
@@ -123,6 +123,7 @@ class RouteSelectionController: UIViewController, UITableViewDelegate, UITableVi
                 let _ = textFieldShouldReturn(dropoffTextField)
                 delegate?.didSelectLocation(ofType: .dropoff, location: locationDetail)
             }
+            delegate?.hideRouteSelectionTable()
         }
     }
     

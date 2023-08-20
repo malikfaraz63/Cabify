@@ -10,13 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewManager: NSObject, MKMapViewDelegate {
+class CKMapViewManager: NSObject, MKMapViewDelegate {
     private weak var mapView: MKMapView?
     
     init(mapView: MKMapView) {
         self.mapView = mapView
         super.init()
-        mapView.delegate = self
     }
         
     func drawCoordinates(_ coordinates: [CLLocationCoordinate2D], animated: Bool) {
@@ -80,12 +79,12 @@ class MapViewManager: NSObject, MKMapViewDelegate {
     
     func removeCheckpointAnnotations() {
         guard let mapView = mapView else { return }
-        mapView.removeAnnotations(mapView.annotations.filter { $0 is CheckpointAnnotation })
+        mapView.removeAnnotations(mapView.annotations.filter { $0 is CKCheckpointAnnotation })
     }
     
-    func addCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CheckpointAnnotation.Kind) {
+    func addCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CKCheckpointAnnotation.Kind) {
         guard let mapView = mapView else { return }
-        mapView.addAnnotation(CheckpointAnnotation(coordinate: coordinate, kind: kind))
+        mapView.addAnnotation(CKCheckpointAnnotation(coordinate: coordinate, kind: kind))
     }
 
     func centerToLocation(_ location: CLLocation, regionRadius: Double = 400, animated: Bool = true) {
@@ -101,12 +100,12 @@ class MapViewManager: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is LocationAnnotation {
-            guard let locationAnnotation = annotation as? LocationAnnotation else { fatalError() }
+        if annotation is CKLocationAnnotation {
+            guard let locationAnnotation = annotation as? CKLocationAnnotation else { fatalError() }
             
             return locationAnnotation.getView()
-        } else if annotation is CheckpointAnnotation {
-            guard let checkpointAnnotation = annotation as? CheckpointAnnotation else { fatalError() }
+        } else if annotation is CKCheckpointAnnotation {
+            guard let checkpointAnnotation = annotation as? CKCheckpointAnnotation else { fatalError() }
             
             return checkpointAnnotation.getView()
         }

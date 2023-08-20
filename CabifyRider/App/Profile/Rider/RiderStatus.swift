@@ -11,7 +11,9 @@ enum RiderStatus: Equatable {
     case usingRouteSelector
     case pinSelectingPickup(locationDescription: String?)
     case pinSelectingDropoff(locationDescription: String?)
-    case previewingSelectedRoute
+    case previewingSelectedRoute(rideCost: Double)
+    case awaitingRequestAcceptance(request: PendingRequest)
+    case awaitingDriverArrival(request: ActiveRequest)
     
     private func getValue() -> Int {
         switch self {
@@ -23,6 +25,10 @@ enum RiderStatus: Equatable {
             return 2
         case .previewingSelectedRoute:
             return 3
+        case .awaitingRequestAcceptance:
+            return 4
+        case .awaitingDriverArrival:
+            return 5
         }
     }
     

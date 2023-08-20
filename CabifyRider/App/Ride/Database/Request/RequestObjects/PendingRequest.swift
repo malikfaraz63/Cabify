@@ -1,22 +1,22 @@
 //
 //  PendingRequest.swift
-//  CabifyDriver
+//  CabifyRider
 //
-//  Created by Faraz Malik on 26/07/2023.
+//  Created by Faraz Malik on 17/08/2023.
 //
 
 import Foundation
-import CoreLocation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct PendingRequest: Codable {
-    var documentID: String?
-    let origin: Location
-    let destination: GeoPoint
-    let timeCreated: Date
     let cost: Double
+    let destination: GeoPoint
     let driverViews: Int
+    let origin: Location
     let riderId: String
+    var requestId: String
     let riderRating: Double
     let status: CKRequestStatus
+    let timeCreated: Date
 }

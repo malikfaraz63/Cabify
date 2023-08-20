@@ -44,12 +44,12 @@
 		D9D6F1F52A6EAAB700E50957 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1F42A6EAAB700E50957 /* GoogleSignIn */; };
 		D9D6F1F72A6EAAB700E50957 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1F62A6EAAB700E50957 /* GoogleSignInSwift */; };
 		D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1FA2A6EADC200E50957 /* ProfileViewController.swift */; };
-		D9D6F1FE2A6EB3F200E50957 /* MapViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1FD2A6EB3F200E50957 /* MapViewManager.swift */; };
+		D9D6F1FE2A6EB3F200E50957 /* CKMapViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */; };
 		D9D6F2022A6EBD0A00E50957 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F2012A6EBD0A00E50957 /* GoogleService-Info.plist */; };
-		D9D6F2042A6FBCE200E50957 /* JourneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2032A6FBCE200E50957 /* JourneyManager.swift */; };
-		D9D6F2082A6FFDB200E50957 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2072A6FFDB200E50957 /* LocationAnnotation.swift */; };
-		D9D6F20D2A70508200E50957 /* CheckpointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F20C2A70508200E50957 /* CheckpointAnnotation.swift */; };
-		D9D6F2102A71659600E50957 /* JourneyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F20F2A71659600E50957 /* JourneyDelegate.swift */; };
+		D9D6F2042A6FBCE200E50957 /* CKJourneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2032A6FBCE200E50957 /* CKJourneyManager.swift */; };
+		D9D6F2082A6FFDB200E50957 /* CKLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2072A6FFDB200E50957 /* CKLocationAnnotation.swift */; };
+		D9D6F20D2A70508200E50957 /* CKCheckpointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F20C2A70508200E50957 /* CKCheckpointAnnotation.swift */; };
+		D9D6F2102A71659600E50957 /* CKJourneyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F20F2A71659600E50957 /* CKJourneyDelegate.swift */; };
 		D9D6F2132A71968800E50957 /* PendingRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2122A71968800E50957 /* PendingRequestController.swift */; };
 		D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */; };
 		D9D6F2172A71B8A600E50957 /* PendingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2162A71B8A600E50957 /* PendingRequest.swift */; };
@@ -58,7 +58,7 @@
 		D9D6F2212A728BEE00E50957 /* SetupViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2202A728BEE00E50957 /* SetupViewDelegate.swift */; };
 		D9D6F2232A728C0600E50957 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2222A728C0600E50957 /* SetupViewController.swift */; };
 		D9D6F2272A72901700E50957 /* SegueTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2262A72901700E50957 /* SegueTag.swift */; };
-		D9D6F2292A72A49200E50957 /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2282A72A49200E50957 /* RequestStatus.swift */; };
+		D9D6F2292A72A49200E50957 /* CKRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */; };
 		D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */; };
 		D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22C2A72B61800E50957 /* UIImageView.swift */; };
 		D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */; };
@@ -101,12 +101,12 @@
 		D9C367E22A7947E800C99D28 /* RequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
 		D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		D9D6F1FA2A6EADC200E50957 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D9D6F1FD2A6EB3F200E50957 /* MapViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewManager.swift; sourceTree = "<group>"; };
+		D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKMapViewManager.swift; sourceTree = "<group>"; };
 		D9D6F2012A6EBD0A00E50957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D9D6F2032A6FBCE200E50957 /* JourneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyManager.swift; sourceTree = "<group>"; };
-		D9D6F2072A6FFDB200E50957 /* LocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
-		D9D6F20C2A70508200E50957 /* CheckpointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointAnnotation.swift; sourceTree = "<group>"; };
-		D9D6F20F2A71659600E50957 /* JourneyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDelegate.swift; sourceTree = "<group>"; };
+		D9D6F2032A6FBCE200E50957 /* CKJourneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKJourneyManager.swift; sourceTree = "<group>"; };
+		D9D6F2072A6FFDB200E50957 /* CKLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKLocationAnnotation.swift; sourceTree = "<group>"; };
+		D9D6F20C2A70508200E50957 /* CKCheckpointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCheckpointAnnotation.swift; sourceTree = "<group>"; };
+		D9D6F20F2A71659600E50957 /* CKJourneyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKJourneyDelegate.swift; sourceTree = "<group>"; };
 		D9D6F2122A71968800E50957 /* PendingRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestController.swift; sourceTree = "<group>"; };
 		D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestDelegate.swift; sourceTree = "<group>"; };
 		D9D6F2162A71B8A600E50957 /* PendingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequest.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		D9D6F2202A728BEE00E50957 /* SetupViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewDelegate.swift; sourceTree = "<group>"; };
 		D9D6F2222A728C0600E50957 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		D9D6F2262A72901700E50957 /* SegueTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueTag.swift; sourceTree = "<group>"; };
-		D9D6F2282A72A49200E50957 /* RequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
+		D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestStatus.swift; sourceTree = "<group>"; };
 		D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverSettingsManager.swift; sourceTree = "<group>"; };
 		D9D6F22C2A72B61800E50957 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTag.swift; sourceTree = "<group>"; };
@@ -211,6 +211,9 @@
 		D96BBAFA2A87C031009FAA78 /* CabifyKit */ = {
 			isa = PBXGroup;
 			children = (
+				D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */,
+				D9C118512A8BEF2300201454 /* Journey */,
+				D9C118502A8BEE6500201454 /* Client */,
 				D96BBB032A87C031009FAA78 /* Map */,
 				D96BBAFB2A87C031009FAA78 /* View */,
 				D96BBB002A87C031009FAA78 /* Profile */,
@@ -241,9 +244,10 @@
 		D96BBB032A87C031009FAA78 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				D9D6F20E2A7054D600E50957 /* Annotations */,
+				D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */,
 				D96BBB042A87C031009FAA78 /* CKMapUtility.swift */,
 				D96BBB052A87C031009FAA78 /* MKMultiPoint.swift */,
-				D96BBB062A87C031009FAA78 /* CKRouteSummaryClient.swift */,
 				D96BBB072A87C031009FAA78 /* CKCoordinate.swift */,
 				D96BBB082A87C031009FAA78 /* CKRouteSummary.swift */,
 			);
@@ -253,12 +257,33 @@
 		D99068EB2A769725003A0134 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
-				D9D6F1FD2A6EB3F200E50957 /* MapViewManager.swift */,
-				D9D6F2032A6FBCE200E50957 /* JourneyManager.swift */,
-				D9D6F20F2A71659600E50957 /* JourneyDelegate.swift */,
 				D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */,
-				D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */,
 				D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */,
+				D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */,
+			);
+			path = Journey;
+			sourceTree = "<group>";
+		};
+		D9C1184F2A8BEDF300201454 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		D9C118502A8BEE6500201454 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				D96BBB062A87C031009FAA78 /* CKRouteSummaryClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		D9C118512A8BEF2300201454 /* Journey */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6F2032A6FBCE200E50957 /* CKJourneyManager.swift */,
+				D9D6F20F2A71659600E50957 /* CKJourneyDelegate.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -267,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				D9D6F2162A71B8A600E50957 /* PendingRequest.swift */,
-				D9D6F2282A72A49200E50957 /* RequestStatus.swift */,
 				D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */,
 				D9C367E22A7947E800C99D28 /* RequestMessage.swift */,
 			);
@@ -288,10 +312,10 @@
 		D9D6F1FC2A6EB3DB00E50957 /* Ride */ = {
 			isa = PBXGroup;
 			children = (
+				D9C1184F2A8BEDF300201454 /* Map */,
 				D93AAE772A81247F0056E9CF /* Database */,
 				D93EFE582A7D3F020052C00B /* Chat */,
 				D99068EB2A769725003A0134 /* Journey */,
-				D9D6F20E2A7054D600E50957 /* Annotations */,
 				D9D6F2122A71968800E50957 /* PendingRequestController.swift */,
 				D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */,
 				D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */,
@@ -332,8 +356,8 @@
 		D9D6F20E2A7054D600E50957 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
-				D9D6F2072A6FFDB200E50957 /* LocationAnnotation.swift */,
-				D9D6F20C2A70508200E50957 /* CheckpointAnnotation.swift */,
+				D9D6F2072A6FFDB200E50957 /* CKLocationAnnotation.swift */,
+				D9D6F20C2A70508200E50957 /* CKCheckpointAnnotation.swift */,
 			);
 			path = Annotations;
 			sourceTree = "<group>";
@@ -460,7 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D956B85E2A811A3E00D24668 /* RideClient.swift in Sources */,
-				D9D6F2042A6FBCE200E50957 /* JourneyManager.swift in Sources */,
+				D9D6F2042A6FBCE200E50957 /* CKJourneyManager.swift in Sources */,
 				D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */,
 				D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */,
 				D9D6F21D2A728B9700E50957 /* LoginViewDelegate.swift in Sources */,
@@ -470,10 +494,10 @@
 				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
 				D9D6F21B2A728B8F00E50957 /* LoginViewController.swift in Sources */,
 				D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */,
-				D9D6F2102A71659600E50957 /* JourneyDelegate.swift in Sources */,
+				D9D6F2102A71659600E50957 /* CKJourneyDelegate.swift in Sources */,
 				D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */,
 				D96BBB0F2A87C031009FAA78 /* CKMapUtility.swift in Sources */,
-				D9D6F2082A6FFDB200E50957 /* LocationAnnotation.swift in Sources */,
+				D9D6F2082A6FFDB200E50957 /* CKLocationAnnotation.swift in Sources */,
 				D976D30D2A8692BB0024E71E /* PreviewStepCell.swift in Sources */,
 				D96BBB0E2A87C031009FAA78 /* Driver.swift in Sources */,
 				D92B79EB2A7F8F720084CE7B /* TGFlingActionButton.swift in Sources */,
@@ -486,7 +510,7 @@
 				D96BBB0C2A87C031009FAA78 /* UIRoundedStackView.swift in Sources */,
 				D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */,
 				D96BBB0A2A87C031009FAA78 /* UIRoundedLabel.swift in Sources */,
-				D9D6F20D2A70508200E50957 /* CheckpointAnnotation.swift in Sources */,
+				D9D6F20D2A70508200E50957 /* CKCheckpointAnnotation.swift in Sources */,
 				D9D6F2212A728BEE00E50957 /* SetupViewDelegate.swift in Sources */,
 				D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */,
 				D9F1A70B2A7C253D00A9AE67 /* DriverStatus.swift in Sources */,
@@ -496,8 +520,8 @@
 				D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */,
 				D96BBB112A87C031009FAA78 /* CKRouteSummaryClient.swift in Sources */,
 				D96BBB092A87C031009FAA78 /* UIRoundedButton.swift in Sources */,
-				D9D6F2292A72A49200E50957 /* RequestStatus.swift in Sources */,
-				D9D6F1FE2A6EB3F200E50957 /* MapViewManager.swift in Sources */,
+				D9D6F2292A72A49200E50957 /* CKRequestStatus.swift in Sources */,
+				D9D6F1FE2A6EB3F200E50957 /* CKMapViewManager.swift in Sources */,
 				D956B85A2A81181400D24668 /* Ride.swift in Sources */,
 				D956B8582A80E08A00D24668 /* RideStatus.swift in Sources */,
 				D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */,
