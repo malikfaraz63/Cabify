@@ -31,10 +31,6 @@ class RequestMessagesController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         
-        if let riderName = riderName {
-            rider.displayName = riderName
-        }
-        
         messageInputBar.sendButton.onTouchUpInside { _ in self.sendMessage() }
         // Do any additional setup after loading the view.
         viewDidAppear(true)
@@ -42,6 +38,10 @@ class RequestMessagesController: MessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if let riderName = riderName {
+            rider.displayName = riderName
+        }
         
         if let requestId = requestId {
             if let previousRequestId = previousRequestId {

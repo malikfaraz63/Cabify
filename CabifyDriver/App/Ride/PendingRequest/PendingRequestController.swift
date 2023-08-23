@@ -99,19 +99,17 @@ class PendingRequestController: UIViewController {
         printState(countdownAnimator!.state)
         
         countdownAnimator = nil
-        if let request = self.request {
-            self.delegate?.requestTimedOut(request, completion: clearView)
+        if let request = request {
+            // do this first, otherwise a back to back request will ensure the 2nd request comes before
+            // clearView() is called, hence timing out instantly
+            clearView()
+            delegate?.requestTimedOut(request, completion: {})
         }
     }
     
     func clearView() {
-        rideCostLabel.text = "£--.--"
-        riderRatingLabel.text = "--"
-        pickupLocationLabel.text = "Pickup"
-        dropoffLocationLabel.text = "Dropoff"
-        pickupSummaryLabel.text = "-- mins (-- mi) away"
-        dropoffSummaryLabel.text = "-- mins (-- mi) trip"
         self.countdownProgressView.progress = 1.0
+        print("current progress: \(countdownProgressView.progress)")
         self.view.layoutIfNeeded()
     }
     

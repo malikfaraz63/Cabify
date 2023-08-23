@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FirebaseCore
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -45,6 +46,11 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     @IBOutlet weak var riderCountdownTimerLabel: UILabel!
     @IBOutlet weak var riderCountdownUpdateLabel: UILabel!
     
+    @IBOutlet weak var notificationStack: UIStackView!
+    @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var notificationConstraint: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var statusStackView: UIStackView!
     @IBOutlet weak var rideStatusView: UIView!
     @IBOutlet weak var rideStatusButton: UIButton!
@@ -57,6 +63,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     let requestClient = RequestClient()
     let rideClient = RideClient()
     let locationManager = CLLocationManager()
+    var previousUnread = 0
 
     var journeyManager: CKJourneyManager?
     var mapViewManager: CKMapViewManager?
@@ -67,6 +74,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     var driverStatus = DriverStatus.offline
     
     override func viewDidLoad() {
+        if Auth.auth().currentUser?.uid == nil {
+            print("\n\n----USER LOGGED OUT----\n\n")
+        }
+        
         super.viewDidLoad()
         goOnlineButton.isEnabled = false
         
@@ -185,6 +196,19 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     }
     
     // MARK: View Maintenance
+    
+    func showNotificationView() {
+        notificationConstraint.constant = 70
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    func hideNotificationView() {
+        notificationConstraint.constant = -100
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
     
     func showDefaultNavigateButton() {
         launchNavigationButton.isEnabled = true
@@ -330,19 +354,19 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
             statusLabel.text = "Ready"
             hideGoOnlineButton()
             hideDefaultNavigateButton()
-        case .viewingPendingRequest(_):
+        case .viewingPendingRequest:
             requestClient.removePendingRequestsListener()
             riderCountdownView.isHidden = true
             showRequestMessagesButton.isHidden = true
             hideJourneyView()
             statusLabel.text = "Ride detected"
-        case .previewingPickup(_):
+        case .previewingPickup:
             showRequestMessagesButton.isHidden = false
             showJourneyPreview()
             showJourneyView()
             showDefaultNavigateButton()
             statusLabel.text = "Ride accepted"
-        case .travellingToPickup(_):
+        case .travellingToPickup:
             statusLabel.text = "Travelling to pickup"
             showJourneyOngoing()
         case .waitingAtPickup:
@@ -369,22 +393,27 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     }
     
     func driverDidGoOnline() {
+        showNotification(ofType: .info, message: "Successfully went online!", isPersistent: false)
         driverStatus = .ready
         updateViewForDriverStatusChange()
     }
     
     @IBAction func goOnline() {
+        print("--RideViewController.goOnline--")
         guard let uid = DriverSettingsManager.getUserID() else { return }
-
+        print(" - got uid")
         let data: [String: Any] = ["isOnline": true]
         
         db
             .collection("drivers")
             .document(uid)
             .updateData(data) { error in
+                print(" - callback called")
                 if let error = error {
+                    print(" - error")
                     print(error.localizedDescription)
                 } else {
+                    print(" - going online...")
                     self.driverDidGoOnline()
                 }
             }
@@ -424,6 +453,43 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         journeyManager.beginNavigation()
     }
     
+    // MARK: Notification
+    
+    enum NotificationType {
+        case success
+        case warning
+        case info
+        case error
+    }
+    func showNotification(ofType type: NotificationType, message: String, isPersistent: Bool) {
+        switch type {
+        case .success:
+            notificationStack.backgroundColor = .systemGreen
+        case .warning:
+            notificationStack.backgroundColor = .systemOrange
+        case .info:
+            notificationStack.backgroundColor = .systemTeal
+        case .error:
+            notificationStack.backgroundColor = .systemRed
+        }
+        notificationLabel.text = message
+
+        showNotificationView()
+        
+        if isPersistent {
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            self.hideNotificationView()
+        }
+    }
+    
+    @IBAction func dismissNotification() {
+        hideNotificationView()
+    }
+
+    
     // MARK: Journey Delegate
     
     func journeyDidBeginStep(_ step: MKRoute.Step) {
@@ -458,6 +524,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
             requestClient.updateRequestAsCompleted(withRequestId: requestId) { [unowned self] requestWasUpdated in
                 if requestWasUpdated {
                     rideClient.createRide(fromRequest: request) { ride in
+                        self.showNotification(ofType: .info, message: "Arrived at pickup!", isPersistent: false)
                         self.driverStatus = .waitingAtPickup(ride: ride)
                         self.beginWaitingCountdown()
                         self.updateViewForDriverStatusChange()
@@ -466,11 +533,14 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
             }
         case .travellingToDropoff(let ride):
             guard let rideId = ride?.rideId else { return }
-            rideClient.updateRideAsCompleted(withRideId: rideId) { updateWasSuccessful in
+            guard let cost = ride?.cost else { return }
+            let costString = String(format: "£%.2f", cost)
+            rideClient.updateRideAsCompleted(withRideId: rideId) { [unowned self] updateWasSuccessful in
                 if updateWasSuccessful {
-                    self.rideClient.transferMoney(forCompletedRideId: rideId)
-                    self.driverStatus = .ready
-                    self.updateViewForDriverStatusChange()
+                    showNotification(ofType: .success, message: "Ride completed, earned \(costString)!", isPersistent: false)
+                    rideClient.transferMoney(forCompletedRideId: rideId)
+                    driverStatus = .ready
+                    updateViewForDriverStatusChange()
                 }
             }
         default: break
@@ -495,13 +565,13 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     
     
     func handlePendingRequests(_ pendingRequests: [PendingRequest]) {
-        print("--handlePendingRequests--")
         if driverStatus != .ready { return }
         if pendingRequests.isEmpty { return }
         guard let journeyManager = journeyManager else { return }
         
         let request = pendingRequests.first!
         
+        showNotification(ofType: .info, message: "Ride found!", isPersistent: false)
         driverStatus = .viewingPendingRequest(request: request)
         updateViewForDriverStatusChange()
         
@@ -605,8 +675,9 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         
         requestClient.tryAcceptRequest(withRequestId: requestId, driverId: driverId) { [unowned self] requestWasAccepted in
             if requestWasAccepted {
+                showNotification(ofType: .success, message: "Ride was accepted!", isPersistent: false)
                 driverStatus = .previewingPickup(request: nil)
-                requestClient.setActiveRequestListener(withRequestId: requestId, location: location, completion: self.activeRequestChanged)
+                requestClient.setActiveRequestListener(withRequestId: requestId, location: location, completion: activeRequestChanged)
                 
                 guard let journeyManager = journeyManager else { return }
                 journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: request.origin.coordinate)) {
@@ -614,6 +685,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
                     self.updateViewForDriverStatusChange()
                 }
             } else {
+                showNotification(ofType: .info, message: "Ride not accepted.", isPersistent: false)
                 driverStatus = .ready
                 updateViewForDriverStatusChange()
             }
@@ -650,23 +722,28 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         if request.riderUnread > 0 {
             requestMessagesBadge.text = "\(request.riderUnread)"
             requestMessagesBadge.isHidden = false
+            if previousUnread != request.riderUnread && previousUnread == 0 {
+                showNotification(ofType: .info, message: "Message received from rider!", isPersistent: false)
+            }
         } else {
             requestMessagesBadge.isHidden = true
         }
+        previousUnread = request.riderUnread
     }
     
     @IBAction func beginRide() {
-        print("--beginRide--")
         if driverStatus != .waitingAtPickup(ride: nil) {
             return
         }
         
         switch driverStatus {
         case .waitingAtPickup(let ride):
+            requestClient.removeRequestMessagesListeners()
             guard let ride = ride else { return }
             rideClient.updateRideAsActive(withRideId: ride.rideId) { [unowned self] requestWasUpdated in
                 if requestWasUpdated {
-                    self.driverStatus = .previewingDropoff(ride: ride)
+                    showNotification(ofType: .info, message: "Travelling to dropoff!", isPersistent: false)
+                    driverStatus = .previewingDropoff(ride: ride)
                     guard let journeyManager = journeyManager else { return }
                     guard let currentLocation = locationManager.location?.coordinate else { return }
                     journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: ride.destination)) {
@@ -679,7 +756,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         }
     }
     
-    // MARK: Waiting Requests
+    // MARK: Waiting Rides
     
     
     func getTextForTimeInterval(_ timeInterval: TimeInterval) -> String {

@@ -46,11 +46,15 @@ class DriverAnnotationsManager {
         driverAnnotations.removeAll()
     }
     
-    public func removeDriver(_ driver: Driver) {
-        if driverAnnotations[driver.driverId] == nil { return }
-        guard let mapView = mapView else { return }
+    public func removeDriver(_ driverId: String) {
+        if driverAnnotations[driverId] == nil { return }
         
-        mapView.removeAnnotation(driverAnnotations[driver.driverId]!)
-        driverAnnotations.removeValue(forKey: driver.driverId)
+        guard let mapView = mapView else { return }
+        mapView.removeAnnotation(driverAnnotations[driverId]!)
+        driverAnnotations.removeValue(forKey: driverId)
+    }
+    
+    public func removeDriver(_ driver: Driver) {
+        removeDriver(driver.driverId)
     }
 }

@@ -173,6 +173,16 @@ class RequestClient {
     
     // MARK: Messages
     
+    public func removeRequestMessagesListeners() {
+        if let riderMessagesListener = riderMessagesListener {
+            riderMessagesListener.remove()
+        }
+        if let driverMessagesListener = driverMessagesListener {
+            driverMessagesListener.remove()
+        }
+        riderMessagesListener = nil
+        driverMessagesListener = nil
+    }
     
     public func setRequestMessagesListener(forRequestId requestId: String, messageSource: RequestMessageSource, completion: @escaping MessagesLoadCompletion) {
         let messagesListener = db

@@ -17,6 +17,8 @@ struct Ride: Codable {
     let timeCompleted: Date?
     let riderId: String
     let driverId: String
+    let driverLocation: GeoPoint
+    let driverLastUpdated: Date
     let cost: Double
     let status: RideStatus
 }

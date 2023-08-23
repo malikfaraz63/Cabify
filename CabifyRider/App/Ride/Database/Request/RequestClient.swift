@@ -25,10 +25,10 @@ class RequestClient {
     typealias DriverChangedCompletion = (Driver) -> Void
     typealias RatingFetchCompletion = (Double) -> Void
     typealias RequestCreatedCompletion = (PendingRequest) -> Void
-    typealias RequestChangedCompletion = (DocumentSnapshot) -> Bool
+    typealias RequestChangedCompletion = (DocumentSnapshot) -> Void
     
     typealias UpdateCompletion = (Bool) -> Void
-    typealias MessagesLoadCompletion = ([RequestMessage]) -> Void
+    typealias MessagesLoadCompletion = ([CKRequestMessage]) -> Void
     
     init() {
         self.nearbyDriverListeners = [:]
@@ -139,7 +139,7 @@ class RequestClient {
         }
     }
     
-    // MARK: Pending Requests
+    // MARK: Requests
     
     
     public func createRequest(withRiderId riderId: String, pickup: CKCoordinate, dropoff: CKCoordinate, cost: Double, completion: @escaping RequestCreatedCompletion) {
@@ -186,17 +186,31 @@ class RequestClient {
             .document(requestId)
             .addSnapshotListener { documentSnapshot, error in
                 if let snapshot = documentSnapshot {
-                    if completion(snapshot) {
-                        self.requestListener?.remove()
-                    }
+                    completion(snapshot)
                 } else if let error = error {
                     print(error)
                 }
             }
     }
     
+    public func removeRequestListener() {
+        if let requestListener = requestListener { requestListener.remove() }
+        requestListener = nil
+    }
+    
     // MARK: Messages
     
+    
+    public func removeRequestMessagesListeners() {
+        if let riderMessagesListener = riderMessagesListener {
+            riderMessagesListener.remove()
+        }
+        if let driverMessagesListener = driverMessagesListener {
+            driverMessagesListener.remove()
+        }
+        riderMessagesListener = nil
+        driverMessagesListener = nil
+    }
     
     public func setRequestMessagesListener(forRequestId requestId: String, messageSource: RequestMessageSource, completion: @escaping MessagesLoadCompletion) {
         let messagesListener = db
@@ -205,9 +219,9 @@ class RequestClient {
             .collection(messageSource.rawValue)
             .addSnapshotListener { querySnapshot, error in
                 if let querySnapshot = querySnapshot {
-                    var requestMessages: [RequestMessage] = []
+                    var requestMessages: [CKRequestMessage] = []
                     do {
-                        try requestMessages.append(contentsOf: querySnapshot.documents.map { try $0.data(as: RequestMessage.self) })
+                        try requestMessages.append(contentsOf: querySnapshot.documents.map { try $0.data(as: CKRequestMessage.self) })
                     } catch let error {
                         print(error)
                     }
@@ -241,7 +255,7 @@ class RequestClient {
         }
     }
     
-    public func sendMessage(forRequestId requestId: String, message: RequestMessage) {
+    public func sendMessage(forRequestId requestId: String, message: CKRequestMessage) {
         let requestDriverMessagesRef = db
             .collection("requests")
             .document(requestId)

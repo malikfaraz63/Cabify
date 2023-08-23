@@ -22,7 +22,7 @@ class RideClient {
     public func createRide(fromRequest request: ActiveRequest, completion: @escaping RideCompletion) {
         guard let requestId = request.documentID else { return }
         
-        let ride = Ride(rideId: requestId, origin: request.origin.coordinate, destination: request.destination, timeDriverArrived: Date(), timeRiderArrived: nil, timeCompleted: nil, riderId: request.riderId, driverId: request.driverId, cost: request.cost, status: .waiting)
+        let ride = Ride(rideId: requestId, origin: request.origin.coordinate, destination: request.destination, timeDriverArrived: Date(), timeRiderArrived: nil, timeCompleted: nil, riderId: request.riderId, driverId: request.driverId, driverLocation: request.driverLocation, driverLastUpdated: request.driverLastUpdated, cost: request.cost, status: .waiting)
         
         do {
             try db
@@ -41,7 +41,7 @@ class RideClient {
     }
     
     public func updateRideDriverLocation(withLocation location: GeoPoint, rideId: String) {
-        let location = RideLocation(coordinate: location, time: Date())
+        let locationObject = RideLocation(coordinate: location, time: Date())
         
         do {
             try db
@@ -49,10 +49,17 @@ class RideClient {
                 .document(rideId)
                 .collection("locations")
                 .document()
-                .setData(from: location)
+                .setData(from: locationObject)
         } catch let error {
             print(error)
         }
+        
+        updateRide(withRideId: rideId, updateHandler: { (ride: Ride) in
+            return [
+                "driverLocation": locationObject.coordinate,
+                "driverLastUpdated": locationObject.time
+            ]
+        })
     }
     
     public func setRideListener(withRideId rideId: String, completion: @escaping RideCompletion) {
@@ -77,7 +84,7 @@ class RideClient {
     
     
     public func updateRideAsActive(withRideId rideId: String, completion: @escaping UpdateCompletion) {
-        updateRide(withRideId: rideId, updateHandler: { (request: Ride) in
+        updateRide(withRideId: rideId, updateHandler: { (ride: Ride) in
             return [
                 "status": RideStatus.active.rawValue,
                 "timeRiderArrived": Date()
@@ -86,7 +93,7 @@ class RideClient {
     }
     
     public func updateRideAsCompleted(withRideId rideId: String, completion: @escaping UpdateCompletion) {
-        updateRide(withRideId: rideId, updateHandler: { (request: Ride) in
+        updateRide(withRideId: rideId, updateHandler: { (ride: Ride) in
             return [
                 "status": RideStatus.completed.rawValue,
                 "timeCompleted": Date()

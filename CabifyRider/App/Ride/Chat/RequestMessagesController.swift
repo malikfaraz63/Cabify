@@ -12,6 +12,8 @@ class RequestMessagesController: MessagesViewController {
     private var previousRequestId: String?
     var requestId: String?
     var driverName: String?
+    var riderName: String?
+    var isDriverCurrentSender: Bool = false
     
     var requestClient: RequestClient?
     
@@ -20,7 +22,7 @@ class RequestMessagesController: MessagesViewController {
     private var riderMessages: [MessageType] = []
     
     private var driver = Sender(senderId: "driver", displayName: "Driver")
-    private var rider = Sender(senderId: "rider", displayName: "You")
+    private var rider = Sender(senderId: "rider", displayName: "Rider")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +32,6 @@ class RequestMessagesController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         
-        if let driverName = driverName {
-            driver.displayName = driverName
-        }
-        
         messageInputBar.sendButton.onTouchUpInside { _ in self.sendMessage() }
         // Do any additional setup after loading the view.
         viewDidAppear(true)
@@ -41,6 +39,13 @@ class RequestMessagesController: MessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if let driverName = driverName {
+            driver.displayName = driverName
+        }
+        if let riderName = riderName {
+            rider.displayName = riderName
+        }
         
         if let requestId = requestId {
             if let previousRequestId = previousRequestId {
@@ -75,7 +80,7 @@ class RequestMessagesController: MessagesViewController {
             return
         }
         
-        let requestMessage = RequestMessage(message: message, read: false, sent: Date())
+        let requestMessage = CKRequestMessage(message: message, read: false, sent: Date())
         
         requestClient.sendMessage(forRequestId: requestId, message: requestMessage)
         requestClient.markDriverMessagesReadForRequestId(requestId)
@@ -96,7 +101,7 @@ class RequestMessagesController: MessagesViewController {
         }
     }
     
-    private func messagesChangedCompletion(withMessages messages: [RequestMessage], source: RequestMessageSource) {
+    private func messagesChangedCompletion(withMessages messages: [CKRequestMessage], source: RequestMessageSource) {
         if source == .driverMessages {
             driverMessages.removeAll()
             for message in messages {
@@ -125,7 +130,11 @@ class RequestMessagesController: MessagesViewController {
 
 extension RequestMessagesController: MessagesDataSource {
     internal var currentSender: MessageKit.SenderType {
-        return rider
+        if isDriverCurrentSender {
+            return driver
+        } else {
+            return rider
+        }
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {

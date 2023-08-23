@@ -19,4 +19,6 @@ struct PendingRequest: Codable {
     let riderRating: Double
     let status: CKRequestStatus
     let timeCreated: Date
+    
+    static let nilRequest = PendingRequest(cost: 0, destination: GeoPoint(latitude: 0, longitude: 0), driverViews: 0, origin: Location(coordinate: GeoPoint(latitude: 0, longitude: 0), hash: ""), riderId: "", requestId: "", riderRating: 0, status: .unknown, timeCreated: Date())
 }

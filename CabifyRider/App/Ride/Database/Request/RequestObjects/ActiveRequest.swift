@@ -24,4 +24,6 @@ struct ActiveRequest: Codable {
     
     let driverUnread: Int
     let riderUnread: Int
+    
+    static let nilRequest = ActiveRequest(requestId: "", origin: Location(coordinate: GeoPoint(latitude: 0, longitude: 0), hash: ""), destination: GeoPoint(latitude: 0, longitude: 0), timeCreated: Date(), cost: 0, driverViews: 0, riderId: "", riderRating: 0, driverId: "", driverLocation: GeoPoint(latitude: 0, longitude: 0), driverLastUpdated: Date(), status: .unknown, driverUnread: 0, riderUnread: 0)
 }

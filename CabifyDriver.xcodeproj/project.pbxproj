@@ -12,7 +12,6 @@
 		D90897CE2A6D3F2300C40BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897CC2A6D3F2300C40BD7 /* Main.storyboard */; };
 		D90897D02A6D3F2400C40BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */; };
 		D90897D32A6D3F2400C40BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */; };
-		D92B79EB2A7F8F720084CE7B /* TGFlingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */; };
 		D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */; };
 		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
 		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
@@ -74,7 +73,6 @@
 		D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D90897D22A6D3F2400C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D90897D42A6D3F2400C40BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGFlingActionButton.swift; sourceTree = "<group>"; };
 		D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
 		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 				D9D6F2262A72901700E50957 /* SegueTag.swift */,
 				D9D6F22C2A72B61800E50957 /* UIImageView.swift */,
 				D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */,
-				D92B79EA2A7F8F720084CE7B /* TGFlingActionButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -312,12 +309,11 @@
 		D9D6F1FC2A6EB3DB00E50957 /* Ride */ = {
 			isa = PBXGroup;
 			children = (
+				D9DC3E3E2A951CBC00AADBBC /* PendingRequest */,
 				D9C1184F2A8BEDF300201454 /* Map */,
 				D93AAE772A81247F0056E9CF /* Database */,
 				D93EFE582A7D3F020052C00B /* Chat */,
 				D99068EB2A769725003A0134 /* Journey */,
-				D9D6F2122A71968800E50957 /* PendingRequestController.swift */,
-				D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */,
 				D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */,
 			);
 			path = Ride;
@@ -387,6 +383,15 @@
 				D9D6F2222A728C0600E50957 /* SetupViewController.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		D9DC3E3E2A951CBC00AADBBC /* PendingRequest */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6F2122A71968800E50957 /* PendingRequestController.swift */,
+				D9D6F2142A71971300E50957 /* PendingRequestDelegate.swift */,
+			);
+			path = PendingRequest;
 			sourceTree = "<group>";
 		};
 		D9F1A7092A7C253100A9AE67 /* Driver */ = {
@@ -500,7 +505,6 @@
 				D9D6F2082A6FFDB200E50957 /* CKLocationAnnotation.swift in Sources */,
 				D976D30D2A8692BB0024E71E /* PreviewStepCell.swift in Sources */,
 				D96BBB0E2A87C031009FAA78 /* Driver.swift in Sources */,
-				D92B79EB2A7F8F720084CE7B /* TGFlingActionButton.swift in Sources */,
 				D96BBB102A87C031009FAA78 /* MKMultiPoint.swift in Sources */,
 				D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */,
 				D956B85C2A81190D00D24668 /* RideLocation.swift in Sources */,

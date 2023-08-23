@@ -132,7 +132,7 @@
                                             <constraint firstAttribute="height" constant="2" id="jWW-Gp-nod"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyU-q8-gys">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyU-q8-gys" customClass="UIRoundedButton" customModule="CabifyRider" customModuleProvider="target">
                                         <rect key="frame" x="8" y="85" width="377" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="n7Z-dK-Noo"/>
@@ -308,7 +308,7 @@
                                                     <segue destination="6i5-E1-rMk" kind="showDetail" identifier="showRequestMessages" id="6qE-jd-K8h"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZd-h8-lwE" customClass="UIRoundedLabel">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZd-h8-lwE">
                                                 <rect key="frame" x="36" y="10" width="20" height="20"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                 <color key="tintColor" systemColor="tintColor"/>
@@ -412,6 +412,22 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-9g-JuG" customClass="UIRoundedStackView" customModule="CabifyRider" customModuleProvider="target">
+                                                <rect key="frame" x="267" y="17.666666666666629" width="50" height="25"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcq-pD-lRu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="61V-6t-ADQ"/>
+                                                    <constraint firstAttribute="height" constant="25" id="RKr-pP-oge"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
@@ -419,7 +435,9 @@
                                             <constraint firstItem="S9g-IR-vjJ" firstAttribute="centerY" secondItem="mQa-r5-k1Y" secondAttribute="centerY" constant="-2" id="6yO-rw-Nmr"/>
                                             <constraint firstAttribute="trailing" secondItem="S9g-IR-vjJ" secondAttribute="trailing" constant="16" id="8hJ-fP-SOT"/>
                                             <constraint firstItem="hZd-h8-lwE" firstAttribute="trailing" secondItem="idn-vH-ZmB" secondAttribute="trailing" id="CJi-tb-fDk"/>
+                                            <constraint firstItem="Alp-9g-JuG" firstAttribute="centerY" secondItem="mQa-r5-k1Y" secondAttribute="centerY" id="EJ2-hp-1eb"/>
                                             <constraint firstItem="S9g-IR-vjJ" firstAttribute="leading" secondItem="lP4-r1-Knq" secondAttribute="trailing" constant="20" id="I4Y-q3-WCE"/>
+                                            <constraint firstItem="S9g-IR-vjJ" firstAttribute="leading" secondItem="Alp-9g-JuG" secondAttribute="trailing" constant="20" id="Mna-6L-OIl"/>
                                             <constraint firstItem="Hwr-Z6-goZ" firstAttribute="leading" secondItem="idn-vH-ZmB" secondAttribute="trailing" constant="20" id="RNN-Zw-FGh"/>
                                             <constraint firstItem="idn-vH-ZmB" firstAttribute="leading" secondItem="mQa-r5-k1Y" secondAttribute="leading" constant="16" id="TW1-2M-2sF"/>
                                             <constraint firstItem="idn-vH-ZmB" firstAttribute="centerY" secondItem="mQa-r5-k1Y" secondAttribute="centerY" id="icv-Jb-0em"/>
@@ -453,6 +471,64 @@
                                     <action selector="followLocation" destination="jnS-1k-jP5" eventType="touchUpInside" id="2k7-nF-SSX"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulh-CB-pl9" customClass="UIRoundedStackView" customModule="CabifyRider" customModuleProvider="target">
+                                <rect key="frame" x="16" y="-100" width="361" height="50"/>
+                                <subviews>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCh-t5-cGk">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="L6e-N5-5Nk"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQO-ip-1i0">
+                                        <rect key="frame" x="20" y="0.0" width="306" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L85-tS-dYw">
+                                        <rect key="frame" x="326" y="0.0" width="25" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="QuH-4e-xbu"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark.circle.fill" catalog="system">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle.fill" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="dismissNotification" destination="jnS-1k-jP5" eventType="touchUpInside" id="6lt-Vz-Yhr"/>
+                                        </connections>
+                                    </button>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsc-R3-uzn">
+                                        <rect key="frame" x="351" y="0.0" width="10" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="10" id="Ixx-mr-1Xq"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qxf-40-NlN"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNH-4c-Sj7" customClass="UIRoundedButton" customModule="CabifyRider" customModuleProvider="target">
+                                <rect key="frame" x="16" y="699" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="82I-Oj-yte"/>
+                                    <constraint firstAttribute="height" constant="40" id="C8g-6D-ED8"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="tintColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="scope" catalog="system"/>
+                                <connections>
+                                    <action selector="navigateWithOverview" destination="jnS-1k-jP5" eventType="touchUpInside" id="EjJ-ia-n9Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HpN-4E-QWG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -462,19 +538,24 @@
                             <constraint firstItem="wBz-CY-XBc" firstAttribute="centerX" secondItem="yMm-IN-paP" secondAttribute="centerX" id="Agf-L8-zs9"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="hTo-6R-Kea" secondAttribute="bottom" constant="-250" id="Chj-i6-Bae"/>
                             <constraint firstItem="nlv-ty-PWR" firstAttribute="top" secondItem="yMm-IN-paP" secondAttribute="top" id="DBa-eC-T6M"/>
+                            <constraint firstItem="ulh-CB-pl9" firstAttribute="top" secondItem="yMm-IN-paP" secondAttribute="top" constant="-100" id="EA4-i3-abp"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="wBz-CY-XBc" secondAttribute="bottom" constant="335" id="EE7-6f-oDd"/>
                             <constraint firstItem="Bo2-4s-Uxu" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" id="FTq-10-rJI"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="trailing" secondItem="FUQ-G4-ngZ" secondAttribute="trailing" constant="16" id="Fqk-NK-fSn"/>
+                            <constraint firstItem="HpN-4E-QWG" firstAttribute="trailing" secondItem="ulh-CB-pl9" secondAttribute="trailing" constant="16" id="GUI-96-Ivh"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="FUQ-G4-ngZ" secondAttribute="bottom" constant="30" id="Hr5-zq-fry"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="vCX-P5-f5j" secondAttribute="bottom" constant="-220" id="Jao-3C-aaE"/>
                             <constraint firstItem="S5c-KP-2f0" firstAttribute="top" secondItem="yMm-IN-paP" secondAttribute="top" constant="75" id="MZV-dp-cZ4"/>
                             <constraint firstItem="Bo2-4s-Uxu" firstAttribute="bottom" secondItem="HpN-4E-QWG" secondAttribute="bottom" id="OxH-H9-iBb"/>
+                            <constraint firstItem="FNH-4c-Sj7" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" constant="16" id="SKO-t4-qRp"/>
                             <constraint firstItem="Bo2-4s-Uxu" firstAttribute="trailing" secondItem="HpN-4E-QWG" secondAttribute="trailing" id="TIh-LD-gbE"/>
                             <constraint firstItem="AQE-4i-GIm" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" id="V0f-eK-lW7"/>
                             <constraint firstItem="S5c-KP-2f0" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" constant="16" id="WT7-nN-EEn"/>
+                            <constraint firstItem="ulh-CB-pl9" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" constant="16" id="Ynt-oU-hHb"/>
                             <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="KJh-IV-H1K" secondAttribute="bottom" constant="333" id="fhV-K0-XsQ"/>
                             <constraint firstItem="hTo-6R-Kea" firstAttribute="trailing" secondItem="HpN-4E-QWG" secondAttribute="trailing" id="hf6-XY-nRz"/>
                             <constraint firstItem="nlv-ty-PWR" firstAttribute="trailing" secondItem="HpN-4E-QWG" secondAttribute="trailing" id="idK-ue-fFg"/>
+                            <constraint firstItem="HpN-4E-QWG" firstAttribute="bottom" secondItem="FNH-4c-Sj7" secondAttribute="bottom" constant="30" id="kTp-4X-cJv"/>
                             <constraint firstItem="vCX-P5-f5j" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" id="paZ-4s-uUU"/>
                             <constraint firstItem="nlv-ty-PWR" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" id="pc2-9N-MZH"/>
                             <constraint firstItem="hTo-6R-Kea" firstAttribute="leading" secondItem="HpN-4E-QWG" secondAttribute="leading" id="qGW-mZ-H1T"/>
@@ -486,7 +567,6 @@
                     <tabBarItem key="tabBarItem" title="Ride" image="car" catalog="system" selectedImage="car.fill" id="ozW-ID-f7A"/>
                     <connections>
                         <outlet property="activeDriverArrivalLabel" destination="5TT-0U-8zo" id="egP-GN-6uS"/>
-                        <outlet property="activeDriverDetailsStack" destination="Hwr-Z6-goZ" id="upq-M8-NWG"/>
                         <outlet property="activeDriverImageView" destination="r9B-gb-U7r" id="1ou-Wn-VlA"/>
                         <outlet property="activeDriverMessagesBadge" destination="hZd-h8-lwE" id="dAj-Ti-S4N"/>
                         <outlet property="activeDriverNameLabel" destination="Ylk-tK-mqq" id="mqI-VT-t0E"/>
@@ -497,6 +577,11 @@
                         <outlet property="followLocationButton" destination="FUQ-G4-ngZ" id="chW-mc-WEH"/>
                         <outlet property="followLocationConstraint" destination="Hr5-zq-fry" id="KQD-Th-hWd"/>
                         <outlet property="mapView" destination="Bo2-4s-Uxu" id="pP9-1V-Erh"/>
+                        <outlet property="navigateWithOverviewButton" destination="FNH-4c-Sj7" id="L1a-4p-Sav"/>
+                        <outlet property="navigateWithOverviewConstraint" destination="kTp-4X-cJv" id="Jbx-0A-iV7"/>
+                        <outlet property="notificationConstraint" destination="EA4-i3-abp" id="qXN-PA-AlJ"/>
+                        <outlet property="notificationLabel" destination="kQO-ip-1i0" id="oFZ-t0-tTZ"/>
+                        <outlet property="notificationStack" destination="ulh-CB-pl9" id="36D-dU-SrG"/>
                         <outlet property="pinSelectorConfirmButton" destination="gyU-q8-gys" id="ar6-PO-m7S"/>
                         <outlet property="pinSelectorConstraint" destination="Chj-i6-Bae" id="aDH-XG-wwa"/>
                         <outlet property="pinSelectorDescriptionLabel" destination="0nR-6B-CUX" id="IHQ-Bs-Z81"/>
@@ -511,6 +596,8 @@
                         <outlet property="rideConfirmationConstraint" destination="Jao-3C-aaE" id="zFh-ET-bbj"/>
                         <outlet property="rideConfirmationCostLabel" destination="jgr-mh-1f4" id="RXV-4c-hqq"/>
                         <outlet property="rideConfirmationView" destination="vCX-P5-f5j" id="6Wh-xA-c6t"/>
+                        <outlet property="riderCountdownStackView" destination="Alp-9g-JuG" id="MDa-0C-w2M"/>
+                        <outlet property="riderCountdownTimerLabel" destination="dcq-pD-lRu" id="Q0s-nv-Ofm"/>
                         <outlet property="routeSelectionConstraint" destination="DBa-eC-T6M" id="1hQ-i2-5Yy"/>
                         <outlet property="routeSelectionContainer" destination="nlv-ty-PWR" id="W68-TE-6ih"/>
                         <outlet property="routeSelectionHeight" destination="Y1z-Oe-zwY" id="65o-Ps-hqA"/>
@@ -539,7 +626,7 @@
         <scene sceneID="IbU-2G-5H3">
             <objects>
                 <viewController id="SrQ-cs-xy7" customClass="RouteSelectionController" customModule="CabifyRider" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Dlw-RV-d0u">
+                    <view key="view" contentMode="scaleToFill" id="Dlw-RV-d0u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -721,7 +808,9 @@
         <image name="message.fill" catalog="system" width="128" height="114"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="scope" catalog="system" width="128" height="124"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -745,6 +834,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

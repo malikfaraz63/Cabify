@@ -79,9 +79,16 @@ class CKMapViewManager: NSObject, MKMapViewDelegate {
         }
     }
     
-    func removeCheckpointAnnotations() {
+    func removeCheckpointAnnotations(ofKind kind: CKCheckpointAnnotation.Kind? = nil) {
         guard let mapView = mapView else { return }
-        mapView.removeAnnotations(mapView.annotations.filter { $0 is CKCheckpointAnnotation })
+        var removalAnnotations = mapView.annotations
+            .filter { $0 is CKCheckpointAnnotation }
+        if let kind = kind {
+            removalAnnotations = removalAnnotations
+                .map { $0 as! CKCheckpointAnnotation }
+                .filter { $0.kind == kind }
+        }
+        mapView.removeAnnotations(removalAnnotations)
     }
     
     func addCheckpointAnnotation(_ coordinate: CLLocationCoordinate2D, kind: CKCheckpointAnnotation.Kind) {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RequestMessage: Codable {
+struct CKRequestMessage: Codable {
     let message: String
     let read: Bool
     let sent: Date

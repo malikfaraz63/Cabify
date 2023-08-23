@@ -12,7 +12,7 @@ class CKCheckpointAnnotation: NSObject, MKAnnotation {
     static let identifier = "CheckpointAnnotation"
     let coordinate: CLLocationCoordinate2D
     let title: String?
-    private let kind: Kind
+    let kind: Kind
     
     init(coordinate: CLLocationCoordinate2D, kind: Kind) {
         self.coordinate = coordinate

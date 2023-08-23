@@ -403,36 +403,25 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-Y7-J8E">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWg-lp-mzf" customClass="TGFlingActionButton" customModule="CabifyDriver" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8X-cU-D1f" customClass="UIRoundedButton" customModule="CabifyDriver" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="40"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Begin Ride">
-                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="21"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Begin Ride">
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                                 </buttonConfiguration>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="ImageOverlay">
-                                                        <imageReference key="value" image="arrow.right" catalog="system" symbolScale="small"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="InitialStateColor">
-                                                        <color key="value" systemColor="systemGreenColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="FinalStateColor">
-                                                        <color key="value" systemColor="systemGreenColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="beginRide" destination="Saw-oy-omj" eventType="valueChanged" id="i6D-YE-aVF"/>
+                                                    <action selector="beginRide" destination="Saw-oy-omj" eventType="touchUpInside" id="SyX-pL-Re1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="c8X-cU-D1f" firstAttribute="top" secondItem="qJ2-Y7-J8E" secondAttribute="top" id="1t7-ea-16o"/>
+                                            <constraint firstItem="c8X-cU-D1f" firstAttribute="leading" secondItem="qJ2-Y7-J8E" secondAttribute="leading" constant="10" id="3wq-0c-xDy"/>
+                                            <constraint firstAttribute="trailing" secondItem="c8X-cU-D1f" secondAttribute="trailing" constant="10" id="Syg-Id-EgX"/>
                                             <constraint firstAttribute="height" constant="50" id="TRq-li-qAM"/>
-                                            <constraint firstAttribute="bottom" secondItem="dWg-lp-mzf" secondAttribute="bottom" constant="10" id="hH2-5o-cuU"/>
-                                            <constraint firstItem="dWg-lp-mzf" firstAttribute="leading" secondItem="qJ2-Y7-J8E" secondAttribute="leading" constant="10" id="oM6-Ln-zPl"/>
-                                            <constraint firstAttribute="trailing" secondItem="dWg-lp-mzf" secondAttribute="trailing" constant="10" id="w7m-D7-LAz"/>
-                                            <constraint firstItem="dWg-lp-mzf" firstAttribute="top" secondItem="qJ2-Y7-J8E" secondAttribute="top" id="yBP-RK-6K2"/>
+                                            <constraint firstAttribute="bottom" secondItem="c8X-cU-D1f" secondAttribute="bottom" constant="10" id="uk6-Sh-0gB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -623,12 +612,57 @@
                                     <segue destination="80e-he-c2l" kind="embed" identifier="embedPendingRequest" id="MD2-cW-wZ3"/>
                                 </connections>
                             </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8j-3N-may" customClass="UIRoundedStackView" customModule="CabifyDriver" customModuleProvider="target">
+                                <rect key="frame" x="16" y="-100" width="361" height="50"/>
+                                <subviews>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Om0-KR-hBd">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="uhH-0g-fvk"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66v-3M-Yzl">
+                                        <rect key="frame" x="20" y="0.0" width="306" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEo-hs-tUs">
+                                        <rect key="frame" x="326" y="0.0" width="25" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="ryP-8w-dKo"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark.circle.fill" catalog="system">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle.fill" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="dismissNotification" destination="Saw-oy-omj" eventType="touchUpInside" id="m3M-Y2-JFf"/>
+                                        </connections>
+                                    </button>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNq-AE-42i">
+                                        <rect key="frame" x="351" y="0.0" width="10" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="10" id="UNC-Kb-V5X"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5OR-KT-ZOk"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZFb-uT-FCz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gv9-b3-LzC" firstAttribute="top" secondItem="NrO-6a-os3" secondAttribute="top" id="2m1-NF-Mja"/>
                             <constraint firstItem="9Zh-1u-566" firstAttribute="top" secondItem="ZFb-uT-FCz" secondAttribute="top" constant="-300" id="4Rc-fu-GW8"/>
+                            <constraint firstItem="ZFb-uT-FCz" firstAttribute="trailing" secondItem="k8j-3N-may" secondAttribute="trailing" constant="16" id="8vj-tM-kDL"/>
                             <constraint firstItem="9Zh-1u-566" firstAttribute="leading" secondItem="ZFb-uT-FCz" secondAttribute="leading" constant="16" id="8xK-Uy-tgy"/>
                             <constraint firstItem="gv9-b3-LzC" firstAttribute="bottom" secondItem="ZFb-uT-FCz" secondAttribute="bottom" id="AJn-wn-kV6"/>
                             <constraint firstItem="Krs-i0-UBH" firstAttribute="trailing" secondItem="ZFb-uT-FCz" secondAttribute="trailing" id="ALL-bB-X5Z"/>
@@ -643,7 +677,9 @@
                             <constraint firstItem="ZFb-uT-FCz" firstAttribute="trailing" secondItem="0ux-Jm-YaQ" secondAttribute="trailing" constant="16" id="ij7-wH-cns"/>
                             <constraint firstItem="ZFb-uT-FCz" firstAttribute="trailing" secondItem="tYS-Nh-u5i" secondAttribute="trailing" constant="16" id="kSK-bF-q7K"/>
                             <constraint firstItem="tYS-Nh-u5i" firstAttribute="leading" secondItem="ZFb-uT-FCz" secondAttribute="leading" constant="16" id="llk-9y-TTc"/>
+                            <constraint firstItem="k8j-3N-may" firstAttribute="top" secondItem="NrO-6a-os3" secondAttribute="top" constant="-100" id="mUg-WE-Nax"/>
                             <constraint firstItem="gv9-b3-LzC" firstAttribute="leading" secondItem="ZFb-uT-FCz" secondAttribute="leading" id="o2q-1h-7Oy"/>
+                            <constraint firstItem="k8j-3N-may" firstAttribute="leading" secondItem="ZFb-uT-FCz" secondAttribute="leading" constant="16" id="pWA-Kl-e1e"/>
                             <constraint firstItem="DVJ-40-7CN" firstAttribute="centerX" secondItem="NrO-6a-os3" secondAttribute="centerX" id="qLA-12-tiK"/>
                             <constraint firstItem="Krs-i0-UBH" firstAttribute="top" secondItem="0ux-Jm-YaQ" secondAttribute="bottom" constant="30" id="uc8-jm-dWA"/>
                         </constraints>
@@ -668,10 +704,13 @@
                         <outlet property="launchNavigationButton" destination="0ux-Jm-YaQ" id="mfl-JT-fQv"/>
                         <outlet property="launchNavigationConstraint" destination="uc8-jm-dWA" id="W7U-27-3hC"/>
                         <outlet property="mapView" destination="gv9-b3-LzC" id="nlu-4v-YIv"/>
+                        <outlet property="notificationConstraint" destination="mUg-WE-Nax" id="DKk-ea-9Bo"/>
+                        <outlet property="notificationLabel" destination="66v-3M-Yzl" id="lkr-0g-bSo"/>
+                        <outlet property="notificationStack" destination="k8j-3N-may" id="a1C-t2-q4h"/>
                         <outlet property="pendingRequestConstraint" destination="OAZ-IG-y8S" id="RhX-ay-UeL"/>
                         <outlet property="pendingRequestContainer" destination="tYS-Nh-u5i" id="2DE-yH-kbK"/>
                         <outlet property="requestMessagesBadge" destination="8CL-NG-TTr" id="yzQ-Cj-A7K"/>
-                        <outlet property="rideStatusButton" destination="dWg-lp-mzf" id="5dN-JG-Jph"/>
+                        <outlet property="rideStatusButton" destination="c8X-cU-D1f" id="xvm-Et-cFM"/>
                         <outlet property="rideStatusView" destination="qJ2-Y7-J8E" id="9Gm-fw-1tS"/>
                         <outlet property="riderCountdownTimerLabel" destination="QEg-wy-6qI" id="IeO-ZV-ifa"/>
                         <outlet property="riderCountdownUpdateLabel" destination="RXO-25-Jfz" id="h0c-4G-RZh"/>
@@ -1030,7 +1069,6 @@
     </scenes>
     <resources>
         <image name="arrow.down.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <image name="background" width="2342" height="1561"/>
         <image name="car" catalog="system" width="128" height="95"/>
@@ -1046,6 +1084,7 @@
         <image name="person.crop.circle.badge.questionmark" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1075,6 +1114,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
