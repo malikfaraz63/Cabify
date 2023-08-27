@@ -12,4 +12,6 @@ enum SegueTag: String {
     case embedPendingRequest
     case showRequestMessages
     case showJourneyPreview
+    case showPastJourneyDetail
+    case showRiderRating
 }

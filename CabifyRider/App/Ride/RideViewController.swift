@@ -11,7 +11,7 @@ import CoreLocation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, RouteSelectionDelegate {
+class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, RouteSelectionDelegate, CKJourneyDelegate {
     
     @IBOutlet weak var routeSelectionContainer: UIView!
     @IBOutlet weak var routeSelectionConstraint: NSLayoutConstraint!
@@ -50,8 +50,6 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var riderCountdownTimerLabel: UILabel!
     @IBOutlet weak var riderCountdownStackView: UIStackView!
     
-    
-    
     @IBOutlet weak var notificationStack: UIStackView!
     @IBOutlet weak var notificationConstraint: NSLayoutConstraint!
     @IBOutlet weak var notificationLabel: UILabel!
@@ -79,6 +77,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     let rideClient = RideClient()
     
     var previousUserId: String?
+    var didRejoinSession = false
     
     private var riderStatus: RiderStatus = .usingRouteSelector
     
@@ -105,32 +104,20 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         driverAnnotationsManager = DriverAnnotationsManager(mapView: mapView)
         
         journeyManager = CKJourneyManager(mapViewManager: mapViewManager!, locationManager: locationManager, navigateWithOverview: true)
+        journeyManager?.delegate = self
 
         locationManager.delegate = self
         checkLocationAuthorizationStatus()
         mapView.delegate = self
         
-        viewDidAppear(true)
-    }
-    
-    func showSettingsAlert() {
-        let alertController = UIAlertController(title: "Location Services Denied", message: "Allow location access to make ride requests and use navigation.", preferredStyle: .alert)
-
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl) { success in
-                    // do success...?
-                }
+        tryRejoiningPreviousSession { rejoinWasSuccessful in
+            if !rejoinWasSuccessful {
+                self.viewDidAppear(true)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        alertController.addAction(cancelAction)
-        alertController.addAction(settingsAction)
-        
-        present(alertController, animated: true)
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         switch locationManager.authorizationStatus {
@@ -159,6 +146,25 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     func setupForRider() {
         previousUserId = RiderSettingsManager.getUserID()
         updateViewForRiderStatus()
+    }
+    
+    func showSettingsAlert() {
+        let alertController = UIAlertController(title: "Location Services Denied", message: "Allow location access to make ride requests and use navigation.", preferredStyle: .alert)
+
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl) { success in
+                    // do success...?
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        
+        present(alertController, animated: true)
     }
     
     func checkLocationAuthorizationStatus() {
@@ -335,20 +341,27 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             editSelectedRouteButton.isHidden = false
             showRideConfirmationView()
         case .awaitingRequestAcceptance:
+            hideRouteSelector()
             navigateWithOverviewButton.isHidden = true
             editSelectedRouteButton.isHidden = true
             hideRideConfirmationView()
             activeDriverRequestView.isHidden = true
             showRequestView()
         case .awaitingDriverArrival:
+            showRequestView()
+            hideRouteSelector()
             navigateWithOverviewButton.isHidden = false
             riderCountdownStackView.isHidden = true
             activeDriverRequestView.isHidden = false
         case .awaitingRideActivation:
+            showRequestView()
+            hideRouteSelector()
+            activeDriverRequestView.isHidden = false
             navigateWithOverviewButton.isHidden = true
             riderCountdownStackView.isHidden = false
             activeDriverPickupLabel.text = ""
         case .awaitingDropoff:
+            hideRouteSelector()
             navigateWithOverviewButton.isHidden = false
             riderCountdownStackView.isHidden = true
             riderCountdownStackView.isHidden = true
@@ -395,13 +408,13 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     // MARK: Route Selection Delegate
     
-    func nearbyDriverWentOffline(_ driver: Driver) {
+    func nearbyDriverWentOffline(_ driver: CKDriver) {
         requestClient.removeNearbyDriverListener(driver.driverId)
         
         guard let driverAnnotationsManager = driverAnnotationsManager else { return }
         driverAnnotationsManager.removeDriver(driver)
     }
-    func nearbyDriverChanged(_ driver: Driver) {
+    func nearbyDriverChanged(_ driver: CKDriver) {
         print("--RideViewController.nearbyDriverChanged--")
         guard let driverAnnotationsManager = driverAnnotationsManager else { return }
         driverAnnotationsManager.updateDriverLocation(driver)
@@ -473,7 +486,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 pinIsRaised = false
             }
             
-            PlacesClient.getDescription(forCoordinate: mapView.centerCoordinate) { [unowned self] description in
+            CKPlacesClient.getDescription(forCoordinate: mapView.centerCoordinate) { [unowned self] description in
                 if riderStatus == .pinSelectingPickup(locationDescription: nil) {
                     riderStatus = .pinSelectingPickup(locationDescription: description.formattedAddress)
                 } else {
@@ -560,8 +573,25 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         self.rideConfirmationArrivalLabel.text = ""
         CKRouteSummaryClient.getRouteSummary(fromOrigin: pickupLocation, destination: dropoffLocation, units: .imperial) { summary in
             self.rideConfirmationArrivalLabel.text = "\(summary.duration.text) • \(summary.distance.text)"
-            self.activeDriverArrivalLabel.text = "\(summary.duration.value / 60)"
-            self.activeDriverPickupLabel.text = String(summary.originAddress.split(separator: ",").first!)
+        }
+    }
+    
+    func didCreateRequest(_ request: PendingRequest, drawsPreview: Bool) {
+        requestClient.clearNearbyDriverListeners()
+        
+        guard let driverAnnotationsManager = driverAnnotationsManager else { return }
+        driverAnnotationsManager.removeAllDrivers()
+        
+        riderStatus = .awaitingRequestAcceptance(request: request)
+        updateViewForRiderStatus()
+        
+        requestClient.setRequestListener(withRequestId: request.requestId, completion: requestChanged)
+        
+        if drawsPreview {
+            guard let journeyManager = journeyManager else { return }
+            journeyManager.setRoute(origin: CLLocationCoordinate2D(from: request.origin.coordinate), destination: CLLocationCoordinate2D(from: request.destination)) {
+                journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: false)
+            }
         }
     }
     
@@ -578,21 +608,58 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         requestClient.createRequest(withRiderId: riderId, pickup: pickup, dropoff: dropoff, cost: cost) { [unowned self] request in
             showNotification(ofType: .info, message: "Searching for driver...", isPersistent: false)
-            
-            requestClient.clearNearbyDriverListeners()
-            
-            guard let driverAnnotationsManager = driverAnnotationsManager else { return }
-            driverAnnotationsManager.removeAllDrivers()
-            
-            riderStatus = .awaitingRequestAcceptance(request: request)
-            updateViewForRiderStatus()
-            
-            requestClient.setRequestListener(withRequestId: request.requestId, completion: requestChanged)
+            didCreateRequest(request, drawsPreview: false)
+        }
+    }
+    
+    // MARK: Rejoin Session
+    
+    
+    typealias RejoinCompletion = (Bool) -> Void
+    func tryRejoiningPreviousSession(completion: @escaping RejoinCompletion) {
+        guard let riderId = RiderSettingsManager.getUserID() else {
+            completion(false); return
+        }
+        
+        let userClient = CKProfileClient()
+        userClient.tryFetchSession(forRiderId: riderId) { [unowned self] requestFetch, rideFetch in
+            if let requestFetch = requestFetch {
+                didRejoinSession = true
+                switch requestFetch.status {
+                case .pending:
+                    showNotification(ofType: .info, message: "Resuming search for driver...", isPersistent: false)
+                    requestClient.getPendingRequest(withRequestId: requestFetch.requestId) { request in
+                        self.didCreateRequest(request, drawsPreview: true)
+                    }
+                case .active:
+                    showNotification(ofType: .info, message: "Resuming - driver arriving.", isPersistent: false)
+                    riderStatus = .awaitingRequestAcceptance(request: PendingRequest.nilRequest)
+                    requestClient.setRequestListener(withRequestId: requestFetch.requestId, completion: requestChanged)
+                default:
+                    completion(false); return
+                }
+            } else if let rideFetch = rideFetch {
+                didRejoinSession = true
+                switch rideFetch.status {
+                case .waiting:
+                    showNotification(ofType: .info, message: "Resuming - driver waiting outside.", isPersistent: false)
+                    riderStatus = .awaitingDriverArrival(request: ActiveRequest.nilRequest)
+                    requestClient.setRequestListener(withRequestId: rideFetch.rideId, completion: requestChanged)
+                case .active:
+                    showNotification(ofType: .info, message: "Resuming travelling to dropoff.", isPersistent: false)
+                    riderStatus = .awaitingRideActivation(ride: Ride.nilRide)
+                    rideClient.setRideListener(withRideId: rideFetch.rideId, completion: rideChanged)
+                default:
+                    completion(false); return
+                }
+            } else {
+                completion(false); return
+            }
+            completion(true)
         }
     }
     
     // MARK: Request
-    
     
     func requestChanged(_ snapshot: DocumentSnapshot) {
         guard let data = snapshot.data() else { return }
@@ -630,24 +697,35 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 
                 if riderStatus == .awaitingRequestAcceptance(request: PendingRequest.nilRequest) {
                     requestClient.getDriver(withDriverId: request.driverId) { [unowned self] driver in
-                        showNotification(ofType: .success, message: "Driver found!", isPersistent: false)
+                        if didRejoinSession {
+                            didRejoinSession = false
+                        } else {
+                            showNotification(ofType: .success, message: "Driver found!", isPersistent: false)
+                        }
+                        
+                        CKRouteSummaryClient.getRouteSummary(fromOrigin: request.driverLocation, destination: request.origin.coordinate, units: .imperial) { summary in
+                            self.activeDriverArrivalLabel.text = "\(summary.duration.value / 60)"
+                            self.activeDriverPickupLabel.text = String(summary.destinationAddress.split(separator: ",").first!)
+                        }
+
                         if let urlString = driver.photoURL, let url = URL(string: urlString) {
                             activeDriverImageView.load(url: url)
                         }
                         activeDriverNameLabel.text = driver.name
                         activeDriverRatingLabel.text = String(format: "%.1f", driver.averageRating)
-                        riderStatus = .awaitingDriverArrival(request: request)
-                        updateViewForRiderStatus()
-                        
-                        guard let journeyManager = journeyManager else { return }
-                        guard let driverLocation = driver.location else { return }
-                        let origin = CLLocationCoordinate2D(from: driverLocation.coordinate)
-                        
-                        guard let pickupLocation = pickupLocation else { return }
-                        let destination = CLLocationCoordinate2D(from: pickupLocation)
-                        journeyManager.setRoute(origin: origin, destination: destination) {
-                            journeyManager.beginNavigation()
-                        }
+                    }
+                    
+                    riderStatus = .awaitingDriverArrival(request: request)
+                    updateViewForRiderStatus()
+                    
+                    guard let journeyManager = journeyManager else { return }
+                    let driverLocation = request.driverLocation
+                    let origin = CLLocationCoordinate2D(from: driverLocation)
+                    
+                    let pickupLocation = request.origin.coordinate
+                    let destination = CLLocationCoordinate2D(from: pickupLocation)
+                    journeyManager.setRoute(origin: origin, destination: destination) {
+                        journeyManager.beginNavigation()
                     }
                 }
                 
@@ -665,8 +743,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         case .cancelled:
             requestClient.removeRequestListener()
         case .completed:
-            guard let requestId = data["requestId"] as? String else { return }
-            rideClient.setRideListener(withRideId: requestId, completion: rideChanged)
+            if riderStatus == .awaitingDriverArrival(request: ActiveRequest.nilRequest) {
+                guard let requestId = data["requestId"] as? String else { return }
+                rideClient.setRideListener(withRideId: requestId, completion: rideChanged)
+            }
             
             guard let driverUnread = data["driverUnread"] as? Int else { return }
             if driverUnread > 0 {
@@ -690,9 +770,30 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         switch ride.status {
         case .waiting:
             if riderStatus == .awaitingDriverArrival(request: ActiveRequest.nilRequest) {
-                showNotification(ofType: .info, message: "Driver has arrived!", isPersistent: false)
+                if didRejoinSession {
+                    requestClient.getDriver(withDriverId: ride.driverId) { [unowned self] driver in
+                        if let urlString = driver.photoURL, let url = URL(string: urlString) {
+                            activeDriverImageView.load(url: url)
+                        }
+                        activeDriverNameLabel.text = driver.name
+                        activeDriverRatingLabel.text = String(format: "%.1f", driver.averageRating)
+                    }
+                    
+                    didRejoinSession = false
+                } else {
+                    showNotification(ofType: .info, message: "Driver has arrived!", isPersistent: false)
+                }
+                
+                CKRouteSummaryClient.getRouteSummary(fromOrigin: ride.driverLocation, destination: ride.destination, units: .imperial) { summary in
+                    self.activeDriverArrivalLabel.text = "\(summary.duration.value / 60)"
+                }
+                
                 riderStatus = .awaitingRideActivation(ride: ride)
-                beginWaitingCountdown()
+                beginWaitingCountdown(timeDriverArrived: ride.timeDriverArrived)
+                
+                guard let driverAnnotationsManager = driverAnnotationsManager else { return }
+                driverAnnotationsManager.updateDriverLocation(withDriverId: ride.driverId, location: ride.driverLocation)
+                
                 updateViewForRiderStatus()
             }
             
@@ -701,7 +802,11 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             if riderStatus == .awaitingRideActivation(ride: Ride.nilRide) {
                 requestClient.removeRequestListener()
                 requestClient.removeRequestMessagesListeners()
-                showNotification(ofType: .info, message: "Travelling to dropoff!", isPersistent: false)
+                if didRejoinSession {
+                    didRejoinSession = false
+                } else {
+                    showNotification(ofType: .info, message: "Travelling to dropoff!", isPersistent: false)
+                }
                 
                 riderStatus = .awaitingDropoff(ride: ride)
                 updateViewForRiderStatus()
@@ -709,12 +814,16 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 guard let driverAnnotationsManager = driverAnnotationsManager else { return }
                 driverAnnotationsManager.removeDriver(ride.driverId)
                 
-                guard let journeyManager = journeyManager else { return }
+                guard let mapViewManager = mapViewManager else { return }
+                let dropoffLocation = ride.destination
+                mapViewManager.addCheckpointAnnotation(CLLocationCoordinate2D(from: dropoffLocation), kind: .dropoff)
                 
+                guard let journeyManager = journeyManager else { return }
                 let origin = CLLocationCoordinate2D(from: ride.origin)
                 let destination = CLLocationCoordinate2D(from: ride.destination)
                 journeyManager.setRoute(origin: origin, destination: destination) {
                     journeyManager.beginNavigation()
+                    journeyManager.startNavigatingWithOverview(hasVerticalOffset: false)
                 }
             }
             
@@ -739,22 +848,26 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         return String(format: "%d:%02d", (countdownInt / 60), (countdownInt % 60))
     }
     
-    func beginWaitingCountdown() {
-        riderCountdownTimerLabel.text = "2:00"
+    func beginWaitingCountdown(timeDriverArrived: Date) {
         riderCountdownTimerLabel.textColor = .label
-        var countdown: TimeInterval = 120.0
+        var countdown: TimeInterval = 120.0 + timeDriverArrived.timeIntervalSinceNow
         riderCountdownTimerLabel.text = getTextForTimeInterval(countdown)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: riderStatus == .awaitingRideActivation(ride: Ride.nilRide)) { [unowned self] timer in
             if riderStatus == .awaitingRideActivation(ride: Ride.nilRide) {
                 countdown -= 1.0
-                let countdownInt = Int(countdown.magnitude)
-                if countdown == 0 {
+                if countdown <= 0 {
                     riderCountdownTimerLabel.textColor = .systemRed
                 }
                 riderCountdownTimerLabel.text = getTextForTimeInterval(countdown)
             }
         }
     }
+    
+    // MARK: Journey Manager Delegate
+    
+    func journeyDidCompleteAtDestination(_ destination: CLLocationCoordinate2D) {}
+    
+    func journeyDidBeginStep(_ step: MKRoute.Step) {}
     
     // MARK: Location Manager Delegate
     

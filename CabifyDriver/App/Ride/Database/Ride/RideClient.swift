@@ -19,6 +19,9 @@ class RideClient {
     
     private let db = Firestore.firestore()
     
+    // MARK: Ride
+    
+    
     public func createRide(fromRequest request: ActiveRequest, completion: @escaping RideCompletion) {
         guard let requestId = request.documentID else { return }
         
@@ -38,6 +41,20 @@ class RideClient {
         } catch let error {
             print(error)
         }
+    }
+    
+    public func getRide(withRideId rideId: String, completion: @escaping RideCompletion) {
+        db
+            .collection("rides")
+            .document(rideId)
+            .getDocument(as: Ride.self) { result in
+                switch result {
+                case .success(let ride):
+                    completion(ride)
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
     
     public func updateRideDriverLocation(withLocation location: GeoPoint, rideId: String) {
@@ -115,6 +132,9 @@ class RideClient {
             }
     }
     
+    // MARK: Transfer funds
+    
+    
     private func transferMoney(forCompletedRide ride: Ride, completion: TransferCompletion?) {
         if ride.status != .completed {
             return
@@ -128,11 +148,11 @@ class RideClient {
         let completedRideRefR = riderRef.collection("completedRides").document(ride.rideId)
         
         db.runTransaction({(transaction, errorPointer) -> Any? in
-            let rider: Rider
-            let driver: Driver
+            let rider: CKRider
+            let driver: CKDriver
             do {
-                rider = try transaction.getDocument(riderRef).data(as: Rider.self)
-                driver = try transaction.getDocument(driverRef).data(as: Driver.self)
+                rider = try transaction.getDocument(riderRef).data(as: CKRider.self)
+                driver = try transaction.getDocument(driverRef).data(as: CKDriver.self)
             } catch let fetchError as NSError {
                 errorPointer?.pointee = fetchError
                 return nil
@@ -156,6 +176,7 @@ class RideClient {
             var data: [String: Any] = [
                 "rideId": ride.rideId,
                 "cost": ride.cost,
+                "destination": ride.destination,
                 "timeCompleted": ride.timeCompleted!
             ]
             if waitingFees > 0 {

@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
-struct Driver: Codable {
+struct CKDriver: Codable {
     let driverId: String
     let name: String
     let email: String
@@ -19,4 +18,6 @@ struct Driver: Codable {
     let earnings: Double
     let averageRating: Double
     let ridesCount: Int
+    let location: Location?
+    let lastUpdated: Date?
 }

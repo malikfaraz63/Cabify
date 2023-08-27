@@ -31,7 +31,7 @@ class DriverAnnotationsManager {
         }
     }
     
-    public func updateDriverLocation(_ driver: Driver) {
+    public func updateDriverLocation(_ driver: CKDriver) {
         guard let driverLocation = driver.location?.coordinate else { return }
         updateDriverLocation(withDriverId: driver.driverId, location: driverLocation)
     }
@@ -54,7 +54,7 @@ class DriverAnnotationsManager {
         driverAnnotations.removeValue(forKey: driverId)
     }
     
-    public func removeDriver(_ driver: Driver) {
+    public func removeDriver(_ driver: CKDriver) {
         removeDriver(driver.driverId)
     }
 }

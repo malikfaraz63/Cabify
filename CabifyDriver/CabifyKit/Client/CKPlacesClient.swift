@@ -1,5 +1,5 @@
 //
-//  PlacesClient.swift
+//  CKPlacesClient.swift
 //  CabifyRider
 //
 //  Created by Faraz Malik on 13/08/2023.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-class PlacesClient {
+class CKPlacesClient {
     private static let baseUrl = "https://maps.googleapis.com/maps/api"
     private static let apiKey = "AIzaSyCzirLfaVSznz7N8b0R8na2cJCx8LwIkeI"
-    typealias AutocompletePredictionsCompletion = ([LocationPrediction]) -> Void
+    typealias AutocompletePredictionsCompletion = ([CKLocationPrediction]) -> Void
     typealias LocationDetailCompletion = (CKCoordinate) -> Void
-    typealias DescriptionDetailCompletion = (LocationDescription) -> Void
+    typealias DescriptionDetailCompletion = (CKLocationDescription) -> Void
     
     public static func getAutocompletePredictions(forInput input: String, location: CKCoordinate, radius: Int = 50000, completion: @escaping AutocompletePredictionsCompletion) {
         let autocompleteBaseUrl = baseUrl + "/place/autocomplete/json?"
@@ -25,7 +25,7 @@ class PlacesClient {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                let wrapper = try decoder.decode(PredictionsWrapper.self, from: data)
+                let wrapper = try decoder.decode(CKPredictionsWrapper.self, from: data)
                 completion(wrapper.predictions)
             } catch let otherError {
                 print(otherError)
@@ -44,7 +44,7 @@ class PlacesClient {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                let wrapper = try decoder.decode(DetailWrapper.self, from: data)
+                let wrapper = try decoder.decode(CKDetailWrapper.self, from: data)
                 completion(wrapper.result.geometry.location)
             } catch let otherError {
                 print(otherError)
@@ -63,7 +63,7 @@ class PlacesClient {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                let wrapper = try decoder.decode(DescriptionWrapper.self, from: data)
+                let wrapper = try decoder.decode(CKDescriptionWrapper.self, from: data)
                 if wrapper.results.isEmpty {
                     print("no results found")
                 } else {

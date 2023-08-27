@@ -22,9 +22,9 @@ class RequestClient {
     private var riderMessagesListener: ListenerRegistration?
     private var driverMessagesListener: ListenerRegistration?
     
-    typealias DriverChangedCompletion = (Driver) -> Void
+    typealias DriverChangedCompletion = (CKDriver) -> Void
     typealias RatingFetchCompletion = (Double) -> Void
-    typealias RequestCreatedCompletion = (PendingRequest) -> Void
+    typealias PendingRequestCompletion = (PendingRequest) -> Void
     typealias RequestChangedCompletion = (DocumentSnapshot) -> Void
     
     typealias UpdateCompletion = (Bool) -> Void
@@ -43,7 +43,7 @@ class RequestClient {
         db
             .collection("drivers")
             .document(driverId)
-            .getDocument(as: Driver.self) { result in
+            .getDocument(as: CKDriver.self) { result in
                 switch result {
                 case .success(let driver):
                     completion(driver)
@@ -57,7 +57,7 @@ class RequestClient {
         db
             .collection("riders")
             .document(riderId)
-            .getDocument(as: Rider.self) { result in
+            .getDocument(as: CKRider.self) { result in
                 switch result {
                 case .success(let rider):
                     completion(rider.averageRating)
@@ -105,7 +105,7 @@ class RequestClient {
                 print(" - snapshot listener fired")
                 if let documentSnapshot = documentSnapshot {
                     do {
-                        let driver = try documentSnapshot.data(as: Driver.self)
+                        let driver = try documentSnapshot.data(as: CKDriver.self)
                         
                         if driver.isOnline {
                             changeCompletion(driver)
@@ -141,8 +141,20 @@ class RequestClient {
     
     // MARK: Requests
     
+    public func getPendingRequest(withRequestId requestId: String, completion: @escaping PendingRequestCompletion) {
+        db
+            .collection("requests").document(requestId)
+            .getDocument(as: PendingRequest.self) { result in
+                switch result {
+                case .success(let request):
+                    completion(request)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
     
-    public func createRequest(withRiderId riderId: String, pickup: CKCoordinate, dropoff: CKCoordinate, cost: Double, completion: @escaping RequestCreatedCompletion) {
+    public func createRequest(withRiderId riderId: String, pickup: CKCoordinate, dropoff: CKCoordinate, cost: Double, completion: @escaping PendingRequestCompletion) {
         let origin = Location(
             coordinate: GeoPoint(latitude: pickup.latitude, longitude: pickup.longitude),
             hash: CKMapUtility.generateHashForCoordinate(pickup)

@@ -15,6 +15,15 @@
 		D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */; };
 		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
 		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
+		D952A6CA2A9A17CB00745DE2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C92A9A17CB00745DE2 /* FirebaseAuth */; };
+		D952A6CC2A9A17D100745DE2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CB2A9A17D100745DE2 /* FirebaseFirestore */; };
+		D952A6CE2A9A17D600745DE2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CD2A9A17D600745DE2 /* FirebaseFirestoreSwift */; };
+		D952A6D02A9A17E100745DE2 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CF2A9A17E100745DE2 /* MessageKit */; };
+		D952A6D22A9A17E700745DE2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6D12A9A17E700745DE2 /* GoogleSignIn */; };
+		D952A6D42A9A17EB00745DE2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6D32A9A17EB00745DE2 /* GoogleSignInSwift */; };
+		D952A6D62A9A189900745DE2 /* CKRideStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952A6D52A9A189900745DE2 /* CKRideStatus.swift */; };
+		D952A6D82A9A1B5F00745DE2 /* CKRideFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */; };
+		D952A6DA2A9A1B8400745DE2 /* CKRequestFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */; };
 		D956B8582A80E08A00D24668 /* RideStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B8572A80E08A00D24668 /* RideStatus.swift */; };
 		D956B85A2A81181400D24668 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B8592A81181400D24668 /* Ride.swift */; };
 		D956B85C2A81190D00D24668 /* RideLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B85B2A81190D00D24668 /* RideLocation.swift */; };
@@ -23,8 +32,6 @@
 		D96BBB0A2A87C031009FAA78 /* UIRoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFD2A87C031009FAA78 /* UIRoundedLabel.swift */; };
 		D96BBB0B2A87C031009FAA78 /* CountdownProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFE2A87C031009FAA78 /* CountdownProgressView.swift */; };
 		D96BBB0C2A87C031009FAA78 /* UIRoundedStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFF2A87C031009FAA78 /* UIRoundedStackView.swift */; };
-		D96BBB0D2A87C031009FAA78 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBB012A87C031009FAA78 /* Rider.swift */; };
-		D96BBB0E2A87C031009FAA78 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBB022A87C031009FAA78 /* Driver.swift */; };
 		D96BBB0F2A87C031009FAA78 /* CKMapUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBB042A87C031009FAA78 /* CKMapUtility.swift */; };
 		D96BBB102A87C031009FAA78 /* MKMultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBB052A87C031009FAA78 /* MKMultiPoint.swift */; };
 		D96BBB112A87C031009FAA78 /* CKRouteSummaryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBB062A87C031009FAA78 /* CKRouteSummaryClient.swift */; };
@@ -33,15 +40,21 @@
 		D976D30B2A8690BE0024E71E /* JourneyPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */; };
 		D976D30D2A8692BB0024E71E /* PreviewStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */; };
 		D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */; };
+		D991E0F32A98B1EA00C74715 /* PastJourneysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */; };
+		D991E0F52A98B38600C74715 /* PastJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F42A98B38600C74715 /* PastJourney.swift */; };
+		D991E0F72A98BB5700C74715 /* PastJourneysController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F62A98BB5700C74715 /* PastJourneysController.swift */; };
+		D991E0FB2A98C2CB00C74715 /* CKMapsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0FA2A98C2CB00C74715 /* CKMapsObjects.swift */; };
+		D991E0FF2A98C36D00C74715 /* CKPlacesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0FE2A98C36D00C74715 /* CKPlacesClient.swift */; };
+		D991E1052A98E76F00C74715 /* CKProfileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1022A98E76F00C74715 /* CKProfileClient.swift */; };
+		D991E1062A98E76F00C74715 /* CKRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1032A98E76F00C74715 /* CKRider.swift */; };
+		D991E1072A98E76F00C74715 /* CKDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1042A98E76F00C74715 /* CKDriver.swift */; };
+		D991E1092A98EEBA00C74715 /* UIRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1082A98EEBA00C74715 /* UIRoundedImageView.swift */; };
 		D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD919A2A76672100F720AA /* RequestClient.swift */; };
 		D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */; };
 		D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367E22A7947E800C99D28 /* RequestMessage.swift */; };
-		D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */; };
-		D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */; };
-		D9D6F1ED2A6D4D2D00E50957 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */; };
+		D9C590F72A96B67F00349B33 /* EarningsUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C590F62A96B67F00349B33 /* EarningsUIController.swift */; };
+		D9C590F92A96B6BD00349B33 /* EarningsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */; };
 		D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */; };
-		D9D6F1F52A6EAAB700E50957 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1F42A6EAAB700E50957 /* GoogleSignIn */; };
-		D9D6F1F72A6EAAB700E50957 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6F1F62A6EAAB700E50957 /* GoogleSignInSwift */; };
 		D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1FA2A6EADC200E50957 /* ProfileViewController.swift */; };
 		D9D6F1FE2A6EB3F200E50957 /* CKMapViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */; };
 		D9D6F2022A6EBD0A00E50957 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F2012A6EBD0A00E50957 /* GoogleService-Info.plist */; };
@@ -61,12 +74,15 @@
 		D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22A2A72B15300E50957 /* DriverSettingsManager.swift */; };
 		D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22C2A72B61800E50957 /* UIImageView.swift */; };
 		D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */; };
-		D9F1A7082A7A749A00A9AE67 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9F1A7072A7A749A00A9AE67 /* MessageKit */; };
 		D9F1A70B2A7C253D00A9AE67 /* DriverStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F1A70A2A7C253D00A9AE67 /* DriverStatus.swift */; };
+		D9F721D52A97965100B8BCC1 /* EarningsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F721D42A97965100B8BCC1 /* EarningsClient.swift */; };
+		D9F721D92A97B29A00B8BCC1 /* EarningsWeekData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F721D82A97B29A00B8BCC1 /* EarningsWeekData.swift */; };
+		D9F721DC2A97F77C00B8BCC1 /* PastJourneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F721DB2A97F77C00B8BCC1 /* PastJourneyCell.swift */; };
+		D9F721DE2A97FD4000B8BCC1 /* PastJourneyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F721DD2A97FD4000B8BCC1 /* PastJourneyDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyDriver.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyDriver.app"; sourceTree = "<absolute>"; };
 		D90897C62A6D3F2300C40BD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D90897C82A6D3F2300C40BD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D90897CD2A6D3F2300C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +92,9 @@
 		D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
 		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		D952A6D52A9A189900745DE2 /* CKRideStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRideStatus.swift; sourceTree = "<group>"; };
+		D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRideFetch.swift; sourceTree = "<group>"; };
+		D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestFetch.swift; sourceTree = "<group>"; };
 		D956B8572A80E08A00D24668 /* RideStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideStatus.swift; sourceTree = "<group>"; };
 		D956B8592A81181400D24668 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		D956B85B2A81190D00D24668 /* RideLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocation.swift; sourceTree = "<group>"; };
@@ -84,8 +103,6 @@
 		D96BBAFD2A87C031009FAA78 /* UIRoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedLabel.swift; sourceTree = "<group>"; };
 		D96BBAFE2A87C031009FAA78 /* CountdownProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownProgressView.swift; sourceTree = "<group>"; };
 		D96BBAFF2A87C031009FAA78 /* UIRoundedStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedStackView.swift; sourceTree = "<group>"; };
-		D96BBB012A87C031009FAA78 /* Rider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rider.swift; sourceTree = "<group>"; };
-		D96BBB022A87C031009FAA78 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		D96BBB042A87C031009FAA78 /* CKMapUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKMapUtility.swift; sourceTree = "<group>"; };
 		D96BBB052A87C031009FAA78 /* MKMultiPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMultiPoint.swift; sourceTree = "<group>"; };
 		D96BBB062A87C031009FAA78 /* CKRouteSummaryClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRouteSummaryClient.swift; sourceTree = "<group>"; };
@@ -94,9 +111,20 @@
 		D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewController.swift; sourceTree = "<group>"; };
 		D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStepCell.swift; sourceTree = "<group>"; };
 		D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewDelegate.swift; sourceTree = "<group>"; };
+		D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysClient.swift; sourceTree = "<group>"; };
+		D991E0F42A98B38600C74715 /* PastJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourney.swift; sourceTree = "<group>"; };
+		D991E0F62A98BB5700C74715 /* PastJourneysController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysController.swift; sourceTree = "<group>"; };
+		D991E0FA2A98C2CB00C74715 /* CKMapsObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKMapsObjects.swift; path = CabifyRider/CabifyKit/Map/CKMapsObjects.swift; sourceTree = SOURCE_ROOT; };
+		D991E0FE2A98C36D00C74715 /* CKPlacesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKPlacesClient.swift; sourceTree = "<group>"; };
+		D991E1022A98E76F00C74715 /* CKProfileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKProfileClient.swift; sourceTree = "<group>"; };
+		D991E1032A98E76F00C74715 /* CKRider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRider.swift; sourceTree = "<group>"; };
+		D991E1042A98E76F00C74715 /* CKDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDriver.swift; sourceTree = "<group>"; };
+		D991E1082A98EEBA00C74715 /* UIRoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedImageView.swift; sourceTree = "<group>"; };
 		D9BD919A2A76672100F720AA /* RequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClient.swift; sourceTree = "<group>"; };
 		D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRequest.swift; sourceTree = "<group>"; };
 		D9C367E22A7947E800C99D28 /* RequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
+		D9C590F62A96B67F00349B33 /* EarningsUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsUIController.swift; sourceTree = "<group>"; };
+		D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsUIView.swift; sourceTree = "<group>"; };
 		D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		D9D6F1FA2A6EADC200E50957 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKMapViewManager.swift; sourceTree = "<group>"; };
@@ -118,6 +146,10 @@
 		D9D6F22C2A72B61800E50957 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		D9D6F22E2A72B9A700E50957 /* StoryboardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTag.swift; sourceTree = "<group>"; };
 		D9F1A70A2A7C253D00A9AE67 /* DriverStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStatus.swift; sourceTree = "<group>"; };
+		D9F721D42A97965100B8BCC1 /* EarningsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsClient.swift; sourceTree = "<group>"; };
+		D9F721D82A97B29A00B8BCC1 /* EarningsWeekData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsWeekData.swift; sourceTree = "<group>"; };
+		D9F721DB2A97F77C00B8BCC1 /* PastJourneyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneyCell.swift; sourceTree = "<group>"; };
+		D9F721DD2A97FD4000B8BCC1 /* PastJourneyDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneyDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,12 +157,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9D6F1F72A6EAAB700E50957 /* GoogleSignInSwift in Frameworks */,
-				D9D6F1E92A6D4D2D00E50957 /* FirebaseAuth in Frameworks */,
-				D9D6F1F52A6EAAB700E50957 /* GoogleSignIn in Frameworks */,
-				D9F1A7082A7A749A00A9AE67 /* MessageKit in Frameworks */,
-				D9D6F1EB2A6D4D2D00E50957 /* FirebaseFirestore in Frameworks */,
-				D9D6F1ED2A6D4D2D00E50957 /* FirebaseFirestoreSwift in Frameworks */,
+				D952A6D22A9A17E700745DE2 /* GoogleSignIn in Frameworks */,
+				D952A6CA2A9A17CB00745DE2 /* FirebaseAuth in Frameworks */,
+				D952A6CC2A9A17D100745DE2 /* FirebaseFirestore in Frameworks */,
+				D952A6D42A9A17EB00745DE2 /* GoogleSignInSwift in Frameworks */,
+				D952A6CE2A9A17D600745DE2 /* FirebaseFirestoreSwift in Frameworks */,
+				D952A6D02A9A17E100745DE2 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,16 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				D90897C52A6D3F2300C40BD7 /* CabifyDriver */,
-				D90897C42A6D3F2300C40BD7 /* Products */,
+				D952A6C82A9A17CB00745DE2 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		D90897C42A6D3F2300C40BD7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D90897C52A6D3F2300C40BD7 /* CabifyDriver */ = {
@@ -187,6 +211,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		D952A6C82A9A17CB00745DE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D956B8552A80E05100D24668 /* Ride */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,11 +241,14 @@
 			isa = PBXGroup;
 			children = (
 				D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */,
+				D952A6D52A9A189900745DE2 /* CKRideStatus.swift */,
 				D9C118512A8BEF2300201454 /* Journey */,
 				D9C118502A8BEE6500201454 /* Client */,
 				D96BBB032A87C031009FAA78 /* Map */,
 				D96BBAFB2A87C031009FAA78 /* View */,
 				D96BBB002A87C031009FAA78 /* Profile */,
+				D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */,
+				D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */,
 			);
 			path = CabifyKit;
 			sourceTree = "<group>";
@@ -224,6 +258,7 @@
 			children = (
 				D96BBAFC2A87C031009FAA78 /* UIRoundedButton.swift */,
 				D96BBAFD2A87C031009FAA78 /* UIRoundedLabel.swift */,
+				D991E1082A98EEBA00C74715 /* UIRoundedImageView.swift */,
 				D96BBAFE2A87C031009FAA78 /* CountdownProgressView.swift */,
 				D96BBAFF2A87C031009FAA78 /* UIRoundedStackView.swift */,
 			);
@@ -233,8 +268,9 @@
 		D96BBB002A87C031009FAA78 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D96BBB012A87C031009FAA78 /* Rider.swift */,
-				D96BBB022A87C031009FAA78 /* Driver.swift */,
+				D991E1042A98E76F00C74715 /* CKDriver.swift */,
+				D991E1022A98E76F00C74715 /* CKProfileClient.swift */,
+				D991E1032A98E76F00C74715 /* CKRider.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -245,6 +281,7 @@
 				D9D6F20E2A7054D600E50957 /* Annotations */,
 				D9D6F1FD2A6EB3F200E50957 /* CKMapViewManager.swift */,
 				D96BBB042A87C031009FAA78 /* CKMapUtility.swift */,
+				D991E0FA2A98C2CB00C74715 /* CKMapsObjects.swift */,
 				D96BBB052A87C031009FAA78 /* MKMultiPoint.swift */,
 				D96BBB072A87C031009FAA78 /* CKCoordinate.swift */,
 				D96BBB082A87C031009FAA78 /* CKRouteSummary.swift */,
@@ -272,6 +309,7 @@
 		D9C118502A8BEE6500201454 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				D991E0FE2A98C36D00C74715 /* CKPlacesClient.swift */,
 				D96BBB062A87C031009FAA78 /* CKRouteSummaryClient.swift */,
 			);
 			path = Client;
@@ -294,6 +332,17 @@
 				D9C367E22A7947E800C99D28 /* RequestMessage.swift */,
 			);
 			path = RequestObjects;
+			sourceTree = "<group>";
+		};
+		D9C590F52A96B65900349B33 /* Earnings */ = {
+			isa = PBXGroup;
+			children = (
+				D9C590F62A96B67F00349B33 /* EarningsUIController.swift */,
+				D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */,
+				D9F721D42A97965100B8BCC1 /* EarningsClient.swift */,
+				D9F721D82A97B29A00B8BCC1 /* EarningsWeekData.swift */,
+			);
+			path = Earnings;
 			sourceTree = "<group>";
 		};
 		D9D6F1EE2A6E7B9200E50957 /* Utilities */ = {
@@ -322,6 +371,8 @@
 		D9D6F2092A703ADD00E50957 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D9F721DA2A97F76900B8BCC1 /* PastJourneys */,
+				D9C590F52A96B65900349B33 /* Earnings */,
 				D9D6F20B2A703B0900E50957 /* Profile */,
 				D9D6F1FC2A6EB3DB00E50957 /* Ride */,
 				D9D6F1EE2A6E7B9200E50957 /* Utilities */,
@@ -403,6 +454,18 @@
 			path = Driver;
 			sourceTree = "<group>";
 		};
+		D9F721DA2A97F76900B8BCC1 /* PastJourneys */ = {
+			isa = PBXGroup;
+			children = (
+				D9F721DB2A97F77C00B8BCC1 /* PastJourneyCell.swift */,
+				D9F721DD2A97FD4000B8BCC1 /* PastJourneyDetailController.swift */,
+				D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */,
+				D991E0F42A98B38600C74715 /* PastJourney.swift */,
+				D991E0F62A98BB5700C74715 /* PastJourneysController.swift */,
+			);
+			path = PastJourneys;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -420,12 +483,12 @@
 			);
 			name = CabifyDriver;
 			packageProductDependencies = (
-				D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */,
-				D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */,
-				D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */,
-				D9D6F1F42A6EAAB700E50957 /* GoogleSignIn */,
-				D9D6F1F62A6EAAB700E50957 /* GoogleSignInSwift */,
-				D9F1A7072A7A749A00A9AE67 /* MessageKit */,
+				D952A6C92A9A17CB00745DE2 /* FirebaseAuth */,
+				D952A6CB2A9A17D100745DE2 /* FirebaseFirestore */,
+				D952A6CD2A9A17D600745DE2 /* FirebaseFirestoreSwift */,
+				D952A6CF2A9A17E100745DE2 /* MessageKit */,
+				D952A6D12A9A17E700745DE2 /* GoogleSignIn */,
+				D952A6D32A9A17EB00745DE2 /* GoogleSignInSwift */,
 			);
 			productName = CabifyDriver;
 			productReference = D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */;
@@ -460,7 +523,7 @@
 				D9D6F1F32A6EAAB700E50957 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
-			productRefGroup = D90897C42A6D3F2300C40BD7 /* Products */;
+			productRefGroup = D90897BA2A6D3F2300C40BD7;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -492,26 +555,35 @@
 				D9D6F2042A6FBCE200E50957 /* CKJourneyManager.swift in Sources */,
 				D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */,
 				D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */,
+				D9F721D92A97B29A00B8BCC1 /* EarningsWeekData.swift in Sources */,
 				D9D6F21D2A728B9700E50957 /* LoginViewDelegate.swift in Sources */,
 				D90897C72A6D3F2300C40BD7 /* AppDelegate.swift in Sources */,
+				D991E0F72A98BB5700C74715 /* PastJourneysController.swift in Sources */,
+				D991E1052A98E76F00C74715 /* CKProfileClient.swift in Sources */,
 				D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */,
 				D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */,
 				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
+				D991E1062A98E76F00C74715 /* CKRider.swift in Sources */,
 				D9D6F21B2A728B8F00E50957 /* LoginViewController.swift in Sources */,
 				D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */,
+				D952A6D62A9A189900745DE2 /* CKRideStatus.swift in Sources */,
 				D9D6F2102A71659600E50957 /* CKJourneyDelegate.swift in Sources */,
 				D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */,
 				D96BBB0F2A87C031009FAA78 /* CKMapUtility.swift in Sources */,
+				D9F721DC2A97F77C00B8BCC1 /* PastJourneyCell.swift in Sources */,
 				D9D6F2082A6FFDB200E50957 /* CKLocationAnnotation.swift in Sources */,
 				D976D30D2A8692BB0024E71E /* PreviewStepCell.swift in Sources */,
-				D96BBB0E2A87C031009FAA78 /* Driver.swift in Sources */,
+				D991E0FF2A98C36D00C74715 /* CKPlacesClient.swift in Sources */,
 				D96BBB102A87C031009FAA78 /* MKMultiPoint.swift in Sources */,
 				D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */,
 				D956B85C2A81190D00D24668 /* RideLocation.swift in Sources */,
+				D991E1092A98EEBA00C74715 /* UIRoundedImageView.swift in Sources */,
+				D991E0FB2A98C2CB00C74715 /* CKMapsObjects.swift in Sources */,
 				D96BBB132A87C031009FAA78 /* CKRouteSummary.swift in Sources */,
 				D9D6F2272A72901700E50957 /* SegueTag.swift in Sources */,
-				D96BBB0D2A87C031009FAA78 /* Rider.swift in Sources */,
 				D96BBB0C2A87C031009FAA78 /* UIRoundedStackView.swift in Sources */,
+				D991E1072A98E76F00C74715 /* CKDriver.swift in Sources */,
+				D952A6DA2A9A1B8400745DE2 /* CKRequestFetch.swift in Sources */,
 				D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */,
 				D96BBB0A2A87C031009FAA78 /* UIRoundedLabel.swift in Sources */,
 				D9D6F20D2A70508200E50957 /* CKCheckpointAnnotation.swift in Sources */,
@@ -519,9 +591,15 @@
 				D9D6F22B2A72B15300E50957 /* DriverSettingsManager.swift in Sources */,
 				D9F1A70B2A7C253D00A9AE67 /* DriverStatus.swift in Sources */,
 				D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */,
+				D952A6D82A9A1B5F00745DE2 /* CKRideFetch.swift in Sources */,
+				D9C590F92A96B6BD00349B33 /* EarningsUIView.swift in Sources */,
 				D96BBB122A87C031009FAA78 /* CKCoordinate.swift in Sources */,
 				D976D30B2A8690BE0024E71E /* JourneyPreviewController.swift in Sources */,
+				D991E0F32A98B1EA00C74715 /* PastJourneysClient.swift in Sources */,
+				D9F721D52A97965100B8BCC1 /* EarningsClient.swift in Sources */,
+				D9F721DE2A97FD4000B8BCC1 /* PastJourneyDetailController.swift in Sources */,
 				D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */,
+				D9C590F72A96B67F00349B33 /* EarningsUIController.swift in Sources */,
 				D96BBB112A87C031009FAA78 /* CKRouteSummaryClient.swift in Sources */,
 				D96BBB092A87C031009FAA78 /* UIRoundedButton.swift in Sources */,
 				D9D6F2292A72A49200E50957 /* CKRequestStatus.swift in Sources */,
@@ -529,6 +607,7 @@
 				D956B85A2A81181400D24668 /* Ride.swift in Sources */,
 				D956B8582A80E08A00D24668 /* RideStatus.swift in Sources */,
 				D9D6F22D2A72B61800E50957 /* UIImageView.swift in Sources */,
+				D991E0F52A98B38600C74715 /* PastJourney.swift in Sources */,
 				D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */,
 				D9D6F2132A71968800E50957 /* PendingRequestController.swift in Sources */,
 				D96BBB0B2A87C031009FAA78 /* CountdownProgressView.swift in Sources */,
@@ -788,35 +867,35 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D9D6F1E82A6D4D2D00E50957 /* FirebaseAuth */ = {
+		D952A6C92A9A17CB00745DE2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		D9D6F1EA2A6D4D2D00E50957 /* FirebaseFirestore */ = {
+		D952A6CB2A9A17D100745DE2 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		D9D6F1EC2A6D4D2D00E50957 /* FirebaseFirestoreSwift */ = {
+		D952A6CD2A9A17D600745DE2 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1E72A6D4D2D00E50957 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		D9D6F1F42A6EAAB700E50957 /* GoogleSignIn */ = {
+		D952A6CF2A9A17E100745DE2 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		D952A6D12A9A17E700745DE2 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1F32A6EAAB700E50957 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		D9D6F1F62A6EAAB700E50957 /* GoogleSignInSwift */ = {
+		D952A6D32A9A17EB00745DE2 /* GoogleSignInSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9D6F1F32A6EAAB700E50957 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
-		};
-		D9F1A7072A7A749A00A9AE67 /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D9F1A7062A7A749A00A9AE67 /* XCRemoteSwiftPackageReference "MessageKit" */;
-			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

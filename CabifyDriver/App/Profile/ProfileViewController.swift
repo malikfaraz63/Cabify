@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         db
             .collection("drivers")
             .document(uid)
-            .getDocument(as: Driver.self) { result in
+            .getDocument(as: CKDriver.self) { result in
                 switch result {
                 case .success(let driver):
                     self.updateDisplay(withDriver: driver)
@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         db
             .collection("drivers")
             .document(user.uid)
-            .getDocument(as: Driver.self) { result in
+            .getDocument(as: CKDriver.self) { result in
                 switch result {
                 case .success(let driver):
                     self.updateDisplay(withDriver: driver)
@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
     
     // MARK: Setup
     
-    func driverDidSetup(withDriver driver: Driver) {
+    func driverDidSetup(withDriver driver: CKDriver) {
         updateDisplay(withDriver: driver)
         guard let uid = DriverSettingsManager.getUserID() else { return }
         
@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         emailLabel.text = "--@--.com"
     }
     
-    func updateDisplay(withDriver driver: Driver) {
+    func updateDisplay(withDriver driver: CKDriver) {
         signInView.isHidden = true
         
         if let urlString = driver.photoURL, let url = URL(string: urlString) {

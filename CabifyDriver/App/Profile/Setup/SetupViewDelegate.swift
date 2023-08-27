@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SetupViewDelegate {
-    func driverDidSetup(withDriver driver: Driver)
+    func driverDidSetup(withDriver driver: CKDriver)
 }

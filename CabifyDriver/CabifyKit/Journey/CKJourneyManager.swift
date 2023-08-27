@@ -61,13 +61,15 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
     enum PreviewType: Equatable {
         case requestPreview
         case travelPreview
+        case pastJourneyPreview
         case stepPreview(step: MKRoute.Step?)
         
         private func rawValue() -> Int {
             switch self {
             case .requestPreview: return 0
             case .travelPreview: return 1
-            case .stepPreview: return 2
+            case .pastJourneyPreview: return 2
+            case .stepPreview: return 3
             }
         }
         
@@ -83,13 +85,14 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
         guard let routeCoordinates = routeCoordinates else { return }
         mapViewManager.removeCheckpointAnnotations()
         
-        if previewType == .requestPreview {
+        if previewType == .requestPreview || previewType == .pastJourneyPreview {
             mapViewManager.addCheckpointAnnotation(origin, kind: .pickup)
             mapViewManager.addCheckpointAnnotation(destination, kind: .dropoff)
         } else if previewType == .travelPreview {
             mapViewManager.addCheckpointAnnotation(destination, kind: .destination)
         }
         
+        let isAnimated: Bool
         switch previewType {
         case .stepPreview(let step):
             guard let step = step else { return }
@@ -98,8 +101,14 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
             guard step.polyline.coordinates.count >= 2 else { return }
             origin = step.polyline.coordinates.first!
             destination = step.polyline.coordinates.last!
+            
+            isAnimated = true
+        case .pastJourneyPreview:
+            mapViewManager.drawCoordinates(routeCoordinates, animated: false)
+            isAnimated = false
         default:
             mapViewManager.drawCoordinates(routeCoordinates, animated: true)
+            isAnimated = true
         }
         
         var latitude = (origin.latitude + destination.latitude) / 2
@@ -110,7 +119,7 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
         
         let location = CLLocation(latitude: latitude, longitude: longitude)
         
-        mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(origin, destination))
+        mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(origin, destination), animated: isAnimated)
     }
     
     private func updateRoute(isCurrentLocationOrigin: Bool, completion: UpdateRouteCompletion?) {

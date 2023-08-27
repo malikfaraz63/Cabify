@@ -15,7 +15,7 @@ class RouteSelectionController: UIViewController, UITableViewDelegate, UITableVi
     var lastSelectedTextField: UITextField?
     
     @IBOutlet weak var locationPredictionTable: UITableView!
-    var locationPredictions: [LocationPrediction] = []
+    var locationPredictions: [CKLocationPrediction] = []
     var delegate: RouteSelectionDelegate?
     
     override func viewDidLoad() {
@@ -87,7 +87,7 @@ class RouteSelectionController: UIViewController, UITableViewDelegate, UITableVi
             return
         }
         
-        PlacesClient.getAutocompletePredictions(forInput: input, location: CLLocationCoordinate2D(latitude: 51.57916, longitude: 0.07268)) { locationPredictions in
+        CKPlacesClient.getAutocompletePredictions(forInput: input, location: CLLocationCoordinate2D(latitude: 51.57916, longitude: 0.07268)) { locationPredictions in
             self.locationPredictions = locationPredictions
             self.locationPredictionTable.reloadData()
         }
@@ -113,7 +113,7 @@ class RouteSelectionController: UIViewController, UITableViewDelegate, UITableVi
         
         let placeId = locationPredictions[indexPath.row].placeId
 
-        PlacesClient.getLocationDetail(forPlaceId: placeId) { [unowned self] locationDetail in
+        CKPlacesClient.getLocationDetail(forPlaceId: placeId) { [unowned self] locationDetail in
             if lastSelectedTextField == pickupTextField {
                 pickupTextField.text = locationPredictions[indexPath.row].structuredFormatting.mainText
                 let _ = textFieldShouldReturn(pickupTextField)

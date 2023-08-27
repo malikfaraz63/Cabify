@@ -12,20 +12,21 @@
 		D95085D52A89425D008A27AB /* RouteSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95085D42A89425D008A27AB /* RouteSelectionCell.swift */; };
 		D95085D72A8942B2008A27AB /* RouteSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95085D62A8942B2008A27AB /* RouteSelectionController.swift */; };
 		D95085D92A8957B3008A27AB /* RouteSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95085D82A8957B3008A27AB /* RouteSelectionDelegate.swift */; };
-		D95085DB2A895BA6008A27AB /* MapsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95085DA2A895BA6008A27AB /* MapsClient.swift */; };
-		D95972122A8A1C1A0069A446 /* MapsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95972112A8A1C1A0069A446 /* MapsObjects.swift */; };
+		D95085DB2A895BA6008A27AB /* CKPlacesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95085DA2A895BA6008A27AB /* CKPlacesClient.swift */; };
+		D952A6C12A9A17A300745DE2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C02A9A17A300745DE2 /* FirebaseAuth */; };
+		D952A6C32A9A17AA00745DE2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C22A9A17AA00745DE2 /* FirebaseFirestore */; };
+		D952A6C52A9A17B300745DE2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C42A9A17B300745DE2 /* FirebaseFirestoreSwift */; };
+		D952A6C72A9A17BB00745DE2 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C62A9A17BB00745DE2 /* MessageKit */; };
+		D95972122A8A1C1A0069A446 /* CKMapsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95972112A8A1C1A0069A446 /* CKMapsObjects.swift */; };
 		D97B10FC2A8ED7BE00E7A38C /* CKRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B10FB2A8ED7BE00E7A38C /* CKRequestStatus.swift */; };
 		D97B10FE2A8ED90E00E7A38C /* PendingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B10FD2A8ED90E00E7A38C /* PendingRequest.swift */; };
 		D97B11002A8EDE2100E7A38C /* RideFareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B10FF2A8EDE2100E7A38C /* RideFareClient.swift */; };
+		D991E1012A98E2D700C74715 /* CKProfileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1002A98E2D700C74715 /* CKProfileClient.swift */; };
 		D99D37782A8A7A2B00EE842F /* RiderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99D37772A8A7A2B00EE842F /* RiderStatus.swift */; };
 		D9A29B922A924D16005AA6FB /* CKRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A29B912A924D16005AA6FB /* CKRequestMessage.swift */; };
 		D9A29B952A92646C005AA6FB /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A29B942A92646C005AA6FB /* RequestMessagesController.swift */; };
 		D9A29B972A9264A6005AA6FB /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A29B962A9264A6005AA6FB /* Sender.swift */; };
 		D9A29B992A9264BA005AA6FB /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A29B982A9264BA005AA6FB /* MessageViewModel.swift */; };
-		D9A29B9C2A9267F0005AA6FB /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9A29B9B2A9267F0005AA6FB /* MessageKit */; };
-		D9A9ADFF2A88010000955603 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9A9ADFE2A88010000955603 /* FirebaseAuth */; };
-		D9A9AE012A88010000955603 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9A9AE002A88010000955603 /* FirebaseFirestore */; };
-		D9A9AE032A88010000955603 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9A9AE022A88010000955603 /* FirebaseFirestoreSwift */; };
 		D9ABCAC42A8E436000562073 /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABCAC32A8E436000562073 /* RequestClient.swift */; };
 		D9ABCAC72A8E6E7F00562073 /* DriverAnnotationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABCAC62A8E6E7F00562073 /* DriverAnnotationsManager.swift */; };
 		D9ABCAC92A8E6F4400562073 /* CKDriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABCAC82A8E6F4400562073 /* CKDriverAnnotation.swift */; };
@@ -41,8 +42,8 @@
 		D9C118862A8BEFF000201454 /* CKLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118732A8BEFF000201454 /* CKLocationAnnotation.swift */; };
 		D9C118872A8BEFF000201454 /* CKCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118742A8BEFF000201454 /* CKCoordinate.swift */; };
 		D9C118882A8BEFF000201454 /* CKRouteSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118752A8BEFF000201454 /* CKRouteSummary.swift */; };
-		D9C118892A8BEFF000201454 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118772A8BEFF000201454 /* Rider.swift */; };
-		D9C1188A2A8BEFF000201454 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118782A8BEFF000201454 /* Driver.swift */; };
+		D9C118892A8BEFF000201454 /* CKRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118772A8BEFF000201454 /* CKRider.swift */; };
+		D9C1188A2A8BEFF000201454 /* CKDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C118782A8BEFF000201454 /* CKDriver.swift */; };
 		D9C1188B2A8BEFF000201454 /* UIRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1187A2A8BEFF000201454 /* UIRoundedButton.swift */; };
 		D9C1188C2A8BEFF000201454 /* UIRoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1187B2A8BEFF000201454 /* UIRoundedLabel.swift */; };
 		D9C1188D2A8BEFF000201454 /* CountdownProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1187C2A8BEFF000201454 /* CountdownProgressView.swift */; };
@@ -56,6 +57,8 @@
 		D9D6F1D22A6D419E00E50957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1D12A6D419E00E50957 /* Assets.xcassets */; };
 		D9D6F1D52A6D419E00E50957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1D32A6D419E00E50957 /* LaunchScreen.storyboard */; };
 		D9D6F1E42A6D4BDE00E50957 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */; };
+		D9E5E0002A9B35C50034F813 /* CKRequestFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5DFFF2A9B35C50034F813 /* CKRequestFetch.swift */; };
+		D9E5E0022A9B35CF0034F813 /* CKRideFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5E0012A9B35CF0034F813 /* CKRideFetch.swift */; };
 		D9F442582A8FD7480017369A /* UIRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F442572A8FD7480017369A /* UIRoundedImageView.swift */; };
 		D9F4425A2A8FD9940017369A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F442592A8FD9940017369A /* UIImageView.swift */; };
 /* End PBXBuildFile section */
@@ -66,11 +69,12 @@
 		D95085D42A89425D008A27AB /* RouteSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectionCell.swift; sourceTree = "<group>"; };
 		D95085D62A8942B2008A27AB /* RouteSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectionController.swift; sourceTree = "<group>"; };
 		D95085D82A8957B3008A27AB /* RouteSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectionDelegate.swift; sourceTree = "<group>"; };
-		D95085DA2A895BA6008A27AB /* MapsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsClient.swift; sourceTree = "<group>"; };
-		D95972112A8A1C1A0069A446 /* MapsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsObjects.swift; sourceTree = "<group>"; };
+		D95085DA2A895BA6008A27AB /* CKPlacesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKPlacesClient.swift; sourceTree = "<group>"; };
+		D95972112A8A1C1A0069A446 /* CKMapsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKMapsObjects.swift; sourceTree = "<group>"; };
 		D97B10FB2A8ED7BE00E7A38C /* CKRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRequestStatus.swift; sourceTree = "<group>"; };
 		D97B10FD2A8ED90E00E7A38C /* PendingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequest.swift; sourceTree = "<group>"; };
 		D97B10FF2A8EDE2100E7A38C /* RideFareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFareClient.swift; sourceTree = "<group>"; };
+		D991E1002A98E2D700C74715 /* CKProfileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKProfileClient.swift; sourceTree = "<group>"; };
 		D99D37772A8A7A2B00EE842F /* RiderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderStatus.swift; sourceTree = "<group>"; };
 		D9A29B912A924D16005AA6FB /* CKRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestMessage.swift; sourceTree = "<group>"; };
 		D9A29B942A92646C005AA6FB /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
@@ -91,15 +95,14 @@
 		D9C118732A8BEFF000201454 /* CKLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKLocationAnnotation.swift; sourceTree = "<group>"; };
 		D9C118742A8BEFF000201454 /* CKCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKCoordinate.swift; sourceTree = "<group>"; };
 		D9C118752A8BEFF000201454 /* CKRouteSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRouteSummary.swift; sourceTree = "<group>"; };
-		D9C118772A8BEFF000201454 /* Rider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rider.swift; sourceTree = "<group>"; };
-		D9C118782A8BEFF000201454 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		D9C118772A8BEFF000201454 /* CKRider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRider.swift; sourceTree = "<group>"; };
+		D9C118782A8BEFF000201454 /* CKDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDriver.swift; sourceTree = "<group>"; };
 		D9C1187A2A8BEFF000201454 /* UIRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedButton.swift; sourceTree = "<group>"; };
 		D9C1187B2A8BEFF000201454 /* UIRoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedLabel.swift; sourceTree = "<group>"; };
 		D9C1187C2A8BEFF000201454 /* CountdownProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownProgressView.swift; sourceTree = "<group>"; };
 		D9C1187D2A8BEFF000201454 /* UIRoundedStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedStackView.swift; sourceTree = "<group>"; };
 		D9C1187F2A8BEFF000201454 /* CKRouteSummaryClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRouteSummaryClient.swift; sourceTree = "<group>"; };
 		D9C118902A8BF8DA00201454 /* RiderSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderSettingsManager.swift; sourceTree = "<group>"; };
-		D9CC65172A8815AD006B4ECD /* CabifyRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyRider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CC651A2A88C986006B4ECD /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		D9D6F1C82A6D419D00E50957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D6F1CA2A6D419D00E50957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +111,9 @@
 		D9D6F1D42A6D419E00E50957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9D6F1D62A6D419E00E50957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D9E5DFFD2A9B35210034F813 /* CabifyRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyRider.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyRider.app"; sourceTree = "<absolute>"; };
+		D9E5DFFF2A9B35C50034F813 /* CKRequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestFetch.swift; sourceTree = "<group>"; };
+		D9E5E0012A9B35CF0034F813 /* CKRideFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRideFetch.swift; sourceTree = "<group>"; };
 		D9F442572A8FD7480017369A /* UIRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoundedImageView.swift; sourceTree = "<group>"; };
 		D9F442592A8FD9940017369A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,10 +123,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9A9ADFF2A88010000955603 /* FirebaseAuth in Frameworks */,
-				D9A9AE012A88010000955603 /* FirebaseFirestore in Frameworks */,
-				D9A9AE032A88010000955603 /* FirebaseFirestoreSwift in Frameworks */,
-				D9A29B9C2A9267F0005AA6FB /* MessageKit in Frameworks */,
+				D952A6C12A9A17A300745DE2 /* FirebaseAuth in Frameworks */,
+				D952A6C32A9A17AA00745DE2 /* FirebaseFirestore in Frameworks */,
+				D952A6C52A9A17B300745DE2 /* FirebaseFirestoreSwift in Frameworks */,
+				D952A6C72A9A17BB00745DE2 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,11 +172,16 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		D952A6BF2A9A17A300745DE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D95972102A8A1AC50069A446 /* PlaceAutocomplete */ = {
 			isa = PBXGroup;
 			children = (
-				D95085DA2A895BA6008A27AB /* MapsClient.swift */,
-				D95972112A8A1C1A0069A446 /* MapsObjects.swift */,
 			);
 			path = PlaceAutocomplete;
 			sourceTree = "<group>";
@@ -266,6 +277,8 @@
 				D9C118762A8BEFF000201454 /* Profile */,
 				D9C118792A8BEFF000201454 /* View */,
 				D9C1187E2A8BEFF000201454 /* Client */,
+				D9E5DFFF2A9B35C50034F813 /* CKRequestFetch.swift */,
+				D9E5E0012A9B35CF0034F813 /* CKRideFetch.swift */,
 			);
 			path = CabifyKit;
 			sourceTree = "<group>";
@@ -288,6 +301,7 @@
 				D9C118712A8BEFF000201454 /* Annotations */,
 				D9C118742A8BEFF000201454 /* CKCoordinate.swift */,
 				D9C118752A8BEFF000201454 /* CKRouteSummary.swift */,
+				D95972112A8A1C1A0069A446 /* CKMapsObjects.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -305,8 +319,9 @@
 		D9C118762A8BEFF000201454 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D9C118772A8BEFF000201454 /* Rider.swift */,
-				D9C118782A8BEFF000201454 /* Driver.swift */,
+				D9C118772A8BEFF000201454 /* CKRider.swift */,
+				D9C118782A8BEFF000201454 /* CKDriver.swift */,
+				D991E1002A98E2D700C74715 /* CKProfileClient.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -326,6 +341,7 @@
 		D9C1187E2A8BEFF000201454 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				D95085DA2A895BA6008A27AB /* CKPlacesClient.swift */,
 				D9C1187F2A8BEFF000201454 /* CKRouteSummaryClient.swift */,
 			);
 			path = Client;
@@ -355,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6F1C72A6D419D00E50957 /* CabifyRider */,
-				D9CC65172A8815AD006B4ECD /* CabifyRider.app */,
+				D952A6BF2A9A17A300745DE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -391,13 +407,13 @@
 			);
 			name = CabifyRider;
 			packageProductDependencies = (
-				D9A9ADFE2A88010000955603 /* FirebaseAuth */,
-				D9A9AE002A88010000955603 /* FirebaseFirestore */,
-				D9A9AE022A88010000955603 /* FirebaseFirestoreSwift */,
-				D9A29B9B2A9267F0005AA6FB /* MessageKit */,
+				D952A6C02A9A17A300745DE2 /* FirebaseAuth */,
+				D952A6C22A9A17AA00745DE2 /* FirebaseFirestore */,
+				D952A6C42A9A17B300745DE2 /* FirebaseFirestoreSwift */,
+				D952A6C62A9A17BB00745DE2 /* MessageKit */,
 			);
 			productName = CabifyRider;
-			productReference = D9CC65172A8815AD006B4ECD /* CabifyRider.app */;
+			productReference = D9E5DFFD2A9B35210034F813 /* CabifyRider.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -462,13 +478,14 @@
 				D95085D92A8957B3008A27AB /* RouteSelectionDelegate.swift in Sources */,
 				D9D6F1C92A6D419D00E50957 /* AppDelegate.swift in Sources */,
 				D9C118802A8BEFF000201454 /* CKJourneyDelegate.swift in Sources */,
+				D991E1012A98E2D700C74715 /* CKProfileClient.swift in Sources */,
 				D9ABCAC92A8E6F4400562073 /* CKDriverAnnotation.swift in Sources */,
 				D9ABCAC72A8E6E7F00562073 /* DriverAnnotationsManager.swift in Sources */,
 				D9B6AEED2A936CF600A91F51 /* RideClient.swift in Sources */,
 				D9D6F1CB2A6D419D00E50957 /* SceneDelegate.swift in Sources */,
 				D9C1188F2A8BEFF000201454 /* CKRouteSummaryClient.swift in Sources */,
 				D9F442582A8FD7480017369A /* UIRoundedImageView.swift in Sources */,
-				D95972122A8A1C1A0069A446 /* MapsObjects.swift in Sources */,
+				D95972122A8A1C1A0069A446 /* CKMapsObjects.swift in Sources */,
 				D9C118812A8BEFF000201454 /* CKJourneyManager.swift in Sources */,
 				D9CC651B2A88C986006B4ECD /* RideViewController.swift in Sources */,
 				D9A29B972A9264A6005AA6FB /* Sender.swift in Sources */,
@@ -481,11 +498,13 @@
 				D9F4425A2A8FD9940017369A /* UIImageView.swift in Sources */,
 				D9C118852A8BEFF000201454 /* CKCheckpointAnnotation.swift in Sources */,
 				D9ABCAC42A8E436000562073 /* RequestClient.swift in Sources */,
-				D9C118892A8BEFF000201454 /* Rider.swift in Sources */,
+				D9C118892A8BEFF000201454 /* CKRider.swift in Sources */,
 				D99D37782A8A7A2B00EE842F /* RiderStatus.swift in Sources */,
+				D9E5E0022A9B35CF0034F813 /* CKRideFetch.swift in Sources */,
+				D9E5E0002A9B35C50034F813 /* CKRequestFetch.swift in Sources */,
 				D9C118832A8BEFF000201454 /* CKMapViewManager.swift in Sources */,
 				D9C1188D2A8BEFF000201454 /* CountdownProgressView.swift in Sources */,
-				D9C1188A2A8BEFF000201454 /* Driver.swift in Sources */,
+				D9C1188A2A8BEFF000201454 /* CKDriver.swift in Sources */,
 				D97B10FC2A8ED7BE00E7A38C /* CKRequestStatus.swift in Sources */,
 				D97B11002A8EDE2100E7A38C /* RideFareClient.swift in Sources */,
 				D95085D72A8942B2008A27AB /* RouteSelectionController.swift in Sources */,
@@ -495,7 +514,7 @@
 				D95085D32A8941E7008A27AB /* SegueTag.swift in Sources */,
 				D9C118842A8BEFF000201454 /* MKMultiPoint.swift in Sources */,
 				D97B10FE2A8ED90E00E7A38C /* PendingRequest.swift in Sources */,
-				D95085DB2A895BA6008A27AB /* MapsClient.swift in Sources */,
+				D95085DB2A895BA6008A27AB /* CKPlacesClient.swift in Sources */,
 				D9C1188C2A8BEFF000201454 /* UIRoundedLabel.swift in Sources */,
 				D92DBFD32A90D27A00E52A20 /* ActiveRequest.swift in Sources */,
 				D9B6AEF02A93721F00A91F51 /* Ride.swift in Sources */,
@@ -747,25 +766,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D9A29B9B2A9267F0005AA6FB /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D9A29B9A2A9267F0005AA6FB /* XCRemoteSwiftPackageReference "MessageKit" */;
-			productName = MessageKit;
-		};
-		D9A9ADFE2A88010000955603 /* FirebaseAuth */ = {
+		D952A6C02A9A17A300745DE2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9A9ADFD2A88010000955603 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		D9A9AE002A88010000955603 /* FirebaseFirestore */ = {
+		D952A6C22A9A17AA00745DE2 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9A9ADFD2A88010000955603 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		D9A9AE022A88010000955603 /* FirebaseFirestoreSwift */ = {
+		D952A6C42A9A17B300745DE2 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9A9ADFD2A88010000955603 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		D952A6C62A9A17BB00745DE2 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9A29B9A2A9267F0005AA6FB /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

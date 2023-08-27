@@ -10,7 +10,7 @@ import CoreLocation
 import FirebaseFirestore
 
 struct PendingRequest: Codable {
-    var documentID: String?
+    let requestId: String
     let origin: Location
     let destination: GeoPoint
     let timeCreated: Date

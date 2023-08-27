@@ -24,6 +24,7 @@ class RequestClient {
     
     private let db = Firestore.firestore()
     
+    typealias PendingRequestCompletion = (PendingRequest) -> Void
     typealias PendingRequestsLoadCompletion = ([PendingRequest]) -> Void
     typealias ActiveRequestChangedCompletion = (ActiveRequest) -> Void
     typealias UpdateCompletion = (Bool) -> Void
@@ -55,6 +56,20 @@ class RequestClient {
         requestListener = nil
     }
     
+    public func getPendingRequest(withRequestId requestId: String, completion: @escaping PendingRequestCompletion) {
+        db
+            .collection("requests")
+            .document(requestId)
+            .getDocument(as: PendingRequest.self) { result in
+                switch result {
+                case .success(let request):
+                    completion(request)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
     public func setPendingRequestsListener(atLocation location: CKCoordinate, triggerCompletion: @escaping PendingRequestsLoadCompletion) {
         print("--requestClient: setPendingRequestsListener--")
         let newLocationHash = CKMapUtility.generateHashForCoordinate(location)
@@ -84,7 +99,6 @@ class RequestClient {
                     do {
                         try pendingRequests.append(contentsOf: snapshot.documents.map { document in
                             var request = try document.data(as: PendingRequest.self)
-                            request.documentID = document.documentID
                             return request
                         })
                     } catch let error {
@@ -92,7 +106,7 @@ class RequestClient {
                     }
                     
                     let sortedRequests = pendingRequests
-                        .filter { !self.declinedRequestIds.contains($0.documentID!) }
+                        .filter { !self.declinedRequestIds.contains($0.requestId) }
                         .sorted { $0.driverViews < $1.driverViews }
                     
                     triggerCompletion(sortedRequests)
