@@ -74,6 +74,7 @@
 		D97B10FB2A8ED7BE00E7A38C /* CKRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRequestStatus.swift; sourceTree = "<group>"; };
 		D97B10FD2A8ED90E00E7A38C /* PendingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequest.swift; sourceTree = "<group>"; };
 		D97B10FF2A8EDE2100E7A38C /* RideFareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFareClient.swift; sourceTree = "<group>"; };
+		D9855F122A9B531A00D4CECC /* CabifyRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyRider.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyRider.app"; sourceTree = "<absolute>"; };
 		D991E1002A98E2D700C74715 /* CKProfileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKProfileClient.swift; sourceTree = "<group>"; };
 		D99D37772A8A7A2B00EE842F /* RiderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderStatus.swift; sourceTree = "<group>"; };
 		D9A29B912A924D16005AA6FB /* CKRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestMessage.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		D9D6F1D42A6D419E00E50957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9D6F1D62A6D419E00E50957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D6F1E32A6D4BDE00E50957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D9E5DFFD2A9B35210034F813 /* CabifyRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyRider.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyRider.app"; sourceTree = "<absolute>"; };
 		D9E5DFFF2A9B35C50034F813 /* CKRequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestFetch.swift; sourceTree = "<group>"; };
 		D9E5E0012A9B35CF0034F813 /* CKRideFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRideFetch.swift; sourceTree = "<group>"; };
 		D9F442572A8FD7480017369A /* UIRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoundedImageView.swift; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 				D952A6C62A9A17BB00745DE2 /* MessageKit */,
 			);
 			productName = CabifyRider;
-			productReference = D9E5DFFD2A9B35210034F813 /* CabifyRider.app */;
+			productReference = D9855F122A9B531A00D4CECC /* CabifyRider.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -82,7 +82,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyDriver.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyDriver.app"; sourceTree = "<absolute>"; };
 		D90897C62A6D3F2300C40BD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D90897C82A6D3F2300C40BD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D90897CD2A6D3F2300C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewController.swift; sourceTree = "<group>"; };
 		D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStepCell.swift; sourceTree = "<group>"; };
 		D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewDelegate.swift; sourceTree = "<group>"; };
+		D9855F132A9B647000D4CECC /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyDriver.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyDriver.app"; sourceTree = "<absolute>"; };
 		D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysClient.swift; sourceTree = "<group>"; };
 		D991E0F42A98B38600C74715 /* PastJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourney.swift; sourceTree = "<group>"; };
 		D991E0F62A98BB5700C74715 /* PastJourneysController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysController.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 				D952A6D32A9A17EB00745DE2 /* GoogleSignInSwift */,
 			);
 			productName = CabifyDriver;
-			productReference = D90897C32A6D3F2300C40BD7 /* CabifyDriver.app */;
+			productReference = D9855F132A9B647000D4CECC /* CabifyDriver.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -763,11 +763,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CabifyDriver/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location access to receive local ride requests and use navigation.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -795,11 +796,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CabifyDriver/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location access to receive local ride requests and use navigation.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

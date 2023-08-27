@@ -667,12 +667,13 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let status = CKRequestStatus(rawValue: statusString)
         switch status {
         case .pending:
+            didRejoinSession = false
+            
             guard let mapViewManager = mapViewManager else { return }
             guard let pickupLocation = pickupLocation else { return }
             
             let newCentre = CLLocation(latitude: pickupLocation.latitude, longitude: pickupLocation.longitude)
             mapViewManager.centerToLocation(newCentre)
-            
             
             do {
                 let pendingRequest = try snapshot.data(as: PendingRequest.self)
