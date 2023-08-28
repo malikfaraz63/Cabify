@@ -16,7 +16,7 @@ struct CKDriver: Codable {
     let phone: String
     let accountCreated: Date
     let earnings: Double
-    let averageRating: Double
+    let ratings: CKRatingSummary
     let ridesCount: Int
     let location: Location?
     let lastUpdated: Date?

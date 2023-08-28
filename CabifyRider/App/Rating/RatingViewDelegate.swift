@@ -1,6 +1,6 @@
 //
 //  RatingViewDelegate.swift
-//  CabifyDriver
+//  CabifyRider
 //
 //  Created by Faraz Malik on 28/08/2023.
 //

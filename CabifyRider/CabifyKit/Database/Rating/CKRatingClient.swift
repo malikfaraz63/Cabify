@@ -1,8 +1,8 @@
 //
-//  RatingClient.swift
-//  CabifyDriver
+//  CKRatingClient.swift
+//  CabifyRider
 //
-//  Created by Faraz Malik on 27/08/2023.
+//  Created by Faraz Malik on 28/08/2023.
 //
 
 import Foundation
@@ -10,11 +10,11 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class RatingClient {
+class CKRatingClient {
     private let db = Firestore.firestore()
     
     typealias RatingSetCompletion = () -> Void
-    typealias RatingCompletion = (Rating?) -> Void
+    typealias RatingCompletion = (CKRating?) -> Void
     
     enum UserType: String {
         case riders
@@ -30,7 +30,7 @@ class RatingClient {
                 if let documentSnapshot = documentSnapshot {
                     if documentSnapshot.exists {
                         do {
-                            try completion(documentSnapshot.data(as: Rating.self))
+                            try completion(documentSnapshot.data(as: CKRating.self))
                         } catch let error {
                             print(error)
                         }
@@ -41,7 +41,7 @@ class RatingClient {
             }
     }
     
-    public func setRating(forUserId userId: String, userType: UserType, rideId: String, rating: Rating, completion: @escaping RatingSetCompletion) {
+    public func setRating(forUserId userId: String, userType: UserType, rideId: String, rating: CKRating, completion: @escaping RatingSetCompletion) {
         let userRef = db.collection(userType.rawValue).document(userId)
         let ratingsRef = userRef.collection("ratings").document(rideId)
         

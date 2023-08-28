@@ -15,6 +15,6 @@ struct CKRider: Codable {
     let phone: String
     let funds: Double
     let ridesCount: Int
-    let averageRating: Double
+    let ratings: CKRatingSummary
     let accountCreated: Date
 }

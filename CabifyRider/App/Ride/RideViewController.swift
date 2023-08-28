@@ -75,6 +75,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     var previousUnread = 0
     let requestClient = RequestClient()
     let rideClient = RideClient()
+    let profileClient = CKProfileClient()
     
     var previousUserId: String?
     var didRejoinSession = false
@@ -697,7 +698,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 previousUnread = request.driverUnread
                 
                 if riderStatus == .awaitingRequestAcceptance(request: PendingRequest.nilRequest) {
-                    requestClient.getDriver(withDriverId: request.driverId) { [unowned self] driver in
+                    profileClient.getDriver(withDriverId: request.driverId) { [unowned self] driver in
                         if didRejoinSession {
                             didRejoinSession = false
                         } else {
@@ -713,7 +714,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                             activeDriverImageView.load(url: url)
                         }
                         activeDriverNameLabel.text = driver.name
-                        activeDriverRatingLabel.text = String(format: "%.1f", driver.averageRating)
+                        activeDriverRatingLabel.text = String(format: "%.1f", driver.ratings.average)
                     }
                     
                     riderStatus = .awaitingDriverArrival(request: request)
@@ -772,12 +773,12 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         case .waiting:
             if riderStatus == .awaitingDriverArrival(request: ActiveRequest.nilRequest) {
                 if didRejoinSession {
-                    requestClient.getDriver(withDriverId: ride.driverId) { [unowned self] driver in
+                    profileClient.getDriver(withDriverId: ride.driverId) { [unowned self] driver in
                         if let urlString = driver.photoURL, let url = URL(string: urlString) {
                             activeDriverImageView.load(url: url)
                         }
                         activeDriverNameLabel.text = driver.name
-                        activeDriverRatingLabel.text = String(format: "%.1f", driver.averageRating)
+                        activeDriverRatingLabel.text = String(format: "%.1f", driver.ratings.average)
                     }
                     
                     didRejoinSession = false

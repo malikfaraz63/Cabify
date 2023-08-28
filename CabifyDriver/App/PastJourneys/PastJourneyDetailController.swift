@@ -28,7 +28,7 @@ class PastJourneyDetailController: UIViewController, RatingViewDelegate {
     var rider: CKRider?
     
     let profileClient = CKProfileClient()
-    let ratingClient = RatingClient()
+    let ratingClient = CKRatingClient()
     
     var mapViewManager: CKMapViewManager?
     var journeyManager: CKJourneyManager?
@@ -68,7 +68,7 @@ class PastJourneyDetailController: UIViewController, RatingViewDelegate {
                     self.setupStarsView(rating.stars)
                 } else {
                     self.ratingDescriptionLabel.text = "You haven't rated \(rider.name)"
-                    showRatingViewButton.isEnabled = true
+                    self.showRatingViewButton.isEnabled = true
                 }
             }
         }
@@ -93,7 +93,7 @@ class PastJourneyDetailController: UIViewController, RatingViewDelegate {
     
     // MARK: Rating View Delegate
     
-    func didSetRating(_ rating: Rating) {
+    func didSetRating(_ rating: CKRating) {
         setupStarsView(rating.stars)
         ratingDescriptionLabel.text = "You have rated \(rider?.name ?? "")"
     }
@@ -107,7 +107,6 @@ class PastJourneyDetailController: UIViewController, RatingViewDelegate {
             ratingViewController.rider = rider
             ratingViewController.rideId = ride?.rideId
             ratingViewController.delegate = self
-            //ratingViewController.setupView()
         }
     }
 }

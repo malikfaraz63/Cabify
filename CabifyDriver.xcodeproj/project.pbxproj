@@ -16,8 +16,8 @@
 		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
 		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
 		D942FF9F2A9BCB9E00E08F01 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */; };
-		D942FFA12A9BD49600E08F01 /* RatingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA02A9BD49600E08F01 /* RatingClient.swift */; };
-		D942FFA32A9BD8A400E08F01 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA22A9BD8A400E08F01 /* Rating.swift */; };
+		D942FFA12A9BD49600E08F01 /* CKRatingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA02A9BD49600E08F01 /* CKRatingClient.swift */; };
+		D942FFA32A9BD8A400E08F01 /* CKRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA22A9BD8A400E08F01 /* CKRating.swift */; };
 		D952A6CA2A9A17CB00745DE2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C92A9A17CB00745DE2 /* FirebaseAuth */; };
 		D952A6CC2A9A17D100745DE2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CB2A9A17D100745DE2 /* FirebaseFirestore */; };
 		D952A6CE2A9A17D600745DE2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CD2A9A17D600745DE2 /* FirebaseFirestoreSwift */; };
@@ -97,8 +97,8 @@
 		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
-		D942FFA02A9BD49600E08F01 /* RatingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingClient.swift; sourceTree = "<group>"; };
-		D942FFA22A9BD8A400E08F01 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		D942FFA02A9BD49600E08F01 /* CKRatingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRatingClient.swift; sourceTree = "<group>"; };
+		D942FFA22A9BD8A400E08F01 /* CKRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRating.swift; sourceTree = "<group>"; };
 		D952A6D52A9A189900745DE2 /* CKRideStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRideStatus.swift; sourceTree = "<group>"; };
 		D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRideFetch.swift; sourceTree = "<group>"; };
 		D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestFetch.swift; sourceTree = "<group>"; };
@@ -203,6 +203,15 @@
 			path = CabifyDriver;
 			sourceTree = "<group>";
 		};
+		D935BBCF2A9CAF53007FF654 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				D942FFA02A9BD49600E08F01 /* CKRatingClient.swift */,
+				D942FFA22A9BD8A400E08F01 /* CKRating.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
 		D93AAE772A81247F0056E9CF /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +234,7 @@
 		D942FF962A9BC94E00E08F01 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				D935BBCF2A9CAF53007FF654 /* Rating */,
 				D942FF9A2A9BCA1600E08F01 /* Message */,
 				D942FF992A9BC96D00E08F01 /* PastJourneys */,
 				D942FF982A9BC95F00E08F01 /* Ride */,
@@ -271,8 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */,
-				D942FFA02A9BD49600E08F01 /* RatingClient.swift */,
-				D942FFA22A9BD8A400E08F01 /* Rating.swift */,
 				D95808732A9C99D8000C8EEB /* RatingViewDelegate.swift */,
 			);
 			path = Rating;
@@ -332,9 +340,9 @@
 		D96BBB002A87C031009FAA78 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D991E1032A98E76F00C74715 /* CKRider.swift */,
 				D991E1042A98E76F00C74715 /* CKDriver.swift */,
 				D991E1022A98E76F00C74715 /* CKProfileClient.swift */,
-				D991E1032A98E76F00C74715 /* CKRider.swift */,
 				D95808712A9C86EF000C8EEB /* CKRatingSummary.swift */,
 			);
 			path = Profile;
@@ -627,7 +635,7 @@
 				D991E1052A98E76F00C74715 /* CKProfileClient.swift in Sources */,
 				D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */,
 				D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */,
-				D942FFA32A9BD8A400E08F01 /* Rating.swift in Sources */,
+				D942FFA32A9BD8A400E08F01 /* CKRating.swift in Sources */,
 				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
 				D991E1062A98E76F00C74715 /* CKRider.swift in Sources */,
 				D9D6F21B2A728B8F00E50957 /* LoginViewController.swift in Sources */,
@@ -667,7 +675,7 @@
 				D9F721D52A97965100B8BCC1 /* EarningsClient.swift in Sources */,
 				D9F721DE2A97FD4000B8BCC1 /* PastJourneyDetailController.swift in Sources */,
 				D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */,
-				D942FFA12A9BD49600E08F01 /* RatingClient.swift in Sources */,
+				D942FFA12A9BD49600E08F01 /* CKRatingClient.swift in Sources */,
 				D9C590F72A96B67F00349B33 /* EarningsUIController.swift in Sources */,
 				D96BBB112A87C031009FAA78 /* CKRouteSummaryClient.swift in Sources */,
 				D96BBB092A87C031009FAA78 /* UIRoundedButton.swift in Sources */,

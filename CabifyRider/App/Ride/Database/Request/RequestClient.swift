@@ -39,20 +39,6 @@ class RequestClient {
     
     // MARK: User Details
     
-    public func getDriver(withDriverId driverId: String, completion: @escaping DriverChangedCompletion) {
-        db
-            .collection("drivers")
-            .document(driverId)
-            .getDocument(as: CKDriver.self) { result in
-                switch result {
-                case .success(let driver):
-                    completion(driver)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
-    
     private func getRiderRating(withRiderId riderId: String, completion: @escaping RatingFetchCompletion) {
         db
             .collection("riders")
@@ -60,7 +46,7 @@ class RequestClient {
             .getDocument(as: CKRider.self) { result in
                 switch result {
                 case .success(let rider):
-                    completion(rider.averageRating)
+                    completion(rider.ratings.average)
                 case .failure(let error):
                     print(error)
                 }

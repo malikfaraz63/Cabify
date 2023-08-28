@@ -1,8 +1,8 @@
 //
 //  RatingViewController.swift
-//  CabifyDriver
+//  CabifyRider
 //
-//  Created by Faraz Malik on 27/08/2023.
+//  Created by Faraz Malik on 28/08/2023.
 //
 
 import UIKit
@@ -17,7 +17,7 @@ class RatingViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var submitRatingButton: UIButton!
     
     let ratingClient = CKRatingClient()
-    var rider: CKRider?
+    var driver: CKDriver?
     var rideId: String?
     
     var selectedRating: Int?
@@ -26,8 +26,8 @@ class RatingViewController: UIViewController, UITextViewDelegate {
     var delegate: RatingViewDelegate?
     
     override func viewDidLoad() {
-        guard let rider = rider else { return }
-        titleLabel.text = "Rate \(rider.name)"
+        guard let driver = driver else { return }
+        titleLabel.text = "Rate \(driver.name)"
         
         commentsView.delegate = self
         super.viewDidLoad()
@@ -38,7 +38,6 @@ class RatingViewController: UIViewController, UITextViewDelegate {
             ratingButtons[i].addAction(UIAction { [unowned self] _ in
                 submitRatingButton.isEnabled = true
                 ratingButtons[0..<ratingButtons.count].forEach {
-                    $0.setTitleColor(.label, for: .normal)
                     $0.tintColor = .label
                 }
                 
@@ -66,7 +65,7 @@ class RatingViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submitRating() {
-        guard let rider = rider else { return }
+        guard let driver = driver else { return }
         guard let rideId = rideId else { return }
         
         let comments: String?
@@ -82,7 +81,7 @@ class RatingViewController: UIViewController, UITextViewDelegate {
         )
         
         
-        ratingClient.setRating(forUserId: rider.riderId, userType: .riders, rideId: rideId, rating: rating) {
+        ratingClient.setRating(forUserId: driver.driverId, userType: .drivers, rideId: rideId, rating: rating) {
             self.delegate?.didSetRating(rating)
             self.dismiss(animated: true)
         }

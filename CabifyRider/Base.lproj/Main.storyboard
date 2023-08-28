@@ -777,16 +777,16 @@
             </objects>
             <point key="canvasLocation" x="1952" y="-515"/>
         </scene>
-        <!--View Controller-->
+        <!--Rating View Controller-->
         <scene sceneID="oHf-gr-sXU">
             <objects>
-                <viewController id="B9Q-eK-ik0" sceneMemberID="viewController">
+                <viewController id="B9Q-eK-ik0" customClass="RatingViewController" customModule="CabifyRider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="flN-p4-Utc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Hashim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW7-oK-Wl9">
-                                <rect key="frame" x="15.999999999999993" y="119.99999999999999" width="121.33333333333331" height="25.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW7-oK-Wl9">
+                                <rect key="frame" x="15.999999999999996" y="119.99999999999999" width="43.666666666666657" height="25.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -809,7 +809,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="It was a great ride!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LNz-7u-9kf">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LNz-7u-9kf">
                                 <rect key="frame" x="16" y="241.33333333333337" width="361" height="100"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
@@ -824,31 +824,31 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ue-nK-Nz9">
                                         <rect key="frame" x="0.0" y="0.0" width="26" height="40"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kz1-Pu-49s">
                                         <rect key="frame" x="26" y="0.0" width="26" height="40"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV9-jh-env">
                                         <rect key="frame" x="52" y="0.0" width="26" height="40"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfL-zw-IMN">
                                         <rect key="frame" x="78" y="0.0" width="26" height="40"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayL-ws-rwR">
                                         <rect key="frame" x="104" y="0.0" width="26" height="40"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                     </button>
@@ -858,7 +858,7 @@
                                     <constraint firstAttribute="width" constant="130" id="PPD-Gi-8N9"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k06-Lt-WVT" customClass="UIRoundedButton" customModule="CabifyDriver" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k06-Lt-WVT" customClass="UIRoundedButton" customModule="CabifyRider" customModuleProvider="target">
                                 <rect key="frame" x="16" y="519.33333333333337" width="111" height="34.333333333333371"/>
                                 <color key="tintColor" systemColor="systemGray5Color"/>
                                 <state key="normal" title="Button"/>
@@ -867,6 +867,9 @@
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemGray5Color"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="submitRating" destination="B9Q-eK-ik0" eventType="touchUpInside" id="Unb-b9-PZq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5F1-20-Z4L"/>
@@ -888,6 +891,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yDL-bw-oaf"/>
+                    <connections>
+                        <outlet property="commentsView" destination="LNz-7u-9kf" id="yAP-Au-Xe4"/>
+                        <outlet property="ratingStackView" destination="khU-Vu-y1N" id="lRu-fd-ZZO"/>
+                        <outlet property="submitRatingButton" destination="k06-Lt-WVT" id="znD-VG-VDe"/>
+                        <outlet property="titleLabel" destination="lW7-oK-Wl9" id="mQS-Sk-JJD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRr-3I-HEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1012,7 +1021,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OF3-tw-mlV">
                                 <rect key="frame" x="16" y="595.66666666666663" width="362" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u1o-g3-HZt" customClass="UIRoundedImageView" customModule="CabifyDriver" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u1o-g3-HZt" customClass="UIRoundedImageView" customModule="CabifyRider" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="XMa-ih-TB0"/>
@@ -1051,7 +1060,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="od4-2v-FkQ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="od4-2v-FkQ">
                                 <rect key="frame" x="257" y="595.66666666666663" width="120" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UiX-jH-nA7"/>
@@ -1092,8 +1101,10 @@
                         <outlet property="mapView" destination="XLp-pE-fSs" id="jzU-vk-KiH"/>
                         <outlet property="pickupLabel" destination="lKr-r9-QcF" id="aQy-ph-Hfe"/>
                         <outlet property="ratingDescriptionLabel" destination="9mh-bu-7BX" id="1En-3Q-vNe"/>
+                        <outlet property="ratingStackView" destination="nHl-fm-Dza" id="0PQ-86-ttj"/>
                         <outlet property="rideCostLabel" destination="c71-C4-0oe" id="4cW-cy-XL1"/>
                         <outlet property="riderPhotoView" destination="u1o-g3-HZt" id="o5y-fI-txT"/>
+                        <outlet property="showRatingViewButton" destination="od4-2v-FkQ" id="XZl-uP-IFE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTz-XM-ASP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1142,7 +1153,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlh-rR-v0T" customClass="UIRoundedButton" customModule="CabifyDriver" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlh-rR-v0T" customClass="UIRoundedButton" customModule="CabifyRider" customModuleProvider="target">
                                                     <rect key="frame" x="221" y="25" width="120" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="Jfp-W0-xkt"/>
