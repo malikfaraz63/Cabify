@@ -556,13 +556,13 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
     
     func journeyPreviewDidSelectStep(_ step: MKRoute.Step) {
         guard let journeyManager = journeyManager else { return }
-        journeyManager.showPreview(ofType: .stepPreview(step: step))
+        journeyManager.showPreview(ofType: .stepPreview(step: step), hasVerticalOffset: true, animated: true)
     }
     
     func journeyPreviewDidDismiss() {
         showJourneyView()
         guard let journeyManager = journeyManager else { return }
-        journeyManager.showPreview(ofType: .travelPreview)
+        journeyManager.showPreview(ofType: .travelPreview, hasVerticalOffset: false, animated: true)
     }
     
     // MARK: Location Delegate
@@ -580,7 +580,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         updateViewForDriverStatusChange()
         
         journeyManager.setRoute(origin: CLLocationCoordinate2D(from: request.origin.coordinate), destination: CLLocationCoordinate2D(from: request.destination)) {
-            journeyManager.showPreview(ofType: .requestPreview)
+            journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: true, animated: true)
             self.showRequestContainer(withRequest: request)
         }
     }
@@ -714,7 +714,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         
         guard let journeyManager = journeyManager else { return }
         journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: request.origin.coordinate)) {
-            journeyManager.showPreview(ofType: .travelPreview)
+            journeyManager.showPreview(ofType: .travelPreview, hasVerticalOffset: false, animated: true)
             self.updateViewForDriverStatusChange()
         }
     }
@@ -782,7 +782,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, CKJourney
         guard let journeyManager = journeyManager else { return }
         guard let currentLocation = locationManager.location?.coordinate else { return }
         journeyManager.setRoute(origin: currentLocation, destination: CLLocationCoordinate2D(from: ride.destination)) {
-            journeyManager.showPreview(ofType: .travelPreview)
+            journeyManager.showPreview(ofType: .travelPreview, hasVerticalOffset: false, animated: true)
             self.updateViewForDriverStatusChange()
         }
     }

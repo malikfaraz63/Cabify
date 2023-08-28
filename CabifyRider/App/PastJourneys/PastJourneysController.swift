@@ -1,14 +1,13 @@
 //
 //  PastJourneysController.swift
-//  CabifyDriver
+//  CabifyRider
 //
-//  Created by Faraz Malik on 25/08/2023.
+//  Created by Faraz Malik on 27/08/2023.
 //
 
 import UIKit
 
-class PastJourneysController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class PastJourneysController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var pastJourneysTable: UITableView!
     
@@ -19,30 +18,29 @@ class PastJourneysController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         pastJourneysTable.delegate = self
         pastJourneysTable.dataSource = self
         
         viewDidAppear(true)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        guard let driverId = DriverSettingsManager.getUserID() else { return }
+        guard let riderId = RiderSettingsManager.getUserID() else { return }
         
         pastJourneys = []
         pastJourneysTable.reloadData()
         
         progressIndicator.startAnimating()
         
-        pastJourneysClient.getPastJourneys(forUserId: driverId, type: .drivers) { pastJourneys in
+        pastJourneysClient.getPastJourneys(forUserId: riderId, type: .riders) { pastJourneys in
             self.pastJourneys = pastJourneys
             self.pastJourneysTable.reloadData()
             self.progressIndicator.stopAnimating()
         }
     }
-    
+
     // MARK: Data Source
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pastJourneys.count
@@ -73,8 +71,8 @@ class PastJourneysController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     // MARK: Navigation
-     
-     
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueTag.showPastJourneyDetail.rawValue {
             guard let journeyDetailController = segue.destination as? PastJourneyDetailController else { return }
@@ -87,4 +85,5 @@ class PastJourneysController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
+
 }

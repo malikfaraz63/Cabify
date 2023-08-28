@@ -78,7 +78,7 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func showPreview(ofType previewType: PreviewType) {
+    func showPreview(ofType previewType: PreviewType, hasVerticalOffset: Bool, animated: Bool) {
         isFollowingCurrentLocation = false
         guard var origin = origin, var destination = destination else { return }
         
@@ -92,7 +92,6 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
             mapViewManager.addCheckpointAnnotation(destination, kind: .destination)
         }
         
-        let isAnimated: Bool
         switch previewType {
         case .stepPreview(let step):
             guard let step = step else { return }
@@ -101,25 +100,14 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
             guard step.polyline.coordinates.count >= 2 else { return }
             origin = step.polyline.coordinates.first!
             destination = step.polyline.coordinates.last!
-            
-            isAnimated = true
         case .pastJourneyPreview:
             mapViewManager.drawCoordinates(routeCoordinates, animated: false)
-            isAnimated = false
         default:
             mapViewManager.drawCoordinates(routeCoordinates, animated: true)
-            isAnimated = true
         }
         
-        var latitude = (origin.latitude + destination.latitude) / 2
-        if previewType == .requestPreview || previewType == .stepPreview(step: nil) {
-            latitude -= CKMapUtility.getDegreesBetweenCoordinates(origin, destination) / 2
-        }
-        let longitude = (origin.longitude + destination.longitude) / 2
-        
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        
-        mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(origin, destination), animated: isAnimated)
+        let hasVerticalOffset = previewType == .requestPreview || previewType == .stepPreview(step: nil)
+        centerBetweenCoordinates(hasVerticalOffset: hasVerticalOffset, first: origin, second: destination, animated: animated)
     }
     
     private func updateRoute(isCurrentLocationOrigin: Bool, completion: UpdateRouteCompletion?) {
@@ -166,7 +154,7 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func beginNavigation(shouldFollowCurrentLocation: Bool = true) {
+    func beginNavigation() {
         if destination == nil {
             fatalError()
         }
@@ -182,10 +170,17 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
                 delegate?.journeyDidBeginStep(currentRoute.steps[currentStep])
             }
         }
-        
-        if shouldFollowCurrentLocation {
-            startFollowingCurrentLocation()
+    }
+    
+    func centerBetweenCoordinates(hasVerticalOffset: Bool, first: CKCoordinate, second: CKCoordinate, animated: Bool) {
+        var latitude = (first.latitude + second.latitude) / 2
+        if hasVerticalOffset {
+            latitude -= CKMapUtility.getDegreesBetweenCoordinates(first, second) / 2
         }
+        let longitude = (first.longitude + second.longitude) / 2
+        
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        mapViewManager.centerToLocation(location, regionRadius: CKMapUtility.getDistanceBetweenCoordinates(first, second), animated: animated)
     }
     
     func startFollowingCurrentLocation() {
@@ -213,13 +208,8 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
         self.lastLocation = currentLocation.coordinate
         
         if isNavigating {
-            print("\n---navigation step---")
-            print("  completedSteps: \(completedCoordinates)")
             guard let routeCoordinates = routeCoordinates else { return }
             if routeCoordinates.count < 2 { return }
-            print("  routeCoordinatesCount: \(routeCoordinates.count)")
-            print("  stepsIndex: \(stepsIndex)")
-            print("  stepsIndexCount: \(stepsIndex.count)")
             
             func redrawFromCurrentStep() {
                 var newArray = Array(routeCoordinates[completedCoordinates..<routeCoordinates.count])
@@ -267,7 +257,7 @@ class CKJourneyManager: NSObject, CLLocationManagerDelegate {
                 redrawFromCurrentStep()
             } else if stepDestinationDelta > 0 || stepOriginDelta < 0 {
                 print("  headed in the wrong direction")
-                beginNavigation(shouldFollowCurrentLocation: false)
+                beginNavigation()
             }
             
             if navigateWithOverview {

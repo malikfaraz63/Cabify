@@ -29,7 +29,7 @@ class SetupViewController: UIViewController {
         let uid = user.uid
         
         
-        delegate?.driverDidSetup(withDriver: CKDriver(driverId: uid, name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, averageRating: 0, ridesCount: 0))
+        delegate?.driverDidSetup(withDriver: CKDriver(driverId: uid, name: name, email: email, isOnline: false, photoURL: url, phone: "07368989855", accountCreated: Date(), earnings: 0, ratings: CKRatingSummary(average: 0, count: 0), ridesCount: 0))
         
         dismiss(animated: true)
     }

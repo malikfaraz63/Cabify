@@ -14,7 +14,7 @@ class MessageViewModel: MessageType {
     var sentDate: Date
     var kind: MessageKit.MessageKind
     
-    init(from message: RequestMessage, sender: SenderType) {
+    init(from message: CKRequestMessage, sender: SenderType) {
         self.sender = sender
         self.messageId = message.sent.description
         self.sentDate = message.sent

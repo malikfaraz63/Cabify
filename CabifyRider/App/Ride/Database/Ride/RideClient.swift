@@ -15,11 +15,25 @@ class RideClient {
     
     private var rideListener: ListenerRegistration?
     
-    typealias RideChangedCompletion = (Ride) -> Void
+    typealias RideCompletion = (Ride) -> Void
     
     // MARK: Rides
     
-    public func setRideListener(withRideId rideId: String, completion: @escaping RideChangedCompletion) {
+    public func getRide(withRideId rideId: String, completion: @escaping RideCompletion) {
+        db
+            .collection("rides")
+            .document(rideId)
+            .getDocument(as: Ride.self) { result in
+                switch result {
+                case .success(let ride):
+                    completion(ride)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    public func setRideListener(withRideId rideId: String, completion: @escaping RideCompletion) {
         if let rideListener = rideListener { rideListener.remove() }
         
         rideListener = db

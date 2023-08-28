@@ -445,7 +445,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             riderStatus = .previewingSelectedRoute(rideCost: cost)
             updateViewForRiderStatus()
             journeyManager.setRoute(origin: CLLocationCoordinate2D(from: pickupLocation), destination: CLLocationCoordinate2D(from: dropoffLocation)) {
-                journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: false)
+                journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: false, animated: true)
             }
             requestClient.setNearbyDriverListeners(atLocation: pickupLocation, changeCompletion: nearbyDriverChanged, offlineCompletion: nearbyDriverWentOffline)
             self.setupRideConfirmView()
@@ -590,7 +590,7 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         if drawsPreview {
             guard let journeyManager = journeyManager else { return }
             journeyManager.setRoute(origin: CLLocationCoordinate2D(from: request.origin.coordinate), destination: CLLocationCoordinate2D(from: request.destination)) {
-                journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: false)
+                journeyManager.showPreview(ofType: .requestPreview, hasVerticalOffset: false, animated: true)
             }
         }
     }

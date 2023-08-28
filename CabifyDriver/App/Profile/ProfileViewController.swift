@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
             "phone": driver.phone,
             "accountCreated": driver.accountCreated,
             "earnings": driver.earnings,
-            "averageRating": driver.averageRating,
+            "ratings": driver.ratings,
             "ridesCount": driver.ridesCount
         ]
         
@@ -134,8 +134,8 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
         }
         nameLabel.text = driver.name
         emailLabel.text = driver.email
-        if driver.ridesCount > 0 {
-            ratingLabel.text = String(format: "%.2f", driver.averageRating)
+        if driver.ratings.count > 0 {
+            ratingLabel.text = String(format: "%.2f", driver.ratings.average)
         } else {
             ratingLabel.text = "N.A."
         }

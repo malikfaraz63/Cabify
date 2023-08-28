@@ -76,7 +76,7 @@ class RequestMessagesController: MessagesViewController {
             return
         }
         
-        let requestMessage = RequestMessage(message: message, read: false, sent: Date())
+        let requestMessage = CKRequestMessage(message: message, read: false, sent: Date())
         
         requestClient.sendMessage(forRequestId: requestId, message: requestMessage)
         requestClient.markRiderMessagesReadForRequestId(requestId)
@@ -97,7 +97,7 @@ class RequestMessagesController: MessagesViewController {
         }
     }
     
-    private func messagesChangedCompletion(withMessages messages: [RequestMessage], source: RequestMessageSource) {
+    private func messagesChangedCompletion(withMessages messages: [CKRequestMessage], source: RequestMessageSource) {
         if source == .driverMessages {
             driverMessages.removeAll()
             for message in messages {

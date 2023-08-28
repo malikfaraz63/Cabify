@@ -29,7 +29,7 @@ class RequestClient {
     typealias ActiveRequestChangedCompletion = (ActiveRequest) -> Void
     typealias UpdateCompletion = (Bool) -> Void
     typealias RequestAcceptedCompletion = (Bool) -> Void
-    typealias MessagesLoadCompletion = ([RequestMessage]) -> Void
+    typealias MessagesLoadCompletion = ([CKRequestMessage]) -> Void
     
     init() {
         self.didViewRequest = false
@@ -205,9 +205,9 @@ class RequestClient {
             .collection(messageSource.rawValue)
             .addSnapshotListener { querySnapshot, error in
                 if let querySnapshot = querySnapshot {
-                    var requestMessages: [RequestMessage] = []
+                    var requestMessages: [CKRequestMessage] = []
                     do {
-                        try requestMessages.append(contentsOf: querySnapshot.documents.map { try $0.data(as: RequestMessage.self) })
+                        try requestMessages.append(contentsOf: querySnapshot.documents.map { try $0.data(as: CKRequestMessage.self) })
                     } catch let error {
                         print(error)
                     }
@@ -241,7 +241,7 @@ class RequestClient {
         }
     }
     
-    public func sendMessage(forRequestId requestId: String, message: RequestMessage) {
+    public func sendMessage(forRequestId requestId: String, message: CKRequestMessage) {
         let requestDriverMessagesRef = db
             .collection("requests")
             .document(requestId)

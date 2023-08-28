@@ -15,6 +15,9 @@
 		D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */; };
 		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
 		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
+		D942FF9F2A9BCB9E00E08F01 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */; };
+		D942FFA12A9BD49600E08F01 /* RatingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA02A9BD49600E08F01 /* RatingClient.swift */; };
+		D942FFA32A9BD8A400E08F01 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D942FFA22A9BD8A400E08F01 /* Rating.swift */; };
 		D952A6CA2A9A17CB00745DE2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6C92A9A17CB00745DE2 /* FirebaseAuth */; };
 		D952A6CC2A9A17D100745DE2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CB2A9A17D100745DE2 /* FirebaseFirestore */; };
 		D952A6CE2A9A17D600745DE2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D952A6CD2A9A17D600745DE2 /* FirebaseFirestoreSwift */; };
@@ -28,6 +31,8 @@
 		D956B85A2A81181400D24668 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B8592A81181400D24668 /* Ride.swift */; };
 		D956B85C2A81190D00D24668 /* RideLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B85B2A81190D00D24668 /* RideLocation.swift */; };
 		D956B85E2A811A3E00D24668 /* RideClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B85D2A811A3E00D24668 /* RideClient.swift */; };
+		D95808722A9C86EF000C8EEB /* CKRatingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95808712A9C86EF000C8EEB /* CKRatingSummary.swift */; };
+		D95808742A9C99D8000C8EEB /* RatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95808732A9C99D8000C8EEB /* RatingViewDelegate.swift */; };
 		D96BBB092A87C031009FAA78 /* UIRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFC2A87C031009FAA78 /* UIRoundedButton.swift */; };
 		D96BBB0A2A87C031009FAA78 /* UIRoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFD2A87C031009FAA78 /* UIRoundedLabel.swift */; };
 		D96BBB0B2A87C031009FAA78 /* CountdownProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBAFE2A87C031009FAA78 /* CountdownProgressView.swift */; };
@@ -40,7 +45,7 @@
 		D976D30B2A8690BE0024E71E /* JourneyPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */; };
 		D976D30D2A8692BB0024E71E /* PreviewStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */; };
 		D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */; };
-		D991E0F32A98B1EA00C74715 /* PastJourneysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */; };
+		D991E0F32A98B1EA00C74715 /* CKPastJourneysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F22A98B1EA00C74715 /* CKPastJourneysClient.swift */; };
 		D991E0F52A98B38600C74715 /* PastJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F42A98B38600C74715 /* PastJourney.swift */; };
 		D991E0F72A98BB5700C74715 /* PastJourneysController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0F62A98BB5700C74715 /* PastJourneysController.swift */; };
 		D991E0FB2A98C2CB00C74715 /* CKMapsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E0FA2A98C2CB00C74715 /* CKMapsObjects.swift */; };
@@ -51,7 +56,7 @@
 		D991E1092A98EEBA00C74715 /* UIRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E1082A98EEBA00C74715 /* UIRoundedImageView.swift */; };
 		D9BD919B2A76672100F720AA /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD919A2A76672100F720AA /* RequestClient.swift */; };
 		D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */; };
-		D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367E22A7947E800C99D28 /* RequestMessage.swift */; };
+		D9C367E32A7947E800C99D28 /* CKRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C367E22A7947E800C99D28 /* CKRequestMessage.swift */; };
 		D9C590F72A96B67F00349B33 /* EarningsUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C590F62A96B67F00349B33 /* EarningsUIController.swift */; };
 		D9C590F92A96B6BD00349B33 /* EarningsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */; };
 		D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */; };
@@ -91,6 +96,9 @@
 		D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
 		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		D942FFA02A9BD49600E08F01 /* RatingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingClient.swift; sourceTree = "<group>"; };
+		D942FFA22A9BD8A400E08F01 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		D952A6D52A9A189900745DE2 /* CKRideStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRideStatus.swift; sourceTree = "<group>"; };
 		D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRideFetch.swift; sourceTree = "<group>"; };
 		D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestFetch.swift; sourceTree = "<group>"; };
@@ -98,6 +106,9 @@
 		D956B8592A81181400D24668 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		D956B85B2A81190D00D24668 /* RideLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocation.swift; sourceTree = "<group>"; };
 		D956B85D2A811A3E00D24668 /* RideClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideClient.swift; sourceTree = "<group>"; };
+		D95808702A9C8335000C8EEB /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D95808712A9C86EF000C8EEB /* CKRatingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRatingSummary.swift; sourceTree = "<group>"; };
+		D95808732A9C99D8000C8EEB /* RatingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewDelegate.swift; sourceTree = "<group>"; };
 		D96BBAFC2A87C031009FAA78 /* UIRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedButton.swift; sourceTree = "<group>"; };
 		D96BBAFD2A87C031009FAA78 /* UIRoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedLabel.swift; sourceTree = "<group>"; };
 		D96BBAFE2A87C031009FAA78 /* CountdownProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownProgressView.swift; sourceTree = "<group>"; };
@@ -110,8 +121,7 @@
 		D976D30A2A8690BE0024E71E /* JourneyPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewController.swift; sourceTree = "<group>"; };
 		D976D30C2A8692BB0024E71E /* PreviewStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStepCell.swift; sourceTree = "<group>"; };
 		D976D30E2A8697A80024E71E /* JourneyPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPreviewDelegate.swift; sourceTree = "<group>"; };
-		D9855F132A9B647000D4CECC /* CabifyDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CabifyDriver.app; path = "/Users/farazmalik/Documents/Personal/iOS Projects/Cabify/build/Debug-iphoneos/CabifyDriver.app"; sourceTree = "<absolute>"; };
-		D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysClient.swift; sourceTree = "<group>"; };
+		D991E0F22A98B1EA00C74715 /* CKPastJourneysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKPastJourneysClient.swift; sourceTree = "<group>"; };
 		D991E0F42A98B38600C74715 /* PastJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourney.swift; sourceTree = "<group>"; };
 		D991E0F62A98BB5700C74715 /* PastJourneysController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastJourneysController.swift; sourceTree = "<group>"; };
 		D991E0FA2A98C2CB00C74715 /* CKMapsObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKMapsObjects.swift; path = CabifyRider/CabifyKit/Map/CKMapsObjects.swift; sourceTree = SOURCE_ROOT; };
@@ -122,7 +132,7 @@
 		D991E1082A98EEBA00C74715 /* UIRoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedImageView.swift; sourceTree = "<group>"; };
 		D9BD919A2A76672100F720AA /* RequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClient.swift; sourceTree = "<group>"; };
 		D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRequest.swift; sourceTree = "<group>"; };
-		D9C367E22A7947E800C99D28 /* RequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
+		D9C367E22A7947E800C99D28 /* CKRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRequestMessage.swift; sourceTree = "<group>"; };
 		D9C590F62A96B67F00349B33 /* EarningsUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsUIController.swift; sourceTree = "<group>"; };
 		D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsUIView.swift; sourceTree = "<group>"; };
 		D9D6F1F12A6E9F8C00E50957 /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +184,7 @@
 			children = (
 				D90897C52A6D3F2300C40BD7 /* CabifyDriver */,
 				D952A6C82A9A17CB00745DE2 /* Frameworks */,
+				D95808702A9C8335000C8EEB /* CabifyDriver.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,6 +222,62 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		D942FF962A9BC94E00E08F01 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D942FF9A2A9BCA1600E08F01 /* Message */,
+				D942FF992A9BC96D00E08F01 /* PastJourneys */,
+				D942FF982A9BC95F00E08F01 /* Ride */,
+				D942FF972A9BC95500E08F01 /* Request */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		D942FF972A9BC95500E08F01 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */,
+				D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		D942FF982A9BC95F00E08F01 /* Ride */ = {
+			isa = PBXGroup;
+			children = (
+				D952A6D52A9A189900745DE2 /* CKRideStatus.swift */,
+				D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */,
+			);
+			path = Ride;
+			sourceTree = "<group>";
+		};
+		D942FF992A9BC96D00E08F01 /* PastJourneys */ = {
+			isa = PBXGroup;
+			children = (
+				D991E0F22A98B1EA00C74715 /* CKPastJourneysClient.swift */,
+			);
+			path = PastJourneys;
+			sourceTree = "<group>";
+		};
+		D942FF9A2A9BCA1600E08F01 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				D9C367E22A7947E800C99D28 /* CKRequestMessage.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		D942FF9B2A9BCB5300E08F01 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				D942FF9E2A9BCB9E00E08F01 /* RatingViewController.swift */,
+				D942FFA02A9BD49600E08F01 /* RatingClient.swift */,
+				D942FFA22A9BD8A400E08F01 /* Rating.swift */,
+				D95808732A9C99D8000C8EEB /* RatingViewDelegate.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
 		D952A6C82A9A17CB00745DE2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,15 +307,12 @@
 		D96BBAFA2A87C031009FAA78 /* CabifyKit */ = {
 			isa = PBXGroup;
 			children = (
-				D9D6F2282A72A49200E50957 /* CKRequestStatus.swift */,
-				D952A6D52A9A189900745DE2 /* CKRideStatus.swift */,
+				D942FF962A9BC94E00E08F01 /* Database */,
 				D9C118512A8BEF2300201454 /* Journey */,
 				D9C118502A8BEE6500201454 /* Client */,
 				D96BBB032A87C031009FAA78 /* Map */,
 				D96BBAFB2A87C031009FAA78 /* View */,
 				D96BBB002A87C031009FAA78 /* Profile */,
-				D952A6D72A9A1B5F00745DE2 /* CKRideFetch.swift */,
-				D952A6D92A9A1B8400745DE2 /* CKRequestFetch.swift */,
 			);
 			path = CabifyKit;
 			sourceTree = "<group>";
@@ -271,6 +335,7 @@
 				D991E1042A98E76F00C74715 /* CKDriver.swift */,
 				D991E1022A98E76F00C74715 /* CKProfileClient.swift */,
 				D991E1032A98E76F00C74715 /* CKRider.swift */,
+				D95808712A9C86EF000C8EEB /* CKRatingSummary.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -329,7 +394,6 @@
 			children = (
 				D9D6F2162A71B8A600E50957 /* PendingRequest.swift */,
 				D9C367DD2A793DD000C99D28 /* ActiveRequest.swift */,
-				D9C367E22A7947E800C99D28 /* RequestMessage.swift */,
 			);
 			path = RequestObjects;
 			sourceTree = "<group>";
@@ -371,9 +435,10 @@
 		D9D6F2092A703ADD00E50957 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D9D6F20B2A703B0900E50957 /* Profile */,
+				D942FF9B2A9BCB5300E08F01 /* Rating */,
 				D9F721DA2A97F76900B8BCC1 /* PastJourneys */,
 				D9C590F52A96B65900349B33 /* Earnings */,
-				D9D6F20B2A703B0900E50957 /* Profile */,
 				D9D6F1FC2A6EB3DB00E50957 /* Ride */,
 				D9D6F1EE2A6E7B9200E50957 /* Utilities */,
 			);
@@ -459,7 +524,6 @@
 			children = (
 				D9F721DB2A97F77C00B8BCC1 /* PastJourneyCell.swift */,
 				D9F721DD2A97FD4000B8BCC1 /* PastJourneyDetailController.swift */,
-				D991E0F22A98B1EA00C74715 /* PastJourneysClient.swift */,
 				D991E0F42A98B38600C74715 /* PastJourney.swift */,
 				D991E0F62A98BB5700C74715 /* PastJourneysController.swift */,
 			);
@@ -491,7 +555,7 @@
 				D952A6D32A9A17EB00745DE2 /* GoogleSignInSwift */,
 			);
 			productName = CabifyDriver;
-			productReference = D9855F132A9B647000D4CECC /* CabifyDriver.app */;
+			productReference = D95808702A9C8335000C8EEB /* CabifyDriver.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -553,21 +617,24 @@
 			files = (
 				D956B85E2A811A3E00D24668 /* RideClient.swift in Sources */,
 				D9D6F2042A6FBCE200E50957 /* CKJourneyManager.swift in Sources */,
-				D9C367E32A7947E800C99D28 /* RequestMessage.swift in Sources */,
+				D9C367E32A7947E800C99D28 /* CKRequestMessage.swift in Sources */,
 				D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */,
 				D9F721D92A97B29A00B8BCC1 /* EarningsWeekData.swift in Sources */,
 				D9D6F21D2A728B9700E50957 /* LoginViewDelegate.swift in Sources */,
+				D942FF9F2A9BCB9E00E08F01 /* RatingViewController.swift in Sources */,
 				D90897C72A6D3F2300C40BD7 /* AppDelegate.swift in Sources */,
 				D991E0F72A98BB5700C74715 /* PastJourneysController.swift in Sources */,
 				D991E1052A98E76F00C74715 /* CKProfileClient.swift in Sources */,
 				D9D6F22F2A72B9A700E50957 /* StoryboardTag.swift in Sources */,
 				D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */,
+				D942FFA32A9BD8A400E08F01 /* Rating.swift in Sources */,
 				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
 				D991E1062A98E76F00C74715 /* CKRider.swift in Sources */,
 				D9D6F21B2A728B8F00E50957 /* LoginViewController.swift in Sources */,
 				D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */,
 				D952A6D62A9A189900745DE2 /* CKRideStatus.swift in Sources */,
 				D9D6F2102A71659600E50957 /* CKJourneyDelegate.swift in Sources */,
+				D95808742A9C99D8000C8EEB /* RatingViewDelegate.swift in Sources */,
 				D9D6F1F22A6E9F8C00E50957 /* RideViewController.swift in Sources */,
 				D96BBB0F2A87C031009FAA78 /* CKMapUtility.swift in Sources */,
 				D9F721DC2A97F77C00B8BCC1 /* PastJourneyCell.swift in Sources */,
@@ -583,6 +650,7 @@
 				D9D6F2272A72901700E50957 /* SegueTag.swift in Sources */,
 				D96BBB0C2A87C031009FAA78 /* UIRoundedStackView.swift in Sources */,
 				D991E1072A98E76F00C74715 /* CKDriver.swift in Sources */,
+				D95808722A9C86EF000C8EEB /* CKRatingSummary.swift in Sources */,
 				D952A6DA2A9A1B8400745DE2 /* CKRequestFetch.swift in Sources */,
 				D9C367DE2A793DD000C99D28 /* ActiveRequest.swift in Sources */,
 				D96BBB0A2A87C031009FAA78 /* UIRoundedLabel.swift in Sources */,
@@ -595,10 +663,11 @@
 				D9C590F92A96B6BD00349B33 /* EarningsUIView.swift in Sources */,
 				D96BBB122A87C031009FAA78 /* CKCoordinate.swift in Sources */,
 				D976D30B2A8690BE0024E71E /* JourneyPreviewController.swift in Sources */,
-				D991E0F32A98B1EA00C74715 /* PastJourneysClient.swift in Sources */,
+				D991E0F32A98B1EA00C74715 /* CKPastJourneysClient.swift in Sources */,
 				D9F721D52A97965100B8BCC1 /* EarningsClient.swift in Sources */,
 				D9F721DE2A97FD4000B8BCC1 /* PastJourneyDetailController.swift in Sources */,
 				D9D6F2152A71971300E50957 /* PendingRequestDelegate.swift in Sources */,
+				D942FFA12A9BD49600E08F01 /* RatingClient.swift in Sources */,
 				D9C590F72A96B67F00349B33 /* EarningsUIController.swift in Sources */,
 				D96BBB112A87C031009FAA78 /* CKRouteSummaryClient.swift in Sources */,
 				D96BBB092A87C031009FAA78 /* UIRoundedButton.swift in Sources */,

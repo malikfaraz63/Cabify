@@ -10,4 +10,6 @@ import Foundation
 enum SegueTag: String {
     case embedRouteSelection
     case showRequestMessages
+    case showPastJourneyDetail
+    case showRiderRating
 }
