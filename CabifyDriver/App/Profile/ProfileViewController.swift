@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
     @IBOutlet weak var signInView: UIView!
     
     let db = Firestore.firestore()
+    let profileClient = CKProfileClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,10 @@ class ProfileViewController: UIViewController, LoginViewDelegate, SetupViewDeleg
             "phone": driver.phone,
             "accountCreated": driver.accountCreated,
             "earnings": driver.earnings,
-            "ratings": driver.ratings,
+            "ratings": [
+                "average": driver.ratings.average,
+                "count": driver.ratings.count
+            ],
             "ridesCount": driver.ridesCount
         ]
         

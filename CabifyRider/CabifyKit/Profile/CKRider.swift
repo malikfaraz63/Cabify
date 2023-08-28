@@ -11,7 +11,7 @@ struct CKRider: Codable {
     let riderId: String
     let name: String
     let email: String
-    let photoURL: String
+    let photoURL: String?
     let phone: String
     let funds: Double
     let ridesCount: Int

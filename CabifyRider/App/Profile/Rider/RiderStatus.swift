@@ -16,6 +16,7 @@ enum RiderStatus: Equatable {
     case awaitingDriverArrival(request: ActiveRequest)
     case awaitingRideActivation(ride: Ride)
     case awaitingDropoff(ride: Ride)
+    case userNotFound
     
     public func getValue() -> Int {
         switch self {
@@ -35,6 +36,8 @@ enum RiderStatus: Equatable {
             return 6
         case .awaitingDropoff:
             return 7
+        case .userNotFound:
+            return 8
         }
     }
     

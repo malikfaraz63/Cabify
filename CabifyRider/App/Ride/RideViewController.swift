@@ -80,12 +80,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     var previousUserId: String?
     var didRejoinSession = false
     
-    private var riderStatus: RiderStatus = .usingRouteSelector
+    private var riderStatus: RiderStatus = .userNotFound
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: TEMP ONLY
-        RiderSettingsManager.setUserID(to: "NLrmkbN13DdDIRAud0SSmQKht6H2")
         
         activeDriverMessagesBadge.layer.cornerRadius = activeDriverMessagesBadge.frame.height / 2
         activeDriverMessagesBadge.clipsToBounds = true
@@ -118,11 +116,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         }
     }
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         switch locationManager.authorizationStatus {
         case .denied:
+            showNotification(ofType: .error, message: "Location services not authorised", isPersistent: false)
             showSettingsAlert()
             return
         default:
@@ -140,12 +137,15 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 setupForRider()
             }
         } else {
-            
+            showNotification(ofType: .warning, message: "User not found", isPersistent: false)
+            riderStatus = .userNotFound
+            updateViewForRiderStatus()
         }
     }
     
     func setupForRider() {
         previousUserId = RiderSettingsManager.getUserID()
+        riderStatus = .usingRouteSelector
         updateViewForRiderStatus()
     }
     
@@ -323,6 +323,10 @@ class RideViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     func updateViewForRiderStatus() {
         print("updating view for rider status")
         switch riderStatus {
+        case .userNotFound:
+            hideRouteSelector()
+            hideRideConfirmationView()
+            hidePinSelectorView()
         case .usingRouteSelector:
             navigateWithOverviewButton.isHidden = true
             editSelectedRouteButton.isHidden = true
