@@ -15,21 +15,8 @@ struct EarningsDataPoint: Identifiable, Equatable {
 }
 
 struct EarningsUIView: View {
-    let earningsData = [
-        EarningsDataPoint(key: "Mon", earnings: 132.16),
-        EarningsDataPoint(key: "Tue", earnings: 92.44),
-        EarningsDataPoint(key: "Wed", earnings: 181.92),
-        EarningsDataPoint(key: "Thu", earnings: 164.37),
-        EarningsDataPoint(key: "Fri", earnings: 128.73),
-        EarningsDataPoint(key: "Sat", earnings: 74.57),
-        EarningsDataPoint(key: "Sun", earnings: 34.11),
-    ]
-    
-    var totalEarnings: Double {
-         return earningsData
-            .map { $0.earnings }
-            .reduce(0.0) { $0 + $1 }
-    }
+    @ObservedObject
+    var viewManager = EarningsViewManager()
     
     func getMoney(_ money: Double) -> String {
         return String(format: "£%.2f", money)
@@ -43,12 +30,12 @@ struct EarningsUIView: View {
             
             HStack {
                 VStack {
-                    Text("Wallet Balance")
+                    Text("Earnings")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color(uiColor: .systemGray2))
                         .font(.caption)
                         .fontWeight(.medium)
-                    Text(getMoney(2114))
+                    Text(getMoney(viewManager.driver?.earnings ?? 0))
                         .font(.custom("Helvetica Neue", size: 24))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -72,36 +59,36 @@ struct EarningsUIView: View {
         
         VStack {
             VStack {
-                Text("Dec 7-14")
+                Text(viewManager.currentWeekDescription)
                     .foregroundColor(Color(uiColor: .systemGray2))
                     .font(.caption)
                     .fontWeight(.medium)
                 HStack {
                     Button {
-                        
+                        viewManager.jumpBackWeek()
                     } label: {
                         Image(systemName: "chevron.left")
-                    }
-                    Text(getMoney(totalEarnings))
+                    }.disabled(!viewManager.hasPreviousWeek)
+                    Text(getMoney(viewManager.totalEarnings))
                         .font(.custom("Helvetica Neue", size: 24))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .center)
                     Button {
-                        
+                        viewManager.jumpForwardWeek()
                     } label: {
                         Image(systemName: "chevron.right")
-                    }
+                    }.disabled(!viewManager.hasNextWeek)
                 }
                     .frame(maxWidth: .infinity, alignment: .center)
                 
                 Chart {
-                    ForEach(earningsData) { dataPoint in
+                    ForEach(viewManager.earningsData) { dataPoint in
                         BarMark(x: .value("Weekday", dataPoint.key), y: .value("Earnings", dataPoint.earnings))
                             .cornerRadius(5)
                             
                     }
                     
-                    let average = totalEarnings / Double(earningsData.count)
+                    let average = viewManager.totalEarnings / Double(viewManager.earningsData.count)
                     
                     RuleMark(y: .value("Average", average))
                         .foregroundStyle(Color(uiColor: .systemGray3))
@@ -124,7 +111,7 @@ struct EarningsUIView: View {
                             .font(.caption)
                             .fontWeight(.medium)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("140")
+                        Text("\(viewManager.driver?.ridesCount ?? 0)")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -136,7 +123,7 @@ struct EarningsUIView: View {
                             .font(.caption)
                             .fontWeight(.medium)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("88")
+                        Text("\(viewManager.driver?.ratings.count ?? 0)")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -151,7 +138,7 @@ struct EarningsUIView: View {
                         HStack {
                             Image(systemName: "star.fill")
                                 .imageScale(.small)
-                            Text("4.34")
+                            Text(String(format: "%.2f", viewManager.driver?.ratings.average ?? 0))
                                 .fontWeight(.semibold)
                         }.frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -164,7 +151,7 @@ struct EarningsUIView: View {
             .frame(maxWidth: UIScreen.screenWidth - 32, alignment: .center)
             .background(Color(uiColor: .systemGray6))
             .cornerRadius(10)
-    }}
+    }.onAppear(perform: viewManager.setupFromCurrentWeek)}
     
 }
 

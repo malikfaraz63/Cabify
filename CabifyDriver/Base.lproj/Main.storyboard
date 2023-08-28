@@ -191,12 +191,12 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="9fb-e4-8pW"/>
                     <connections>
                         <outlet property="emailLabel" destination="ZFs-K5-9Ob" id="HhQ-vN-s5o"/>
-                        <outlet property="fundsAvailable" destination="cKI-6Z-4gf" id="V35-C5-R6k"/>
                         <outlet property="nameLabel" destination="bh6-bE-Fac" id="94X-hV-5dt"/>
                         <outlet property="profileImageView" destination="IS9-dW-VKL" id="ze0-uX-ynd"/>
                         <outlet property="ratingLabel" destination="lI9-eS-GrZ" id="a4Y-bb-hpy"/>
                         <outlet property="ratingsView" destination="7xi-dl-ZVE" id="8cf-U2-eL4"/>
                         <outlet property="signInView" destination="Scx-qh-iBw" id="TqQ-aF-6iQ"/>
+                        <outlet property="tripsCountLabel" destination="cKI-6Z-4gf" id="BrS-QU-aCG"/>
                         <outlet property="yearsLabel" destination="weF-fz-I4f" id="EOB-gO-cfe"/>
                     </connections>
                 </viewController>

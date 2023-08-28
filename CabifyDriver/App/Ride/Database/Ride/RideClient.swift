@@ -18,6 +18,7 @@ class RideClient {
     typealias UpdateCompletion = (Bool) -> Void
     
     private let db = Firestore.firestore()
+    private let earningsClient = EarningsClient()
     
     // MARK: Ride
     
@@ -194,6 +195,8 @@ class RideClient {
                 completion?()
             }
         }
+        
+        earningsClient.updateEarningsData(forDriverId: ride.driverId, cost: ride.cost)
     }
     
     // MARK: Miscellaneous

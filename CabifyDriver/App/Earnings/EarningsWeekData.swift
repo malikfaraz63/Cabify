@@ -23,7 +23,7 @@ struct EarningsWeekData {
     }
 }
 
-enum EarningsWeekday: String, Equatable, Comparable {
+enum EarningsWeekday: String, Equatable, Comparable, CaseIterable {
     case monday    = "Mon"
     case tuesday   = "Tue"
     case wednesday = "Wed"

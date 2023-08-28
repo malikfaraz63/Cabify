@@ -12,6 +12,7 @@
 		D90897CE2A6D3F2300C40BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897CC2A6D3F2300C40BD7 /* Main.storyboard */; };
 		D90897D02A6D3F2400C40BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */; };
 		D90897D32A6D3F2400C40BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90897D12A6D3F2400C40BD7 /* LaunchScreen.storyboard */; };
+		D935BBF02A9D2BB8007FF654 /* EarningsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935BBEF2A9D2BB8007FF654 /* EarningsViewManager.swift */; };
 		D93EFE5C2A7D3FFE0052C00B /* RequestMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */; };
 		D93EFE5E2A7D40690052C00B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5D2A7D40690052C00B /* Sender.swift */; };
 		D93EFE602A7D40710052C00B /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */; };
@@ -93,6 +94,7 @@
 		D90897CF2A6D3F2400C40BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D90897D22A6D3F2400C40BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D90897D42A6D3F2400C40BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D935BBEF2A9D2BB8007FF654 /* EarningsViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsViewManager.swift; sourceTree = "<group>"; };
 		D93EFE5B2A7D3FFE0052C00B /* RequestMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessagesController.swift; sourceTree = "<group>"; };
 		D93EFE5D2A7D40690052C00B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		D93EFE5F2A7D40710052C00B /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				D9C590F82A96B6BD00349B33 /* EarningsUIView.swift */,
 				D9F721D42A97965100B8BCC1 /* EarningsClient.swift */,
 				D9F721D82A97B29A00B8BCC1 /* EarningsWeekData.swift */,
+				D935BBEF2A9D2BB8007FF654 /* EarningsViewManager.swift */,
 			);
 			path = Earnings;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				D976D30F2A8697A80024E71E /* JourneyPreviewDelegate.swift in Sources */,
 				D942FFA32A9BD8A400E08F01 /* CKRating.swift in Sources */,
 				D90897C92A6D3F2300C40BD7 /* SceneDelegate.swift in Sources */,
+				D935BBF02A9D2BB8007FF654 /* EarningsViewManager.swift in Sources */,
 				D991E1062A98E76F00C74715 /* CKRider.swift in Sources */,
 				D9D6F21B2A728B8F00E50957 /* LoginViewController.swift in Sources */,
 				D9D6F1FB2A6EADC200E50957 /* ProfileViewController.swift in Sources */,

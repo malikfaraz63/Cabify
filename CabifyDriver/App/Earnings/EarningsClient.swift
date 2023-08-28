@@ -41,7 +41,7 @@ class EarningsClient {
     }
     
     public func updateEarningsData(forDriverId driverId: String, cost: Double) {
-        let date = getWeekCommence(Date())
+        let date = EarningsClient.getWeekCommence(Date())
         
         dateFormatter.dateFormat = "YYYY"
         let yearString = dateFormatter.string(from: date)
@@ -49,7 +49,7 @@ class EarningsClient {
         let monthString = dateFormatter.string(from: date)
         dateFormatter.dateFormat = "YYYY-MM-dd"
         let weekString = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "ddd"
+        dateFormatter.dateFormat = "EEE"
         let weekdayString = dateFormatter.string(from: Date())
         
         var ref = db
@@ -76,11 +76,13 @@ class EarningsClient {
                 } else {
                     ref.setData([weekdayString: cost])
                 }
+            } else if let error = error {
+                print(error)
             }
         }
     }
     
-    private func getWeekCommence(_ date: Date) -> Date {
+    public static func getWeekCommence(_ date: Date) -> Date {
         guard let weekdayWrapper = Calendar.current.dateComponents([.weekday], from: date).weekday else { fatalError() }
         
         if weekdayWrapper == 1 {
@@ -106,7 +108,7 @@ class EarningsClient {
                     reference.setData([key: cost])
                 }
             } else if let error = error {
-                
+                print(error)
             }
         }
     }
