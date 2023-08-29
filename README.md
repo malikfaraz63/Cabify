@@ -6,13 +6,17 @@ Fully functioning Ride-hailing app prototypes, each for riders and drivers. Incl
 
 ## CabifyKit
 Package used by both rider and driver app, containing common objects and frameworks.
+- Google Places API interface for route summary and location description
+- Map view management and annotations
+- Live journey navigation interface for client apps
+- Profile interface
 
 ## CabifyDriver
 Driver app with location-based filtering of ride requests, in-app navigation and session rejoin. Here is a breakdown of included features:
   ### Profile
   - View profile details
   ### Ratings
-  - View ratings given for rider in past rides
+  - View ratings given to riders in past rides
   - Rate unrated rider in past rides
   ### Earnings
   - Optimised storage of earnings data for annual, monthy and weekly overview
@@ -21,7 +25,7 @@ Driver app with location-based filtering of ride requests, in-app navigation and
   - View past journey details and overview
   ### Requests
   - Optimised location-based filtering of pending ride requests
-  - Updating status and driver location as ride progresses
+  - Updating status and location as ride progresses
   - Rejoin of in-progress session if app unexpectedly quits
   ### Ride View
   - In-app live navigation, with current journey step details
@@ -30,8 +34,17 @@ Driver app with location-based filtering of ride requests, in-app navigation and
 ## CabifyRider
 Rider app with optimised route selection, in-app navigation and session rejoin. Here is a breakdown of included features:
   ### Profile
+  - View profile details
   ### Ratings
+  - View ratings given to drivers in past rides
+  - Rate unrated driver in past rides
   ### Past Journeys
+  - View past journey details and overview
   ### Requests
+  - Optimise pending ride requests for location-based filtering
+  - Updating view as status and driver location on ride progresses
+  - Rejoin of in-progress session if app unexpectedly quits
   ### Ride View
+  - In-app live navigation
+  - Ride overview and traffic-updated journey times
   
