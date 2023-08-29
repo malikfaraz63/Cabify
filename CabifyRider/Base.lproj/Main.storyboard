@@ -594,7 +594,7 @@
         <scene sceneID="IbU-2G-5H3">
             <objects>
                 <viewController id="SrQ-cs-xy7" customClass="RouteSelectionController" customModule="CabifyRider" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Dlw-RV-d0u">
+                    <view key="view" contentMode="scaleToFill" id="Dlw-RV-d0u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1359,7 +1359,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7Ut-mJ-DLg"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YaG-Zg-Cuk" firstAttribute="top" secondItem="2OV-vj-wY0" secondAttribute="topMargin" constant="280" id="0DA-sN-Rrb"/>
                             <constraint firstItem="F36-PU-adt" firstAttribute="top" secondItem="2OV-vj-wY0" secondAttribute="top" constant="76" id="0Hb-3i-7ex"/>

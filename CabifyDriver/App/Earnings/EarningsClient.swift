@@ -55,15 +55,14 @@ class EarningsClient {
         var ref = db
             .collection("drivers").document(driverId)
             .collection("earningsYears").document(yearString)
-        updateEarningsData(forReference: ref, summaryKey: yearString, cost: cost)
-        
-        ref = ref
-            .collection("earningsMonths").document(monthString)
         updateEarningsData(forReference: ref, summaryKey: monthString, cost: cost)
         
         ref = ref
-            .collection("earningsWeeks").document(weekString)
+            .collection("earningsMonths").document(monthString)
         updateEarningsData(forReference: ref, summaryKey: weekString, cost: cost)
+        
+        ref = ref
+            .collection("earningsWeeks").document(weekString)
         
         ref.getDocument { documentSnapshot, error in
             if let documentSnapshot = documentSnapshot {

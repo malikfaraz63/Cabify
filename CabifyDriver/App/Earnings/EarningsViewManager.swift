@@ -58,14 +58,12 @@ class EarningsViewManager: ObservableObject {
     private func setupFromEarningsData(_ data: [String: Double]) {
         earningsData = []
         var newData: [EarningsWeekday: Double] = [:]
-        if data.isEmpty {
-            EarningsWeekday.allCases.forEach { weekday in
-                newData[weekday] = 0.0
-            }
-        } else {
-            data.forEach { key, earnings in
-                newData[EarningsWeekday(rawValue: key)!] = earnings
-            }
+        EarningsWeekday.allCases.forEach { weekday in
+            newData[weekday] = 0.0
+        }
+        
+        data.forEach { key, earnings in
+            newData[EarningsWeekday(rawValue: key)!] = earnings
         }
         
         newData
