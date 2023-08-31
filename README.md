@@ -1,5 +1,5 @@
 # Cabify
-Fully functioning Ride-hailing app prototypes, each for riders and drivers. Includes the following:
+Fully functioning iOS-based ride-hailing apps, each for riders and drivers. Includes the following:
 - CabifyKit
 - CabifyDriver
 - CabifyRider
