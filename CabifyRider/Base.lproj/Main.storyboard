@@ -900,7 +900,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLp-pE-fSs">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLp-pE-fSs">
                                 <rect key="frame" x="0.0" y="120.33333333333331" width="393" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="cbw-Ff-1he"/>
